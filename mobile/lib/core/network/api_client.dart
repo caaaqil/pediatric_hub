@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 
 import '../../config/api_config.dart';
 import '../errors/api_exception.dart';
+import '../storage/api_endpoint.dart';
 import '../storage/auth_storage.dart';
 
 /// Thin Dio wrapper that speaks the backend's response contract.
@@ -46,6 +47,8 @@ class ApiClient {
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
+    // Re-read every time: the address can be changed on-device at runtime.
+    options.baseUrl = ApiEndpoint.current;
     if (!_isPublic(options.path)) {
       final String? token = await _storage.readAccessToken();
       if (token != null && token.isNotEmpty) {

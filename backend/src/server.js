@@ -8,9 +8,18 @@ const PORT = env.PORT || 3000;
 // Attach HTTP server so Socket.IO can share the same port as Express
 const httpServer = http.createServer(app);
 
+// Origins allowed to open a Socket.IO connection. Local dev works out of the
+// box; in production set CLIENT_ORIGINS to a comma-separated list, e.g.
+//   CLIENT_ORIGINS=https://pediatric-hub.onrender.com,https://phh.netlify.app
+// Mobile apps send no Origin header, so they are unaffected either way.
+const defaultOrigins = ['http://localhost:5173', 'http://127.0.0.1:5173'];
+const allowedOrigins = process.env.CLIENT_ORIGINS
+  ? process.env.CLIENT_ORIGINS.split(',').map((o) => o.trim()).filter(Boolean)
+  : defaultOrigins;
+
 const io = new Server(httpServer, {
   cors: {
-    origin: ['http://localhost:5173', 'http://127.0.0.1:5173'],
+    origin: allowedOrigins,
     methods: ['GET', 'POST'],
     credentials: true
   }

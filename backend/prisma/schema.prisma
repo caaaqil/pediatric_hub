@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -386,7 +386,7 @@ model Teleconsultation {
 model EducationalContent {
   id              String   @id @default(uuid())
   title           String
-  content         String   @db.LongText
+  content         String   @db.Text
   category        String
   isPublished     Boolean  @default(false)
   createdAt       DateTime @default(now())

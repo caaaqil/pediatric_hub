@@ -4,10 +4,13 @@ import 'package:go_router/go_router.dart';
 
 import 'config/theme/app_theme.dart';
 import 'core/router/app_router.dart';
+import 'core/storage/api_endpoint.dart';
 import 'presentation/providers/theme_provider.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // Restore any API address the user set on this device.
+  await ApiEndpoint.load();
   runApp(const ProviderScope(child: PediatricHealthHubApp()));
 }
 

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../config/api_config.dart';
 import '../../../config/theme/app_colors.dart';
 import '../../../config/theme/app_dimens.dart';
 import '../../../core/router/app_routes.dart';
+import '../../../core/storage/api_endpoint.dart';
 import '../../../core/utils/validators.dart';
 import '../../../core/widgets/common_widgets.dart';
 import '../../../core/widgets/state_views.dart';
@@ -30,6 +30,69 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     _email.dispose();
     _password.dispose();
     super.dispose();
+  }
+
+  /// Lets the address be corrected on the device — a laptop's LAN IP changes
+  /// whenever the router issues a new DHCP lease, and the APK would otherwise
+  /// need rebuilding each time.
+  Future<void> _editEndpoint() async {
+    final TextEditingController controller = TextEditingController(
+      text: ApiEndpoint.current,
+    );
+
+    final String? result = await showDialog<String>(
+      context: context,
+      builder: (BuildContext ctx) => AlertDialog(
+        title: const Text('API endpoint'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              "Your laptop's address on this Wi-Fi. Find it with "
+              '`hostname -I` (Linux), `ipconfig` (Windows) or '
+              '`ipconfig getifaddr en0` (macOS).',
+              style: Theme.of(ctx).textTheme.bodySmall,
+            ),
+            const SizedBox(height: 14),
+            TextField(
+              controller: controller,
+              autofocus: true,
+              keyboardType: TextInputType.url,
+              autocorrect: false,
+              decoration: const InputDecoration(
+                labelText: 'Address',
+                hintText: '192.168.1.20',
+                helperText: 'Port 3000 and /api/v1 are added automatically',
+              ),
+              onSubmitted: (String v) => Navigator.of(ctx).pop(v),
+            ),
+          ],
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(''),
+            child: const Text('Reset to default'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(controller.text),
+            child: const Text('Save'),
+          ),
+        ],
+      ),
+    );
+
+    controller.dispose();
+    if (result == null) return; // cancelled
+
+    await ApiEndpoint.save(result);
+    if (!mounted) return;
+    setState(() {}); // repaint the endpoint card
+    Toast.success(context, 'Now using ${ApiEndpoint.current}');
   }
 
   Future<void> _submit() async {
@@ -193,16 +256,40 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                               color: palette.textMuted,
                             ),
                           ),
+                          const Spacer(),
+                          TextButton(
+                            onPressed: _editEndpoint,
+                            style: TextButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                              ),
+                              minimumSize: Size.zero,
+                              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                            ),
+                            child: const Text('Change'),
+                          ),
                         ],
                       ),
                       const SizedBox(height: 4),
                       SelectableText(
-                        ApiConfig.baseUrl,
+                        ApiEndpoint.current,
                         style: theme.textTheme.bodySmall?.copyWith(
                           color: palette.textSecondary,
                           fontFamily: 'monospace',
                         ),
                       ),
+                      if (ApiEndpoint.isCustom)
+                        Padding(
+                          padding: const EdgeInsets.only(top: 4),
+                          child: Text(
+                            'Custom address saved on this device',
+                            style: theme.textTheme.bodySmall?.copyWith(
+                              color: AppColors.teal,
+                              fontSize: 10.5,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
                     ],
                   ),
                 ),
