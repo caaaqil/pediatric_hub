@@ -13,6 +13,10 @@ shared_preferences · google_fonts (Inter) · intl
 
 ## 1. Setup
 
+Setting up a machine from scratch (installing Node, PostgreSQL, Flutter) is
+covered in the [root README](../README.md) — it has a step-by-step **Windows 10**
+walkthrough as well as Linux/macOS. Once the tools are installed:
+
 ```bash
 # 1. Start the backend (from the repo root)
 cd backend
