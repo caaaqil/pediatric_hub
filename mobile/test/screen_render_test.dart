@@ -9,6 +9,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:pediatric_health_hub_mobile/config/theme/app_theme.dart';
+import 'package:pediatric_health_hub_mobile/core/network/api_client.dart';
+import 'package:pediatric_health_hub_mobile/core/storage/auth_storage.dart';
+import 'package:pediatric_health_hub_mobile/data/repositories/support_repository.dart';
+import 'package:pediatric_health_hub_mobile/presentation/screens/parent/book_appointment_screen.dart';
 import 'package:pediatric_health_hub_mobile/data/models/child.dart';
 import 'package:pediatric_health_hub_mobile/data/models/enums.dart';
 import 'package:pediatric_health_hub_mobile/data/models/misc.dart';
@@ -304,4 +308,123 @@ void main() {
     expect(find.text('Available Doctors'), findsOneWidget);
     expect(find.text('Dr. Sarah Jenkins'), findsOneWidget);
   });
+
+  // Walks the four steps of the ported BookingFlow. Steps 1–3 are only
+  // reachable once the fee is paid, so a stub repository stands in for
+  // WaafiPay — otherwise the later layouts would never be exercised.
+  testWidgets('Booking flow walks payment → doctor → child → time', (
+    WidgetTester tester,
+  ) async {
+    await _pump(
+      tester,
+      const BookAppointmentScreen(),
+      overrides: <Override>[
+        supportRepositoryProvider.overrideWithValue(_StubPayments()),
+        bookableDoctorsProvider.overrideWith(
+          (Ref ref) async => <Doctor>[
+            Doctor(
+              id: '5b8b4cc0-1111-2222-3333-444455556666',
+              userId: 'u1',
+              firstName: 'Sarah',
+              lastName: 'Jenkins',
+              specialization: 'Pediatric Pulmonology',
+              licenseNumber: 'MD-123456789',
+              verificationStatus: 'ACTIVE',
+              facilityId: 'f1',
+              facilityName: 'Banadir Clinic',
+            ),
+          ],
+        ),
+        myChildrenProvider.overrideWith((Ref ref) async => _children),
+        facilityServicesProvider.overrideWith(
+          (Ref ref, String facilityId) async => <HealthService>[
+            HealthService(
+              id: 's1',
+              facilityId: facilityId,
+              name: 'Growth Monitoring',
+              isActive: true,
+              price: 5,
+            ),
+          ],
+        ),
+      ],
+    );
+
+    // Step 0 — payment
+    expect(tester.takeException(), isNull);
+    expect(find.text('Consultation Fee Payment'), findsOneWidget);
+    expect(find.text('Teleconsultation Fee'), findsOneWidget);
+    expect(find.text(r'$0.01'), findsOneWidget);
+
+    await tester.enterText(find.byType(TextField), '252612345678');
+    await tester.pump();
+    await tester.tap(find.text(r'Pay $0.01 via EVC Plus'));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 300));
+
+    // Step 1 — choose doctor
+    expect(tester.takeException(), isNull);
+    expect(find.text('Available Specialists'), findsOneWidget);
+    expect(find.textContaining('Payment confirmed'), findsOneWidget);
+    expect(find.text('Dr. Sarah Jenkins'), findsOneWidget);
+
+    await tester.tap(find.text('Dr. Sarah Jenkins'));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 300));
+
+    // Step 2 — select child
+    expect(tester.takeException(), isNull);
+    // Twice: the stepper label and the panel heading.
+    expect(find.text('Select Child'), findsNWidgets(2));
+    expect(find.text('Booking with'), findsOneWidget);
+    expect(find.text('Growth Monitoring'), findsOneWidget);
+    expect(find.text('Amina Hassan'), findsOneWidget);
+
+    await tester.tap(find.text('Amina Hassan'));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 300));
+
+    // Step 3 — pick a time, with the summary underneath
+    expect(tester.takeException(), isNull);
+    expect(find.text('Pick a Date & Time'), findsOneWidget);
+    expect(find.text('☀️ MORNING'), findsOneWidget);
+    expect(find.text('9:00 AM'), findsOneWidget);
+    expect(find.text('Booking Summary'), findsOneWidget);
+    expect(find.text('Not selected'), findsOneWidget);
+
+    await tester.tap(find.text('10:30 AM'));
+    await tester.pump();
+    expect(tester.takeException(), isNull);
+    expect(find.text('Not selected'), findsNothing);
+  });
+}
+
+/// Stands in for WaafiPay so the steps after payment can be reached. Only
+/// `pay` is exercised; everything else keeps the real implementation, which
+/// would fail on a network call the test never makes.
+class _StubPayments extends SupportRepository {
+  _StubPayments() : super(ApiClient(storage: AuthStorage()));
+
+  @override
+  Future<PaymentResult> pay({
+    required String accountNo,
+    required double amount,
+    String? description,
+    String? appointmentId,
+  }) async {
+    return PaymentResult(
+      success: true,
+      payment: Payment(
+        id: 'pay-1',
+        userId: 'u1',
+        amount: amount,
+        currency: 'USD',
+        status: PaymentStatus.paid,
+        accountNo: accountNo,
+        referenceId: 'ref-1',
+        invoiceId: 'inv-1',
+        createdAt: DateTime(2026, 8, 9),
+      ),
+    );
+  }
 }
