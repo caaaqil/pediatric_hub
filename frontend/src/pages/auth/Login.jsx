@@ -30,7 +30,13 @@ export const Login = () => {
       setAuth(user, token);
       navigate("/dashboard");
     } catch (error) {
-      setErrorMsg(error.response?.data?.message || "Invalid credentials. Please try again.");
+      if (error.response) {
+        setErrorMsg(error.response.data?.message || "Invalid credentials. Please try again.");
+      } else {
+        // No response at all — the request never reached the server, so this
+        // says nothing about the password the user typed.
+        setErrorMsg("Could not reach the server. It may be waking up after being idle — wait a moment and sign in again.");
+      }
     }
   };
 
