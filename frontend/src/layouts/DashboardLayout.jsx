@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import useAuthStore from '../store/authStore';
 import useThemeStore from '../store/themeStore';
-import { LayoutDashboard, Users, Activity, Settings, LogOut, Bell, Calendar, Mail, Folder, Navigation, LineChart, Table, BookOpen, Layers, ShieldX, FileText, Syringe, HeartPulse, Stethoscope, PhoneCall, Bot, AlertCircle, X, Sun, Moon, Heart, CreditCard, MessageSquare } from 'lucide-react';
+import { LayoutDashboard, Users, Activity, Settings, LogOut, Bell, Calendar, Mail, Folder, Navigation, LineChart, Table, BookOpen, Layers, ShieldX, FileText, Syringe, HeartPulse, Stethoscope, PhoneCall, Bot, AlertCircle, X, Sun, Moon, Heart, CreditCard, MessageSquare, Menu } from 'lucide-react';
 
 export const DashboardLayout = () => {
     const { user, logout } = useAuthStore();
@@ -12,6 +12,8 @@ export const DashboardLayout = () => {
     const [showSettings, setShowSettings] = useState(false);
     const [emailNotifs, setEmailNotifs] = useState(true);
     const [secureMode, setSecureMode] = useState(true);
+    // Below `md` the sidebar is hidden, so the same links live in a drawer.
+    const [mobileNavOpen, setMobileNavOpen] = useState(false);
     const notifRef = useRef(null);
     const settingsRef = useRef(null);
 
@@ -25,6 +27,13 @@ export const DashboardLayout = () => {
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
 
+    useEffect(() => {
+        if (!mobileNavOpen) return;
+        const onKeyDown = (event) => { if (event.key === 'Escape') setMobileNavOpen(false); };
+        document.addEventListener('keydown', onKeyDown);
+        return () => document.removeEventListener('keydown', onKeyDown);
+    }, [mobileNavOpen]);
+
     const isActive = (path) => location.pathname === path;
     const navLinkClass = (path) => 
         `flex items-center gap-3 px-4 py-3 rounded-[--radius-sm] font-semibold text-[13px] transition-all duration-200 ${
@@ -32,6 +41,103 @@ export const DashboardLayout = () => {
                 ? 'text-primary-700 dark:text-primary-300 bg-primary-50 dark:bg-primary-950 border border-primary-200/60 dark:border-primary-800/60 shadow-sm'
                 : 'text-[--text-secondary] hover:text-primary-600 dark:hover:text-primary-400 hover:bg-[--surface-soft]'
         }`;
+
+    // Rendered twice — in the desktop sidebar and in the mobile drawer — so the
+    // two can never drift apart.
+    const navLinks = (
+        <>
+            {/* Dashboard link — always visible */}
+            <Link to="/dashboard" className={navLinkClass('/dashboard')}>
+                <LayoutDashboard size={18} strokeWidth={2} /> Dashboard
+            </Link>
+
+            <div className="pt-5 text-[10px] uppercase font-bold text-[--text-muted] tracking-widest px-4 mb-2">Clinical Features</div>
+
+            {/* PARENT FEATURES */}
+            {user?.role === 'PARENT' && (
+                <>
+                    <Link to="/child/my-children" className={navLinkClass('/child/my-children')}>
+                        <Activity size={18} /> Child Health Records
+                    </Link>
+                    <Link to="/appointments" className={navLinkClass('/appointments')}>
+                        <Calendar size={18} /> Book Appointment
+                    </Link>
+                    <Link to="/vaccines" className={navLinkClass('/vaccines')}>
+                        <Syringe size={18} /> Vaccinations
+                    </Link>
+                    <Link to="/messages" className={navLinkClass('/messages')}>
+                        <Mail size={18} /> Message Doctor
+                    </Link>
+                    <Link to="/teleconsult" className={navLinkClass('/teleconsult')}>
+                        <PhoneCall size={18} /> Tele-Consultation
+                    </Link>
+                    <Link to="/education" className={navLinkClass('/education')}>
+                        <BookOpen size={18} /> Health Education
+                    </Link>
+                    <Link to="/emergency" className={navLinkClass('/emergency')}>
+                        <AlertCircle size={18} /> Emergency Guidance
+                    </Link>
+                    <Link to="/chatbot" className={navLinkClass('/chatbot')}>
+                        <Bot size={18} /> AI Chatbot
+                    </Link>
+                </>
+            )}
+
+            {/* DOCTOR FEATURES */}
+            {user?.role === 'DOCTOR' && (
+                <>
+                    <Link to="/appointments" className={navLinkClass('/appointments')}>
+                        <Calendar size={18} /> Clinical Schedule
+                    </Link>
+                    <Link to="/patients" className={navLinkClass('/patients')}>
+                        <HeartPulse size={18} /> Patient Records
+                    </Link>
+                    <Link to="/messages" className={navLinkClass('/messages')}>
+                        <Mail size={18} /> Messenger
+                    </Link>
+                    <Link to="/teleconsult" className={navLinkClass('/teleconsult')}>
+                        <Stethoscope size={18} /> Teleconsultation
+                    </Link>
+                </>
+            )}
+
+            {/* FACILITY FEATURES */}
+            {user?.role === 'FACILITY' && (
+                <>
+                    <Link to="/facility/admin" className={navLinkClass('/facility/admin')}>
+                        <Layers size={18} /> Facility Admin
+                    </Link>
+                    <Link to="/facility/doctors" className={navLinkClass('/facility/doctors')}>
+                        <Stethoscope size={18} /> My Clinical Staff
+                    </Link>
+                </>
+            )}
+
+            {/* ADMIN FEATURES */}
+            {user?.role === 'ADMIN' && (
+                <>
+                    <Link to="/admin/users" className={navLinkClass('/admin/users')}>
+                        <Users size={18} /> Identity Access
+                    </Link>
+                    <Link to="/admin/doctors" className={navLinkClass('/admin/doctors')}>
+                        <Stethoscope size={18} /> Doctor Registry
+                    </Link>
+                    <Link to="/admin/facilities" className={navLinkClass('/admin/facilities')}>
+                        <Layers size={18} /> Facility Registry
+                    </Link>
+                    <Link to="/admin/payments" className={navLinkClass('/admin/payments')}>
+                        <CreditCard size={18} /> Payment History
+                    </Link>
+                    <Link to="/admin/messages" className={navLinkClass('/admin/messages')}>
+                        <MessageSquare size={18} /> Public Messages
+                    </Link>
+                    <Link to="/admin" className={navLinkClass('/admin')}>
+                        <ShieldX size={18} /> System Audit
+                    </Link>
+                </>
+            )}
+        </>
+    );
 
     return (
         <div className="min-h-screen bg-[--bg] flex overflow-hidden font-sans transition-colors duration-300">
@@ -51,107 +157,59 @@ export const DashboardLayout = () => {
                 </div>
                 
                 <div className="flex-1 overflow-y-auto py-6 custom-scrollbar">
-                    <nav className="space-y-1 px-4">
-                        {/* Dashboard link — always visible */}
-                        <Link to="/dashboard" className={navLinkClass('/dashboard')}>
-                            <LayoutDashboard size={18} strokeWidth={2} /> Dashboard
-                        </Link>
-                        
-                        <div className="pt-5 text-[10px] uppercase font-bold text-[--text-muted] tracking-widest px-4 mb-2">Clinical Features</div>
-                        
-                        {/* PARENT FEATURES */}
-                        {user?.role === 'PARENT' && (
-                            <>
-                                <Link to="/child/my-children" className={navLinkClass('/child/my-children')}>
-                                    <Activity size={18} /> Child Health Records
-                                </Link>
-                                <Link to="/appointments" className={navLinkClass('/appointments')}>
-                                    <Calendar size={18} /> Book Appointment
-                                </Link>
-                                <Link to="/vaccines" className={navLinkClass('/vaccines')}>
-                                    <Syringe size={18} /> Vaccinations
-                                </Link>
-                                <Link to="/messages" className={navLinkClass('/messages')}>
-                                    <Mail size={18} /> Message Doctor
-                                </Link>
-                                <Link to="/teleconsult" className={navLinkClass('/teleconsult')}>
-                                    <PhoneCall size={18} /> Tele-Consultation
-                                </Link>
-                                <Link to="/education" className={navLinkClass('/education')}>
-                                    <BookOpen size={18} /> Health Education
-                                </Link>
-                                <Link to="/emergency" className={navLinkClass('/emergency')}>
-                                    <AlertCircle size={18} /> Emergency Guidance
-                                </Link>
-                                <Link to="/chatbot" className={navLinkClass('/chatbot')}>
-                                    <Bot size={18} /> AI Chatbot
-                                </Link>
-                            </>
-                        )}
-
-                        {/* DOCTOR FEATURES */}
-                        {user?.role === 'DOCTOR' && (
-                            <>
-                                <Link to="/appointments" className={navLinkClass('/appointments')}>
-                                    <Calendar size={18} /> Clinical Schedule
-                                </Link>
-                                <Link to="/patients" className={navLinkClass('/patients')}>
-                                    <HeartPulse size={18} /> Patient Records
-                                </Link>
-                                <Link to="/messages" className={navLinkClass('/messages')}>
-                                    <Mail size={18} /> Messenger
-                                </Link>
-                                <Link to="/teleconsult" className={navLinkClass('/teleconsult')}>
-                                    <Stethoscope size={18} /> Teleconsultation
-                                </Link>
-                            </>
-                        )}
-
-                        {/* FACILITY FEATURES */}
-                        {user?.role === 'FACILITY' && (
-                            <>
-                                <Link to="/facility/admin" className={navLinkClass('/facility/admin')}>
-                                    <Layers size={18} /> Facility Admin
-                                </Link>
-                                <Link to="/facility/doctors" className={navLinkClass('/facility/doctors')}>
-                                    <Stethoscope size={18} /> My Clinical Staff
-                                </Link>
-                            </>
-                        )}
-
-                        {/* ADMIN FEATURES */}
-                        {user?.role === 'ADMIN' && (
-                            <>
-                                <Link to="/admin/users" className={navLinkClass('/admin/users')}>
-                                    <Users size={18} /> Identity Access
-                                </Link>
-                                <Link to="/admin/doctors" className={navLinkClass('/admin/doctors')}>
-                                    <Stethoscope size={18} /> Doctor Registry
-                                </Link>
-                                <Link to="/admin/facilities" className={navLinkClass('/admin/facilities')}>
-                                    <Layers size={18} /> Facility Registry
-                                </Link>
-                                <Link to="/admin/payments" className={navLinkClass('/admin/payments')}>
-                                    <CreditCard size={18} /> Payment History
-                                </Link>
-                                <Link to="/admin/messages" className={navLinkClass('/admin/messages')}>
-                                    <MessageSquare size={18} /> Public Messages
-                                </Link>
-                                <Link to="/admin" className={navLinkClass('/admin')}>
-                                    <ShieldX size={18} /> System Audit
-                                </Link>
-                            </>
-                        )}
-                    </nav>
+                    <nav className="space-y-1 px-4">{navLinks}</nav>
                 </div>
             </aside>
+
+            {/* Mobile navigation drawer — the sidebar above is hidden below `md` */}
+            {mobileNavOpen && (
+                <div className="fixed inset-0 z-50 md:hidden">
+                    <div
+                        className="absolute inset-0 bg-black/50 backdrop-blur-[2px]"
+                        onClick={() => setMobileNavOpen(false)}
+                        aria-hidden="true"
+                    />
+                    <aside className="absolute inset-y-0 left-0 w-[272px] max-w-[85%] bg-[--surface] border-r border-[--border] flex flex-col shadow-[--shadow-lg]">
+                        <div className="h-[68px] flex items-center justify-between px-5 shrink-0 border-b border-[--border]">
+                            <div className="flex items-center gap-3">
+                                <div className="w-9 h-9 rounded-[--radius-sm] bg-primary-600 flex items-center justify-center shadow-md">
+                                    <Heart className="w-5 h-5 text-white" fill="currentColor" />
+                                </div>
+                                <div>
+                                    <span className="font-bold text-[--text-primary] text-[15px] tracking-tight block leading-tight">Pediatric Hub</span>
+                                    <span className="text-[10px] font-semibold text-[--text-muted] uppercase tracking-wider">{user?.role} Portal</span>
+                                </div>
+                            </div>
+                            <button
+                                onClick={() => setMobileNavOpen(false)}
+                                className="w-9 h-9 flex items-center justify-center rounded-[--radius-sm] border border-[--border] text-[--text-muted] hover:text-danger hover:border-danger transition-colors shrink-0"
+                                aria-label="Close navigation"
+                            >
+                                <X size={16} />
+                            </button>
+                        </div>
+                        <div className="flex-1 overflow-y-auto py-6 custom-scrollbar">
+                            {/* Clicks bubble up from the links, so tapping one navigates
+                                and dismisses the drawer in the same gesture. */}
+                            <nav className="space-y-1 px-4" onClick={() => setMobileNavOpen(false)}>{navLinks}</nav>
+                        </div>
+                    </aside>
+                </div>
+            )}
 
             {/* Main Wrapper */}
             <div className="flex-1 flex flex-col h-screen overflow-hidden">
                 
                 {/* Top Header */}
-                <header className="h-[68px] bg-[--surface] shrink-0 flex items-center justify-between px-6 lg:px-8 z-10 border-b border-[--border] shadow-[--shadow-sm]">
-                    <div className="flex items-center gap-4 text-sm font-bold">
+                <header className="h-[68px] bg-[--surface] shrink-0 flex items-center justify-between px-4 sm:px-6 lg:px-8 z-10 border-b border-[--border] shadow-[--shadow-sm]">
+                    <div className="flex items-center gap-3 sm:gap-4 text-sm font-bold min-w-0">
+                        <button
+                            onClick={() => setMobileNavOpen(true)}
+                            className="md:hidden w-9 h-9 flex items-center justify-center rounded-[--radius-sm] border border-[--border] text-[--text-muted] hover:text-primary-600 hover:border-primary-400 transition-colors shrink-0"
+                            aria-label="Open navigation"
+                        >
+                            <Menu size={18} />
+                        </button>
                         <div className="w-10 h-10 rounded-full overflow-hidden shrink-0 shadow-md ring-2 ring-primary-200 dark:ring-primary-800">
                             <img
                                 src={`https://api.dicebear.com/7.x/${user?.role === 'DOCTOR' ? 'personas' : user?.role === 'PARENT' ? 'micah' : user?.role === 'ADMIN' ? 'bottts' : 'shapes'}/svg?seed=${encodeURIComponent((user?.profile?.firstName || user?.profile?.name || user?.role || 'User') + (user?.profile?.lastName || ''))}&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf`}
@@ -160,8 +218,8 @@ export const DashboardLayout = () => {
                                 onError={(e) => { e.target.style.display='none'; e.target.parentNode.innerHTML = `<div class="w-full h-full bg-primary-600 flex items-center justify-center text-white font-bold text-sm">${(user?.profile?.firstName || user?.role || 'U').charAt(0).toUpperCase()}</div>`; }}
                             />
                         </div>
-                        <div className="flex flex-col justify-center">
-                            <span className="text-[14px] text-[--text-primary] leading-tight font-semibold">
+                        <div className="flex flex-col justify-center min-w-0">
+                            <span className="text-[14px] text-[--text-primary] leading-tight font-semibold truncate">
                                 {user?.profile?.firstName 
                                     ? `${user.role === 'DOCTOR' ? 'Dr. ' : ''}${user.profile.firstName} ${user.profile.lastName}` 
                                     : user?.profile?.name 
@@ -247,7 +305,7 @@ export const DashboardLayout = () => {
                 </header>
 
                 {/* Sub Nav (Teal Toolbar) */}
-                <div className="h-[48px] bg-primary-600 dark:bg-primary-700 text-white shrink-0 flex items-center justify-between px-6 lg:px-8 shadow-sm">
+                <div className="h-[48px] bg-primary-600 dark:bg-primary-700 text-white shrink-0 flex items-center justify-between px-4 sm:px-6 lg:px-8 shadow-sm">
                     <div className="flex items-center gap-5 h-full">
                         <div className="flex items-center gap-1 border-r border-primary-500 dark:border-primary-600 pr-5 h-full py-2">
                             {user?.role !== 'ADMIN' && (
@@ -270,8 +328,8 @@ export const DashboardLayout = () => {
                         </div>
                     </div>
                     
-                    <div className="flex items-center gap-2.5 text-[10px] font-bold tracking-widest uppercase text-primary-200">
-                        <div className="w-2 h-2 rounded-full bg-white animate-pulse shadow-[0_0_8px_rgba(255,255,255,0.8)]"></div> 
+                    <div className="hidden sm:flex items-center gap-2.5 text-[10px] font-bold tracking-widest uppercase text-primary-200 shrink-0">
+                        <div className="w-2 h-2 rounded-full bg-white animate-pulse shadow-[0_0_8px_rgba(255,255,255,0.8)]"></div>
                         Secure Session Active
                     </div>
                 </div>
