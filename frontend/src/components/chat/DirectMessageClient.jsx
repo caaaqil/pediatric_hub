@@ -105,15 +105,15 @@ export const DirectMessageClient = () => {
         <div className="space-y-6">
 
             {/* ══ SECTION 1 — DIRECT MESSAGES ════════════════════════════════ */}
-            <div className="rounded-2xl border border-[--border] bg-[--surface] shadow-sm overflow-hidden">
+            <div className="rounded-2xl border border-(--border) bg-(--surface) shadow-sm overflow-hidden">
                 {/* Header */}
-                <div className="flex items-center gap-2.5 px-5 py-4 border-b border-[--border] bg-[--surface-soft]">
+                <div className="flex items-center gap-2.5 px-5 py-4 border-b border-(--border) bg-(--surface-soft)">
                     <div className="w-8 h-8 rounded-xl bg-primary-100 dark:bg-primary-950 flex items-center justify-center">
                         <MessageSquare size={16} className="text-primary-600 dark:text-primary-400"/>
                     </div>
                     <div>
-                        <h3 className="font-black text-sm text-[--text-primary] tracking-tight">Message Parents</h3>
-                        <p className="text-[10px] text-[--text-muted] font-semibold">Secure direct messaging</p>
+                        <h3 className="font-black text-sm text-(--text-primary) tracking-tight">Message Parents</h3>
+                        <p className="text-[10px] text-(--text-muted) font-semibold">Secure direct messaging</p>
                     </div>
                     <div className="ml-auto flex items-center gap-1.5 text-[10px] font-black text-emerald-600 bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 px-2.5 py-1 rounded-full">
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block animate-pulse"/>
@@ -123,16 +123,16 @@ export const DirectMessageClient = () => {
 
                 <div className="flex flex-col md:flex-row" style={{ height: 420 }}>
                     {/* Contact Sidebar */}
-                    <div className="w-full md:w-64 border-b md:border-b-0 md:border-r border-[--border] flex flex-col bg-[--surface-soft]">
+                    <div className="w-full md:w-64 border-b md:border-b-0 md:border-r border-(--border) flex flex-col bg-(--surface-soft)">
                         {/* Search */}
-                        <div className="p-3 border-b border-[--border]">
+                        <div className="p-3 border-b border-(--border)">
                             <div className="relative">
-                                <Search size={14} className="absolute left-3 top-2.5 text-[--text-muted]"/>
+                                <Search size={14} className="absolute left-3 top-2.5 text-(--text-muted)"/>
                                 <input
                                     value={search}
                                     onChange={e => setSearch(e.target.value)}
                                     placeholder="Search doctor..."
-                                    className="w-full pl-8 pr-3 py-2 text-xs font-medium bg-[--surface] border border-[--border] rounded-lg text-[--text-primary] placeholder-[--text-muted] focus:outline-none focus:border-primary-400"
+                                    className="w-full pl-8 pr-3 py-2 text-xs font-medium bg-(--surface) border border-(--border) rounded-lg text-(--text-primary) placeholder-(--text-muted) focus:outline-none focus:border-primary-400"
                                 />
                             </div>
                         </div>
@@ -140,27 +140,27 @@ export const DirectMessageClient = () => {
                         {/* Contact list */}
                         <div className="flex-1 overflow-y-auto">
                             {filteredContacts.length === 0 ? (
-                                <div className="p-4 text-center text-xs font-medium text-[--text-muted]">No contacts found</div>
+                                <div className="p-4 text-center text-xs font-medium text-(--text-muted)">No contacts found</div>
                             ) : filteredContacts.map(c => {
                                 const isActive = activeContact?.id === c.id;
                                 return (
                                     <button
                                         key={c.id}
                                         onClick={() => setActiveContact(c)}
-                                        className={`w-full text-left px-4 py-3.5 border-b border-[--border] transition-all flex items-center gap-3 group
+                                        className={`w-full text-left px-4 py-3.5 border-b border-(--border) transition-all flex items-center gap-3 group
                                             ${isActive
                                                 ? 'bg-primary-50 dark:bg-primary-950/40 border-l-2 border-l-primary-600'
-                                                : 'border-l-2 border-l-transparent hover:bg-[--surface]'
+                                                : 'border-l-2 border-l-transparent hover:bg-(--surface)'
                                             }`}
                                     >
                                         <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white text-[11px] font-black shrink-0">
                                             {c.name?.split(' ').map(w => w[0]).slice(0, 2).join('')}
                                         </div>
                                         <div className="min-w-0 flex-1">
-                                            <div className={`text-[12px] font-black truncate ${isActive ? 'text-primary-700 dark:text-primary-300' : 'text-[--text-primary]'}`}>
+                                            <div className={`text-[12px] font-black truncate ${isActive ? 'text-primary-700 dark:text-primary-300' : 'text-(--text-primary)'}`}>
                                                 {c.name}
                                             </div>
-                                            <div className="text-[10px] text-[--text-muted] font-medium">Doctor</div>
+                                            <div className="text-[10px] text-(--text-muted) font-medium">Doctor</div>
                                         </div>
                                         {isActive && <Dot size={20} className="text-primary-500 shrink-0"/>}
                                     </button>
@@ -170,16 +170,16 @@ export const DirectMessageClient = () => {
                     </div>
 
                     {/* Chat Area */}
-                    <div className="flex-1 flex flex-col bg-[--surface]">
+                    <div className="flex-1 flex flex-col bg-(--surface)">
                         {activeContact ? (
                             <>
                                 {/* Chat header */}
-                                <div className="px-5 py-3 border-b border-[--border] flex items-center gap-3 bg-[--surface-soft]">
+                                <div className="px-5 py-3 border-b border-(--border) flex items-center gap-3 bg-(--surface-soft)">
                                     <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white text-[11px] font-black">
                                         {activeContact.name?.split(' ').map(w => w[0]).slice(0, 2).join('')}
                                     </div>
                                     <div>
-                                        <div className="text-xs font-black text-[--text-primary]">{activeContact.name}</div>
+                                        <div className="text-xs font-black text-(--text-primary)">{activeContact.name}</div>
                                         <div className="text-[10px] text-emerald-500 font-bold flex items-center gap-1">
                                             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block"/>
                                             Secure channel active
@@ -187,7 +187,7 @@ export const DirectMessageClient = () => {
                                     </div>
                                     <button
                                         onClick={() => setActiveContact(null)}
-                                        className="ml-auto text-[--text-muted] hover:text-[--text-primary] transition-colors"
+                                        className="ml-auto text-(--text-muted) hover:text-(--text-primary) transition-colors"
                                     >
                                         <X size={16}/>
                                     </button>
@@ -197,8 +197,8 @@ export const DirectMessageClient = () => {
                                 <div className="flex-1 overflow-y-auto flex flex-col gap-2.5 p-4">
                                     {messages.length === 0 ? (
                                         <div className="m-auto text-center">
-                                            <MessageSquare size={32} className="mx-auto text-[--text-muted]/40 mb-2"/>
-                                            <p className="text-xs font-medium text-[--text-muted]">No messages yet.<br/>Start a secure conversation.</p>
+                                            <MessageSquare size={32} className="mx-auto text-(--text-muted)/40 mb-2"/>
+                                            <p className="text-xs font-medium text-(--text-muted)">No messages yet.<br/>Start a secure conversation.</p>
                                         </div>
                                     ) : messages.map(m => {
                                         const isMe = m.senderId === user.id;
@@ -212,10 +212,10 @@ export const DirectMessageClient = () => {
                                                 <div className={`max-w-[72%] px-4 py-2.5 rounded-2xl text-xs font-medium shadow-sm leading-relaxed
                                                     ${isMe
                                                         ? 'bg-primary-600 text-white rounded-br-sm'
-                                                        : 'bg-[--surface-soft] border border-[--border] text-[--text-primary] rounded-bl-sm'
+                                                        : 'bg-(--surface-soft) border border-(--border) text-(--text-primary) rounded-bl-sm'
                                                     }`}>
                                                     {m.content}
-                                                    <div className={`text-[9px] mt-1 flex items-center gap-1 ${isMe ? 'text-white/60 justify-end' : 'text-[--text-muted]'}`}>
+                                                    <div className={`text-[9px] mt-1 flex items-center gap-1 ${isMe ? 'text-white/60 justify-end' : 'text-(--text-muted)'}`}>
                                                         {new Date(m.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                                                         {isMe && <CheckCheck size={10}/>}
                                                     </div>
@@ -228,13 +228,13 @@ export const DirectMessageClient = () => {
 
                                 {/* Input */}
                                 <form onSubmit={e => { e.preventDefault(); if (messageInput.trim()) sendMsg.mutate(messageInput.trim()); }}
-                                    className="p-3 border-t border-[--border] flex gap-2">
+                                    className="p-3 border-t border-(--border) flex gap-2">
                                     <input
                                         value={messageInput}
                                         onChange={e => setMessageInput(e.target.value)}
                                         placeholder={`Message ${activeContact.name?.split(' ')[0]}...`}
                                         disabled={sendMsg.isLoading}
-                                        className="flex-1 px-4 py-2.5 border border-[--border] rounded-xl text-xs font-medium bg-[--surface-soft] text-[--text-primary] placeholder-[--text-muted] focus:outline-none focus:border-primary-400 focus:ring-2 focus:ring-primary-500/20 transition-all"
+                                        className="flex-1 px-4 py-2.5 border border-(--border) rounded-xl text-xs font-medium bg-(--surface-soft) text-(--text-primary) placeholder-(--text-muted) focus:outline-none focus:border-primary-400 focus:ring-2 focus:ring-primary-500/20 transition-all"
                                     />
                                     <button
                                         type="submit"
@@ -251,8 +251,8 @@ export const DirectMessageClient = () => {
                                     <Inbox size={28} className="text-primary-400"/>
                                 </div>
                                 <div>
-                                    <div className="font-black text-sm text-[--text-secondary] mb-1">Select a Doctor</div>
-                                    <div className="text-xs font-medium text-[--text-muted]">Choose a contact to start a secure conversation</div>
+                                    <div className="font-black text-sm text-(--text-secondary) mb-1">Select a Doctor</div>
+                                    <div className="text-xs font-medium text-(--text-muted)">Choose a contact to start a secure conversation</div>
                                 </div>
                             </div>
                         )}
@@ -261,15 +261,15 @@ export const DirectMessageClient = () => {
             </div>
 
             {/* ══ SECTION 2 — VIRTUAL CALL ════════════════════════════════════ */}
-            <div className="rounded-2xl border border-[--border] bg-[--surface] shadow-sm overflow-hidden">
+            <div className="rounded-2xl border border-(--border) bg-(--surface) shadow-sm overflow-hidden">
                 {/* Header */}
-                <div className="flex items-center gap-2.5 px-5 py-4 border-b border-[--border] bg-[--surface-soft]">
+                <div className="flex items-center gap-2.5 px-5 py-4 border-b border-(--border) bg-(--surface-soft)">
                     <div className="w-8 h-8 rounded-xl bg-teal/10 flex items-center justify-center">
                         <Video size={16} className="text-teal"/>
                     </div>
                     <div>
-                        <h3 className="font-black text-sm text-[--text-primary] tracking-tight">Virtual Call</h3>
-                        <p className="text-[10px] text-[--text-muted] font-semibold">Upcoming teleconsultations</p>
+                        <h3 className="font-black text-sm text-(--text-primary) tracking-tight">Virtual Call</h3>
+                        <p className="text-[10px] text-(--text-muted) font-semibold">Upcoming teleconsultations</p>
                     </div>
                     {upcoming.length > 0 && (
                         <span className="ml-auto text-[10px] font-black text-teal bg-teal/10 border border-teal/20 px-2.5 py-1 rounded-full">
@@ -280,17 +280,17 @@ export const DirectMessageClient = () => {
 
                 <div className="p-5">
                     {apptsLoading ? (
-                        <div className="flex items-center justify-center py-10 gap-2 text-[--text-muted]">
+                        <div className="flex items-center justify-center py-10 gap-2 text-(--text-muted)">
                             <Loader2 size={18} className="animate-spin"/>
                             <span className="text-xs font-bold">Loading sessions...</span>
                         </div>
                     ) : upcoming.length === 0 ? (
                         <div className="text-center py-10">
-                            <div className="w-14 h-14 rounded-2xl bg-[--surface-soft] flex items-center justify-center mx-auto mb-3 border border-[--border]">
-                                <Video size={24} className="text-[--text-muted]/50"/>
+                            <div className="w-14 h-14 rounded-2xl bg-(--surface-soft) flex items-center justify-center mx-auto mb-3 border border-(--border)">
+                                <Video size={24} className="text-(--text-muted)/50"/>
                             </div>
-                            <p className="text-xs font-black text-[--text-secondary] mb-1">No upcoming virtual calls</p>
-                            <p className="text-[11px] font-medium text-[--text-muted] mb-4">Schedule a teleconsultation to get started</p>
+                            <p className="text-xs font-black text-(--text-secondary) mb-1">No upcoming virtual calls</p>
+                            <p className="text-[11px] font-medium text-(--text-muted) mb-4">Schedule a teleconsultation to get started</p>
                             {!isDoctor && (
                                 <Link to="/appointments">
                                     <button className="px-4 py-2 bg-teal text-white text-xs font-black rounded-xl hover:opacity-90 transition-opacity">
@@ -309,7 +309,7 @@ export const DirectMessageClient = () => {
                                 return (
                                     <div key={session.id}
                                         className={`relative rounded-xl border overflow-hidden transition-all
-                                            ${isPast ? 'border-[--border] opacity-70' : isConfirmed ? 'border-teal/30 bg-teal/5' : 'border-amber-200 dark:border-amber-800 bg-amber-50/40 dark:bg-amber-950/10'}`}>
+                                            ${isPast ? 'border-(--border) opacity-70' : isConfirmed ? 'border-teal/30 bg-teal/5' : 'border-amber-200 dark:border-amber-800 bg-amber-50/40 dark:bg-amber-950/10'}`}>
                                         {/* Color stripe */}
                                         <div className={`absolute top-0 left-0 w-full h-0.5 ${isPast ? 'bg-slate-400' : isConfirmed ? 'bg-teal' : 'bg-amber-400'}`}/>
 
@@ -317,16 +317,16 @@ export const DirectMessageClient = () => {
                                             {/* Title + badge */}
                                             <div className="flex items-start justify-between gap-2 mb-3">
                                                 <div>
-                                                    <p className="text-xs font-black text-[--text-primary] leading-tight">
+                                                    <p className="text-xs font-black text-(--text-primary) leading-tight">
                                                         {isDoctor
                                                             ? `${session.child?.firstName} ${session.child?.lastName}`
                                                             : `Dr. ${session.doctor?.lastName}`}
                                                     </p>
                                                     <div className="flex items-center gap-3 mt-1">
-                                                        <span className="flex items-center gap-1 text-[10px] font-bold text-[--text-muted]">
+                                                        <span className="flex items-center gap-1 text-[10px] font-bold text-(--text-muted)">
                                                             <Calendar size={10}/> {fmt(session.scheduledAt)}
                                                         </span>
-                                                        <span className="flex items-center gap-1 text-[10px] font-bold text-[--text-muted]">
+                                                        <span className="flex items-center gap-1 text-[10px] font-bold text-(--text-muted)">
                                                             <Clock size={10}/> {fmtTime(session.scheduledAt)}
                                                         </span>
                                                     </div>
@@ -341,7 +341,7 @@ export const DirectMessageClient = () => {
 
                                             {/* Reason */}
                                             {session.reason && (
-                                                <p className="text-[10px] font-medium text-[--text-muted] mb-3 line-clamp-1">📋 {session.reason}</p>
+                                                <p className="text-[10px] font-medium text-(--text-muted) mb-3 line-clamp-1">📋 {session.reason}</p>
                                             )}
 
                                             {/* Action button */}
@@ -385,36 +385,36 @@ export const DirectMessageClient = () => {
             </div>
 
             {/* ══ SECTION 3 — CALL HISTORY ════════════════════════════════════ */}
-            <div className="rounded-2xl border border-[--border] bg-[--surface] shadow-sm overflow-hidden">
+            <div className="rounded-2xl border border-(--border) bg-(--surface) shadow-sm overflow-hidden">
                 {/* Header */}
-                <div className="flex items-center gap-2.5 px-5 py-4 border-b border-[--border] bg-[--surface-soft]">
+                <div className="flex items-center gap-2.5 px-5 py-4 border-b border-(--border) bg-(--surface-soft)">
                     <div className="w-8 h-8 rounded-xl bg-violet/10 flex items-center justify-center">
                         <History size={16} className="text-violet"/>
                     </div>
                     <div>
-                        <h3 className="font-black text-sm text-[--text-primary] tracking-tight">Call History</h3>
-                        <p className="text-[10px] text-[--text-muted] font-semibold">Past teleconsultations</p>
+                        <h3 className="font-black text-sm text-(--text-primary) tracking-tight">Call History</h3>
+                        <p className="text-[10px] text-(--text-muted) font-semibold">Past teleconsultations</p>
                     </div>
                     {history.length > 0 && (
-                        <span className="ml-auto text-[10px] font-black text-[--text-muted] bg-[--surface-soft] border border-[--border] px-2.5 py-1 rounded-full">
+                        <span className="ml-auto text-[10px] font-black text-(--text-muted) bg-(--surface-soft) border border-(--border) px-2.5 py-1 rounded-full">
                             {history.length} records
                         </span>
                     )}
                 </div>
 
-                <div className="divide-y divide-[--border]">
+                <div className="divide-y divide-(--border)">
                     {apptsLoading ? (
-                        <div className="flex items-center justify-center py-10 gap-2 text-[--text-muted]">
+                        <div className="flex items-center justify-center py-10 gap-2 text-(--text-muted)">
                             <Loader2 size={18} className="animate-spin"/>
                             <span className="text-xs font-bold">Loading history...</span>
                         </div>
                     ) : history.length === 0 ? (
                         <div className="text-center py-10">
-                            <div className="w-14 h-14 rounded-2xl bg-[--surface-soft] flex items-center justify-center mx-auto mb-3 border border-[--border]">
-                                <History size={24} className="text-[--text-muted]/50"/>
+                            <div className="w-14 h-14 rounded-2xl bg-(--surface-soft) flex items-center justify-center mx-auto mb-3 border border-(--border)">
+                                <History size={24} className="text-(--text-muted)/50"/>
                             </div>
-                            <p className="text-xs font-black text-[--text-secondary] mb-1">No call history yet</p>
-                            <p className="text-[11px] font-medium text-[--text-muted]">Completed calls will appear here</p>
+                            <p className="text-xs font-black text-(--text-secondary) mb-1">No call history yet</p>
+                            <p className="text-[11px] font-medium text-(--text-muted)">Completed calls will appear here</p>
                         </div>
                     ) : history.slice(0, 8).map(session => {
                         const badge = STATUS_BADGE[session.status] || STATUS_BADGE.COMPLETED;
@@ -423,19 +423,19 @@ export const DirectMessageClient = () => {
                         const hadVideo = !!tc?.startedAt;
 
                         return (
-                            <div key={session.id} className="px-5 py-4 flex items-center gap-4 hover:bg-[--surface-soft] transition-colors group">
+                            <div key={session.id} className="px-5 py-4 flex items-center gap-4 hover:bg-(--surface-soft) transition-colors group">
                                 {/* Icon */}
-                                <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${hadVideo ? 'bg-teal/10' : 'bg-[--surface-soft]'}`}>
+                                <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${hadVideo ? 'bg-teal/10' : 'bg-(--surface-soft)'}`}>
                                     {hadVideo
                                         ? <Video size={18} className="text-teal"/>
-                                        : <Phone size={18} className="text-[--text-muted]"/>
+                                        : <Phone size={18} className="text-(--text-muted)"/>
                                     }
                                 </div>
 
                                 {/* Info */}
                                 <div className="flex-1 min-w-0">
                                     <div className="flex items-center gap-2 mb-0.5">
-                                        <p className="text-xs font-black text-[--text-primary] truncate">
+                                        <p className="text-xs font-black text-(--text-primary) truncate">
                                             {isDoctor
                                                 ? `${session.child?.firstName} ${session.child?.lastName}`
                                                 : `Dr. ${session.doctor?.firstName} ${session.doctor?.lastName}`}
@@ -445,7 +445,7 @@ export const DirectMessageClient = () => {
                                         </span>
                                     </div>
                                     <div className="flex items-center gap-3">
-                                        <span className="text-[10px] text-[--text-muted] font-medium flex items-center gap-1">
+                                        <span className="text-[10px] text-(--text-muted) font-medium flex items-center gap-1">
                                             <Calendar size={9}/> {fmt(session.scheduledAt)} at {fmtTime(session.scheduledAt)}
                                         </span>
                                         {duration && (
@@ -455,7 +455,7 @@ export const DirectMessageClient = () => {
                                         )}
                                     </div>
                                     {session.reason && (
-                                        <p className="text-[10px] text-[--text-muted] mt-0.5 truncate">📋 {session.reason}</p>
+                                        <p className="text-[10px] text-(--text-muted) mt-0.5 truncate">📋 {session.reason}</p>
                                     )}
                                 </div>
 
@@ -471,7 +471,7 @@ export const DirectMessageClient = () => {
 
                     {history.length > 8 && (
                         <div className="px-5 py-3 text-center">
-                            <span className="text-[11px] font-black text-[--text-muted]">+ {history.length - 8} more records</span>
+                            <span className="text-[11px] font-black text-(--text-muted)">+ {history.length - 8} more records</span>
                         </div>
                     )}
                 </div>

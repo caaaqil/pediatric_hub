@@ -101,7 +101,7 @@ export const PatientRecords = () => {
         setCertModal(false);
     };
 
-    const inputCls = 'w-full bg-[--surface] text-[--text-primary] border-2 border-[--border] rounded-xl px-4 py-2.5 focus:outline-none focus:border-teal-500 text-sm font-semibold';
+    const inputCls = 'w-full bg-(--surface) text-(--text-primary) border-2 border-(--border) rounded-xl px-4 py-2.5 focus:outline-none focus:border-teal-500 text-sm font-semibold';
 
     return (
         <div className="w-full space-y-6 animate-fade-in font-sans">
@@ -118,17 +118,17 @@ export const PatientRecords = () => {
 
             {/* Search */}
             <div className="relative max-w-md">
-                <Search size={16} className="absolute left-3.5 top-3 text-[--text-muted]"/>
+                <Search size={16} className="absolute left-3.5 top-3 text-(--text-muted)"/>
                 <input type="text" value={searchQuery} onChange={e => setSearchQuery(e.target.value)}
                     placeholder="Search patients by name..."
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl border-2 border-[--border] bg-[--surface] text-[--text-primary] text-sm focus:outline-none focus:border-teal-500"/>
+                    className="w-full pl-10 pr-4 py-2.5 rounded-xl border-2 border-(--border) bg-(--surface) text-(--text-primary) text-sm focus:outline-none focus:border-teal-500"/>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {isLoading ? (
-                    <div className="col-span-3 p-12 text-center text-[--text-muted] font-bold uppercase tracking-widest animate-pulse">Loading Patients...</div>
+                    <div className="col-span-3 p-12 text-center text-(--text-muted) font-bold uppercase tracking-widest animate-pulse">Loading Patients...</div>
                 ) : displayed.map((patient) => (
-                    <Card key={patient.id} className="border-[--border] group hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200">
+                    <Card key={patient.id} className="border-(--border) group hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200">
                         <CardContent className="p-6">
                             {/* Patient Avatar + Info */}
                             <div className="flex items-center gap-4 mb-5">
@@ -141,7 +141,7 @@ export const PatientRecords = () => {
                                     />
                                 </div>
                                 <div className="flex-1 min-w-0">
-                                    <h3 className="font-black text-[--text-primary] text-lg leading-tight truncate">{patient.firstName} {patient.lastName}</h3>
+                                    <h3 className="font-black text-(--text-primary) text-lg leading-tight truncate">{patient.firstName} {patient.lastName}</h3>
                                     <div className="flex items-center gap-2 mt-1 flex-wrap">
                                         <span className="text-[10px] font-black bg-teal-50 text-teal-700 border border-teal-200 px-2 py-0.5 rounded-full uppercase tracking-widest">
                                             Age: {calcAge(patient.dateOfBirth)}
@@ -157,18 +157,18 @@ export const PatientRecords = () => {
 
                             {/* Child Info Grid */}
                             <div className="grid grid-cols-2 gap-2 mb-5">
-                                <div className="bg-[--surface-soft] rounded-lg p-3 border border-[--border]">
-                                    <div className="text-[9px] font-black uppercase text-[--text-muted] tracking-widest mb-1 flex items-center gap-1"><Calendar size={9}/> D.O.B</div>
-                                    <div className="font-bold text-[--text-primary] text-xs">{new Date(patient.dateOfBirth).toLocaleDateString()}</div>
+                                <div className="bg-(--surface-soft) rounded-lg p-3 border border-(--border)">
+                                    <div className="text-[9px] font-black uppercase text-(--text-muted) tracking-widest mb-1 flex items-center gap-1"><Calendar size={9}/> D.O.B</div>
+                                    <div className="font-bold text-(--text-primary) text-xs">{new Date(patient.dateOfBirth).toLocaleDateString()}</div>
                                 </div>
-                                <div className="bg-[--surface-soft] rounded-lg p-3 border border-[--border]">
-                                    <div className="text-[9px] font-black uppercase text-[--text-muted] tracking-widest mb-1 flex items-center gap-1"><User size={9}/> Gender</div>
-                                    <div className="font-bold text-[--text-primary] text-xs capitalize">{patient.gender || 'N/A'}</div>
+                                <div className="bg-(--surface-soft) rounded-lg p-3 border border-(--border)">
+                                    <div className="text-[9px] font-black uppercase text-(--text-muted) tracking-widest mb-1 flex items-center gap-1"><User size={9}/> Gender</div>
+                                    <div className="font-bold text-(--text-primary) text-xs capitalize">{patient.gender || 'N/A'}</div>
                                 </div>
                             </div>
 
                             {/* Quick Actions */}
-                            <div className="grid grid-cols-4 gap-1.5 border-t border-[--border] pt-4">
+                            <div className="grid grid-cols-4 gap-1.5 border-t border-(--border) pt-4">
                                 <ActionBtn icon={<FolderOpen size={15}/>} label="History" color="teal" onClick={() => navigate(`/child/${patient.id}`)}/>
                                 <ActionBtn icon={<Activity size={15}/>}   label="Growth"  color="blue" onClick={() => navigate(`/child/${patient.id}/growth`)}/>
                                 <ActionBtn icon={<Syringe size={15}/>}    label="Vaccines" color="purple" onClick={() => navigate(`/child/${patient.id}/vaccines`)}/>
@@ -178,9 +178,9 @@ export const PatientRecords = () => {
                     </Card>
                 ))}
                 {!isLoading && displayed.length === 0 && (
-                    <div className="col-span-3 p-12 text-center border-2 border-dashed border-[--border] rounded-xl">
+                    <div className="col-span-3 p-12 text-center border-2 border-dashed border-(--border) rounded-xl">
                         <HeartPulse size={32} className="mx-auto text-slate-300 mb-3"/>
-                        <p className="font-bold text-[--text-secondary]">No patients found</p>
+                        <p className="font-bold text-(--text-secondary)">No patients found</p>
                     </div>
                 )}
             </div>
@@ -188,7 +188,7 @@ export const PatientRecords = () => {
             {/* Patient Detail Side Panel */}
             {selectedPatient && (
                 <div className="fixed inset-0 z-[100] flex justify-end bg-slate-900/50 backdrop-blur-sm animate-fade-in">
-                    <div className="w-full max-w-2xl bg-[--surface] h-full overflow-y-auto shadow-2xl flex flex-col">
+                    <div className="w-full max-w-2xl bg-(--surface) h-full overflow-y-auto shadow-2xl flex flex-col">
                         {/* Panel Header */}
                         <div className="bg-gradient-to-r from-teal-600 to-emerald-700 p-6 text-white sticky top-0 z-10">
                             <div className="flex items-center justify-between">
@@ -208,7 +208,7 @@ export const PatientRecords = () => {
                         <div className="flex-1 p-6 space-y-6">
                             {/* Doctor Actions */}
                             <div>
-                                <h3 className="text-[10px] font-black uppercase tracking-widest text-[--text-muted] mb-3">Doctor Actions</h3>
+                                <h3 className="text-[10px] font-black uppercase tracking-widest text-(--text-muted) mb-3">Doctor Actions</h3>
                                 <div className="grid grid-cols-2 gap-3">
                                     <button onClick={() => setPrescModal(true)} className="flex items-center gap-3 p-4 bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900 rounded-xl hover:bg-blue-100 transition-colors text-left">
                                         <Pill size={20} className="text-blue-600 shrink-0"/>
@@ -245,10 +245,10 @@ export const PatientRecords = () => {
                             {patientDetail && (
                                 <Section title="Allergies" icon={<HeartPulse size={14}/>}>
                                     {patientDetail.baseline.allergies.length === 0 ? (
-                                        <p className="text-sm text-[--text-muted] italic">No known allergies recorded.</p>
+                                        <p className="text-sm text-(--text-muted) italic">No known allergies recorded.</p>
                                     ) : patientDetail.baseline.allergies.map(a => (
-                                        <div key={a.id} className="flex items-center justify-between py-2 border-b border-[--border] last:border-0">
-                                            <span className="font-semibold text-sm text-[--text-primary]">{a.allergen}</span>
+                                        <div key={a.id} className="flex items-center justify-between py-2 border-b border-(--border) last:border-0">
+                                            <span className="font-semibold text-sm text-(--text-primary)">{a.allergen}</span>
                                             <span className={`text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-widest ${a.severity === 'Severe' ? 'bg-red-100 text-red-700' : a.severity === 'Moderate' ? 'bg-amber-100 text-amber-700' : 'bg-green-100 text-green-700'}`}>{a.severity}</span>
                                         </div>
                                     ))}
@@ -259,14 +259,14 @@ export const PatientRecords = () => {
                             {patientDetail && (
                                 <Section title="Medical History / Past Illnesses" icon={<Activity size={14}/>}>
                                     {patientDetail.baseline.illnesses.length === 0 ? (
-                                        <p className="text-sm text-[--text-muted] italic">Clean history — no past illnesses recorded.</p>
+                                        <p className="text-sm text-(--text-muted) italic">Clean history — no past illnesses recorded.</p>
                                     ) : patientDetail.baseline.illnesses.map(i => (
-                                        <div key={i.id} className="flex items-center justify-between py-2 border-b border-[--border] last:border-0">
+                                        <div key={i.id} className="flex items-center justify-between py-2 border-b border-(--border) last:border-0">
                                             <div>
-                                                <div className="font-bold text-sm text-[--text-primary]">{i.illnessName}</div>
-                                                {i.notes && <div className="text-xs text-[--text-secondary] mt-0.5">{i.notes}</div>}
+                                                <div className="font-bold text-sm text-(--text-primary)">{i.illnessName}</div>
+                                                {i.notes && <div className="text-xs text-(--text-secondary) mt-0.5">{i.notes}</div>}
                                             </div>
-                                            <span className="text-[10px] font-bold text-[--text-muted] uppercase tracking-widest">{new Date(i.diagnosisDate).toLocaleDateString()}</span>
+                                            <span className="text-[10px] font-bold text-(--text-muted) uppercase tracking-widest">{new Date(i.diagnosisDate).toLocaleDateString()}</span>
                                         </div>
                                     ))}
                                 </Section>
@@ -276,11 +276,11 @@ export const PatientRecords = () => {
                             {patientDetail && (
                                 <Section title="Prescriptions / Medications" icon={<Pill size={14}/>}>
                                     {patientDetail.baseline.medications.length === 0 ? (
-                                        <p className="text-sm text-[--text-muted] italic">No active medications.</p>
+                                        <p className="text-sm text-(--text-muted) italic">No active medications.</p>
                                     ) : patientDetail.baseline.medications.map(m => (
-                                        <div key={m.id} className="py-2 border-b border-[--border] last:border-0">
-                                            <div className="font-bold text-sm text-[--text-primary]">{m.name}</div>
-                                            <div className="text-xs text-[--text-secondary] mt-0.5">{m.dosage}</div>
+                                        <div key={m.id} className="py-2 border-b border-(--border) last:border-0">
+                                            <div className="font-bold text-sm text-(--text-primary)">{m.name}</div>
+                                            <div className="text-xs text-(--text-secondary) mt-0.5">{m.dosage}</div>
                                         </div>
                                     ))}
                                     <button onClick={() => setPrescModal(true)} className="mt-3 w-full flex items-center justify-center gap-2 py-2 border-2 border-dashed border-blue-300 rounded-xl text-blue-600 text-xs font-black uppercase hover:bg-blue-50 transition-colors">
@@ -300,7 +300,7 @@ export const PatientRecords = () => {
                                             </div>
                                         ))}
                                     </div>
-                                    <button onClick={() => navigate(`/child/${selectedPatient.id}/vaccines`)} className="w-full py-2 border border-[--border] rounded-xl text-xs font-black uppercase text-[--text-muted] hover:text-purple-600 hover:border-purple-300 transition-colors">
+                                    <button onClick={() => navigate(`/child/${selectedPatient.id}/vaccines`)} className="w-full py-2 border border-(--border) rounded-xl text-xs font-black uppercase text-(--text-muted) hover:text-purple-600 hover:border-purple-300 transition-colors">
                                         View Full Schedule →
                                     </button>
                                 </Section>
@@ -313,22 +313,22 @@ export const PatientRecords = () => {
             {/* PRESCRIBE MODAL */}
             {prescModal && (
                 <div className="fixed inset-0 z-[200] flex items-center justify-center bg-slate-900/70 backdrop-blur-sm p-4">
-                    <div className="bg-[--surface] rounded-2xl shadow-2xl w-full max-w-md overflow-hidden">
+                    <div className="bg-(--surface) rounded-2xl shadow-2xl w-full max-w-md overflow-hidden">
                         <div className="bg-blue-600 p-5 text-white flex justify-between items-center">
                             <h2 className="font-black text-lg flex items-center gap-2"><Pill size={20}/> Issue Prescription</h2>
                             <button onClick={() => setPrescModal(false)} className="hover:bg-white/20 p-1.5 rounded-lg"><X size={18}/></button>
                         </div>
                         <form onSubmit={e => { e.preventDefault(); addMedication.mutate({ childId: selectedPatient?.id, name: prescForm.medicationName, dosage: `${prescForm.instructions} · Duration: ${prescForm.duration}` }); }} className="p-6 space-y-4">
                             <div>
-                                <label className="text-[10px] font-black uppercase text-[--text-muted] block mb-1">Medication Name *</label>
+                                <label className="text-[10px] font-black uppercase text-(--text-muted) block mb-1">Medication Name *</label>
                                 <input required type="text" value={prescForm.medicationName} onChange={e => setPrescForm(p => ({ ...p, medicationName: e.target.value }))} placeholder="e.g. Amoxicillin 250mg" className={inputCls}/>
                             </div>
                             <div>
-                                <label className="text-[10px] font-black uppercase text-[--text-muted] block mb-1">Instructions (How to Use) *</label>
+                                <label className="text-[10px] font-black uppercase text-(--text-muted) block mb-1">Instructions (How to Use) *</label>
                                 <textarea required rows={3} value={prescForm.instructions} onChange={e => setPrescForm(p => ({ ...p, instructions: e.target.value }))} placeholder="e.g. 5ml twice daily, after meals" className={inputCls + ' resize-none'}/>
                             </div>
                             <div>
-                                <label className="text-[10px] font-black uppercase text-[--text-muted] block mb-1">Duration *</label>
+                                <label className="text-[10px] font-black uppercase text-(--text-muted) block mb-1">Duration *</label>
                                 <input required type="text" value={prescForm.duration} onChange={e => setPrescForm(p => ({ ...p, duration: e.target.value }))} placeholder="e.g. 7 days" className={inputCls}/>
                             </div>
                             <div className="flex gap-3 pt-2">
@@ -345,14 +345,14 @@ export const PatientRecords = () => {
             {/* WRITE NOTES MODAL */}
             {noteModal && (
                 <div className="fixed inset-0 z-[200] flex items-center justify-center bg-slate-900/70 backdrop-blur-sm p-4">
-                    <div className="bg-[--surface] rounded-2xl shadow-2xl w-full max-w-md overflow-hidden">
+                    <div className="bg-(--surface) rounded-2xl shadow-2xl w-full max-w-md overflow-hidden">
                         <div className="bg-teal-600 p-5 text-white flex justify-between items-center">
                             <h2 className="font-black text-lg flex items-center gap-2"><FileText size={20}/> Write Consultation Notes</h2>
                             <button onClick={() => setNoteModal(false)} className="hover:bg-white/20 p-1.5 rounded-lg"><X size={18}/></button>
                         </div>
                         <form onSubmit={e => { e.preventDefault(); logConsultation.mutate({ childId: selectedPatient?.id, notes: noteText }); }} className="p-6 space-y-4">
                             <div>
-                                <label className="text-[10px] font-black uppercase text-[--text-muted] block mb-1">Notes *</label>
+                                <label className="text-[10px] font-black uppercase text-(--text-muted) block mb-1">Notes *</label>
                                 <textarea required rows={5} value={noteText} onChange={e => setNoteText(e.target.value)} placeholder="Write your clinical observations, diagnosis, and follow-up plan..." className={inputCls + ' resize-none'}/>
                             </div>
                             <div className="flex gap-3 pt-1">
@@ -369,18 +369,18 @@ export const PatientRecords = () => {
             {/* CERTIFICATE MODAL */}
             {certModal && (
                 <div className="fixed inset-0 z-[200] flex items-center justify-center bg-slate-900/70 backdrop-blur-sm p-4">
-                    <div className="bg-[--surface] rounded-2xl shadow-2xl w-full max-w-sm overflow-hidden">
+                    <div className="bg-(--surface) rounded-2xl shadow-2xl w-full max-w-sm overflow-hidden">
                         <div className="bg-amber-500 p-5 text-white flex justify-between items-center">
                             <h2 className="font-black text-lg flex items-center gap-2"><Award size={20}/> Issue Certificate</h2>
                             <button onClick={() => setCertModal(false)} className="hover:bg-white/20 p-1.5 rounded-lg"><X size={18}/></button>
                         </div>
                         <div className="p-6 space-y-4">
                             <div>
-                                <label className="text-[10px] font-black uppercase text-[--text-muted] block mb-2">Certificate Type</label>
+                                <label className="text-[10px] font-black uppercase text-(--text-muted) block mb-2">Certificate Type</label>
                                 <div className="space-y-2">
                                     {['Health Certificate','Fit-to-School Certificate','Vaccination Certificate','Medical Clearance'].map(t => (
                                         <button key={t} type="button" onClick={() => setCertType(t)}
-                                            className={`w-full text-left px-4 py-2.5 rounded-xl border-2 text-sm font-bold transition-all ${certType === t ? 'border-amber-500 bg-amber-50 text-amber-700' : 'border-[--border] text-[--text-secondary] hover:border-amber-300'}`}>
+                                            className={`w-full text-left px-4 py-2.5 rounded-xl border-2 text-sm font-bold transition-all ${certType === t ? 'border-amber-500 bg-amber-50 text-amber-700' : 'border-(--border) text-(--text-secondary) hover:border-amber-300'}`}>
                                             {t}
                                         </button>
                                     ))}
@@ -411,10 +411,10 @@ const ActionBtn = ({ icon, label, color, onClick }) => {
 };
 
 const Section = ({ title, icon, children }) => (
-    <div className="bg-[--surface-soft] rounded-xl border border-[--border] overflow-hidden">
-        <div className="flex items-center gap-2 px-4 py-3 bg-[--surface] border-b border-[--border]">
+    <div className="bg-(--surface-soft) rounded-xl border border-(--border) overflow-hidden">
+        <div className="flex items-center gap-2 px-4 py-3 bg-(--surface) border-b border-(--border)">
             <span className="text-teal-500">{icon}</span>
-            <h4 className="text-[11px] font-black uppercase tracking-widest text-[--text-secondary]">{title}</h4>
+            <h4 className="text-[11px] font-black uppercase tracking-widest text-(--text-secondary)">{title}</h4>
         </div>
         <div className="p-4">{children}</div>
     </div>
@@ -423,12 +423,12 @@ const Section = ({ title, icon, children }) => (
 const InfoGrid = ({ items }) => (
     <div className="grid grid-cols-2 gap-3">
         {items.map(({ label, val }) => (
-            <div key={label} className="bg-[--surface] p-3 rounded-xl border border-[--border]">
-                <div className="text-[9px] font-black uppercase tracking-widest text-[--text-muted] mb-1">{label}</div>
-                <div className="font-bold text-sm text-[--text-primary]">{val}</div>
+            <div key={label} className="bg-(--surface) p-3 rounded-xl border border-(--border)">
+                <div className="text-[9px] font-black uppercase tracking-widest text-(--text-muted) mb-1">{label}</div>
+                <div className="font-bold text-sm text-(--text-primary)">{val}</div>
             </div>
         ))}
     </div>
 );
 
-const inputCls = 'w-full bg-[--surface] text-[--text-primary] border-2 border-[--border] rounded-xl px-4 py-2.5 focus:outline-none focus:border-teal-500 text-sm font-semibold';
+const inputCls = 'w-full bg-(--surface) text-(--text-primary) border-2 border-(--border) rounded-xl px-4 py-2.5 focus:outline-none focus:border-teal-500 text-sm font-semibold';

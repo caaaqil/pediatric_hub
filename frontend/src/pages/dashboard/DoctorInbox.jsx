@@ -85,16 +85,16 @@ export const DoctorInbox = () => {
     return (
         <div className="max-w-[1200px] w-full mx-auto space-y-6 animate-fade-in font-sans">
             {/* Header */}
-            <div className="bg-[--surface] rounded-xl shadow-sm border border-[--border] p-6 sm:p-8 flex items-center gap-5 relative overflow-hidden">
+            <div className="bg-(--surface) rounded-xl shadow-sm border border-(--border) p-6 sm:p-8 flex items-center gap-5 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-72 h-72 bg-primary-50 dark:bg-primary-950/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4 pointer-events-none"/>
                 <div className="w-14 h-14 bg-blue-600/10 text-blue-600 rounded-2xl flex items-center justify-center shadow-sm z-10">
                     <Inbox size={28} strokeWidth={2.5}/>
                 </div>
                 <div className="z-10">
-                    <h1 className="text-2xl font-black text-[--text-primary] tracking-tight">
+                    <h1 className="text-2xl font-black text-(--text-primary) tracking-tight">
                         {user?.role === 'DOCTOR' ? 'Messenger — Parent Messages' : 'Message Your Doctor'}
                     </h1>
-                    <p className="text-[--text-secondary] font-medium text-sm mt-1">
+                    <p className="text-(--text-secondary) font-medium text-sm mt-1">
                         {user?.role === 'DOCTOR'
                             ? 'Reply, send prescriptions, reminders, advice and follow-up messages.'
                             : 'Ask questions, send pictures, and receive replies from your pediatrician.'}
@@ -112,22 +112,22 @@ export const DoctorInbox = () => {
             </div>
 
             {/* Messaging Panel */}
-            <div className="bg-[--surface] rounded-xl border border-[--border] shadow-sm overflow-hidden">
+            <div className="bg-(--surface) rounded-xl border border-(--border) shadow-sm overflow-hidden">
                 <div className="flex flex-col md:flex-row h-[580px]">
                     {/* Contacts Sidebar */}
-                    <div className="w-full md:w-1/3 border-b md:border-b-0 md:border-r border-[--border] bg-[--surface-soft] flex flex-col">
-                        <div className="p-4 border-b border-[--border] bg-[--surface-soft]/80">
-                            <h3 className="font-black text-[--text-primary] text-sm flex items-center gap-2">
+                    <div className="w-full md:w-1/3 border-b md:border-b-0 md:border-r border-(--border) bg-(--surface-soft) flex flex-col">
+                        <div className="p-4 border-b border-(--border) bg-(--surface-soft)/80">
+                            <h3 className="font-black text-(--text-primary) text-sm flex items-center gap-2">
                                 <MessageSquare size={15}/>
                                 {user?.role === 'DOCTOR' ? "My Patients' Parents" : 'Available Doctors'}
                             </h3>
                         </div>
                         <div className="flex-1 overflow-y-auto">
                             {loadingContacts ? (
-                                <div className="p-6 text-center text-[--text-muted] text-xs font-bold uppercase tracking-widest animate-pulse">Loading contacts...</div>
+                                <div className="p-6 text-center text-(--text-muted) text-xs font-bold uppercase tracking-widest animate-pulse">Loading contacts...</div>
                             ) : contacts?.length > 0 ? contacts.map(c => (
                                 <button key={c.id} onClick={() => setActiveContact(c)}
-                                    className={`w-full text-left px-4 py-3.5 border-b border-[--border] transition-all ${activeContact?.id === c.id ? 'bg-primary-50 dark:bg-primary-950 border-l-4 border-l-blue-600' : 'hover:bg-[--surface] border-l-4 border-l-transparent'}`}>
+                                    className={`w-full text-left px-4 py-3.5 border-b border-(--border) transition-all ${activeContact?.id === c.id ? 'bg-primary-50 dark:bg-primary-950 border-l-4 border-l-blue-600' : 'hover:bg-(--surface) border-l-4 border-l-transparent'}`}>
                                     <div className="flex items-center gap-3">
                                         <div className="w-10 h-10 rounded-full overflow-hidden ring-2 ring-blue-100 shrink-0">
                                             <img
@@ -138,17 +138,17 @@ export const DoctorInbox = () => {
                                             />
                                         </div>
                                         <div className="min-w-0">
-                                            <div className="font-bold text-sm text-[--text-primary] truncate">{c.name}</div>
-                                            <div className="text-[10px] text-[--text-muted] font-semibold uppercase tracking-wider mt-0.5">{c.role}</div>
+                                            <div className="font-bold text-sm text-(--text-primary) truncate">{c.name}</div>
+                                            <div className="text-[10px] text-(--text-muted) font-semibold uppercase tracking-wider mt-0.5">{c.role}</div>
                                         </div>
                                         <div className="ml-auto w-2 h-2 rounded-full bg-green-400 shrink-0" title="Online"/>
                                     </div>
                                 </button>
                             )) : (
                                 <div className="p-8 text-center">
-                                    <div className="w-12 h-12 bg-[--surface-soft] text-slate-300 rounded-full flex items-center justify-center mx-auto mb-3"><MessageSquare size={20}/></div>
-                                    <p className="text-sm font-bold text-[--text-muted]">No contacts yet</p>
-                                    <p className="text-xs text-[--text-muted] mt-1">
+                                    <div className="w-12 h-12 bg-(--surface-soft) text-slate-300 rounded-full flex items-center justify-center mx-auto mb-3"><MessageSquare size={20}/></div>
+                                    <p className="text-sm font-bold text-(--text-muted)">No contacts yet</p>
+                                    <p className="text-xs text-(--text-muted) mt-1">
                                         {user?.role === 'DOCTOR' ? 'Parents will appear after appointments.' : 'Book an appointment to message a doctor.'}
                                     </p>
                                 </div>
@@ -161,12 +161,12 @@ export const DoctorInbox = () => {
                         {activeContact ? (
                             <>
                                 {/* Chat Header */}
-                                <div className="px-5 py-3 border-b border-[--border] bg-[--surface] flex items-center gap-3">
+                                <div className="px-5 py-3 border-b border-(--border) bg-(--surface) flex items-center gap-3">
                                     <div className="w-9 h-9 rounded-full overflow-hidden ring-2 ring-blue-100 shrink-0">
                                         <img src={`https://api.dicebear.com/7.x/${activeContact.role === 'DOCTOR' ? 'personas' : 'micah'}/svg?seed=${encodeURIComponent(activeContact.name)}&backgroundColor=b6e3f4`} alt="" className="w-full h-full object-cover" onError={e=>{e.target.outerHTML=`<div class="w-9 h-9 rounded-full bg-blue-600 flex items-center justify-center text-white font-black text-sm">${activeContact.name?.charAt(0)}</div>`;}}/>
                                     </div>
                                     <div className="flex-1 min-w-0">
-                                        <div className="font-bold text-sm text-[--text-primary] truncate">{activeContact.name}</div>
+                                        <div className="font-bold text-sm text-(--text-primary) truncate">{activeContact.name}</div>
                                         <div className="text-[10px] text-green-500 font-bold uppercase tracking-widest flex items-center gap-1">
                                             <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"/> Online
                                         </div>
@@ -174,9 +174,9 @@ export const DoctorInbox = () => {
                                 </div>
 
                                 {/* Messages */}
-                                <div className="flex-1 overflow-y-auto flex flex-col gap-3 p-5 bg-[--surface-soft]/50">
+                                <div className="flex-1 overflow-y-auto flex flex-col gap-3 p-5 bg-(--surface-soft)/50">
                                     {(messages || []).length === 0 ? (
-                                        <div className="m-auto flex flex-col items-center text-[--text-muted]">
+                                        <div className="m-auto flex flex-col items-center text-(--text-muted)">
                                             <Clock size={28} className="mb-2 text-slate-300"/>
                                             <span className="text-sm font-bold">No messages yet</span>
                                             <span className="text-xs mt-1">Start the conversation below.</span>
@@ -192,10 +192,10 @@ export const DoctorInbox = () => {
                                                         mType === 'emergency' ? 'bg-red-50 border-2 border-red-300 text-red-800' :
                                                         mType === 'prescription' ? 'bg-purple-50 border border-purple-200 text-purple-900' :
                                                         isMe ? 'bg-blue-600 text-white rounded-br-none' :
-                                                        'bg-[--surface] border border-[--border] text-[--text-primary] rounded-bl-none'
+                                                        'bg-(--surface) border border-(--border) text-(--text-primary) rounded-bl-none'
                                                     }`}>
                                                         {m.content}
-                                                        <div className={`text-[10px] mt-1.5 ${isMe ? 'text-blue-200' : 'text-[--text-muted]'}`}>
+                                                        <div className={`text-[10px] mt-1.5 ${isMe ? 'text-blue-200' : 'text-(--text-muted)'}`}>
                                                             {new Date(m.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                                                         </div>
                                                     </div>
@@ -209,7 +209,7 @@ export const DoctorInbox = () => {
 
                                 {/* Quick Message Type Picker */}
                                 {showQuick && user?.role === 'DOCTOR' && (
-                                    <div className="px-4 py-2 border-t border-[--border] bg-[--surface-soft] flex flex-wrap gap-2">
+                                    <div className="px-4 py-2 border-t border-(--border) bg-(--surface-soft) flex flex-wrap gap-2">
                                         {QUICK_TYPES.map(t => (
                                             <button key={t.key} type="button" onClick={() => applyQuickType(t.prefix)}
                                                 className={`inline-flex items-center gap-1.5 text-xs font-black uppercase px-3 py-1.5 rounded-full border transition-colors ${t.color}`}>
@@ -220,11 +220,11 @@ export const DoctorInbox = () => {
                                 )}
 
                                 {/* Input */}
-                                <div className="p-4 border-t border-[--border] bg-[--surface]">
+                                <div className="p-4 border-t border-(--border) bg-(--surface)">
                                     <form onSubmit={handleSend} className="flex gap-2">
                                         {user?.role === 'DOCTOR' && (
                                             <button type="button" onClick={() => setShowQuick(!showQuick)}
-                                                className={`px-3 h-[46px] rounded-xl border-2 transition-colors flex items-center gap-1 text-xs font-black ${showQuick ? 'bg-primary-600 text-white border-primary-600' : 'border-[--border] text-[--text-muted] hover:border-primary-400 hover:text-primary-600'}`}
+                                                className={`px-3 h-[46px] rounded-xl border-2 transition-colors flex items-center gap-1 text-xs font-black ${showQuick ? 'bg-primary-600 text-white border-primary-600' : 'border-(--border) text-(--text-muted) hover:border-primary-400 hover:text-primary-600'}`}
                                                 title="Message type">
                                                 <Pill size={14}/> <ChevronDown size={12}/>
                                             </button>
@@ -233,7 +233,7 @@ export const DoctorInbox = () => {
                                             type="text" value={messageInput}
                                             onChange={e => setMessageInput(e.target.value)}
                                             placeholder={`Type a message to ${activeContact.name.split(' ')[0]}...`}
-                                            className="flex-1 px-4 py-3 border-2 border-[--border] rounded-xl text-sm font-medium bg-[--surface] text-[--text-primary] placeholder:text-[--text-muted] focus:outline-none focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all"
+                                            className="flex-1 px-4 py-3 border-2 border-(--border) rounded-xl text-sm font-medium bg-(--surface) text-(--text-primary) placeholder:text-(--text-muted) focus:outline-none focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all"
                                             disabled={sendMessage.isPending}
                                         />
                                         <button
@@ -244,16 +244,16 @@ export const DoctorInbox = () => {
                                         </button>
                                     </form>
                                     {user?.role === 'PARENT' && (
-                                        <p className="text-[10px] text-[--text-muted] font-semibold mt-2 text-center">You can ask questions, describe symptoms, or send reminders. Your doctor will reply shortly.</p>
+                                        <p className="text-[10px] text-(--text-muted) font-semibold mt-2 text-center">You can ask questions, describe symptoms, or send reminders. Your doctor will reply shortly.</p>
                                     )}
                                 </div>
                             </>
                         ) : (
-                            <div className="flex-1 flex flex-col items-center justify-center text-[--text-muted] bg-[--surface-soft]/30">
-                                <div className="w-20 h-20 bg-[--surface-soft] rounded-full flex items-center justify-center mb-4 border border-[--border]">
+                            <div className="flex-1 flex flex-col items-center justify-center text-(--text-muted) bg-(--surface-soft)/30">
+                                <div className="w-20 h-20 bg-(--surface-soft) rounded-full flex items-center justify-center mb-4 border border-(--border)">
                                     <Inbox size={32} className="text-slate-300"/>
                                 </div>
-                                <span className="font-bold text-lg text-[--text-secondary] tracking-tight">Select a conversation</span>
+                                <span className="font-bold text-lg text-(--text-secondary) tracking-tight">Select a conversation</span>
                                 <span className="text-sm mt-1">Choose a contact from the left to begin.</span>
                             </div>
                         )}

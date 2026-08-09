@@ -197,34 +197,34 @@ export const BookingFlow = () => {
                     <Zap size={12}/> Request Sent
                 </div>
 
-                <h2 className="text-3xl font-black text-[--text-primary] mb-3 tracking-tight">Appointment Requested!</h2>
-                <p className="text-sm font-medium text-[--text-secondary] leading-relaxed mb-2">
-                    Your request has been sent to <span className="font-black text-[--text-primary]">Dr. {selectedDoc?.lastName}</span>.
+                <h2 className="text-3xl font-black text-(--text-primary) mb-3 tracking-tight">Appointment Requested!</h2>
+                <p className="text-sm font-medium text-(--text-secondary) leading-relaxed mb-2">
+                    Your request has been sent to <span className="font-black text-(--text-primary)">Dr. {selectedDoc?.lastName}</span>.
                 </p>
-                <p className="text-xs font-medium text-[--text-muted] mb-8">
+                <p className="text-xs font-medium text-(--text-muted) mb-8">
                     Once the doctor approves, you'll see a <strong>Join Call</strong> button in the Tele-Consultation section.
                 </p>
 
                 {/* Summary pill */}
-                <div className="bg-[--surface-soft] border border-[--border] rounded-2xl p-5 text-left mb-8 space-y-3">
+                <div className="bg-(--surface-soft) border border-(--border) rounded-2xl p-5 text-left mb-8 space-y-3">
                     <div className="flex items-center justify-between text-xs font-bold">
-                        <span className="text-[--text-muted]">Doctor</span>
-                        <span className="text-[--text-primary]">Dr. {selectedDoc?.firstName} {selectedDoc?.lastName}</span>
+                        <span className="text-(--text-muted)">Doctor</span>
+                        <span className="text-(--text-primary)">Dr. {selectedDoc?.firstName} {selectedDoc?.lastName}</span>
                     </div>
                     <div className="flex items-center justify-between text-xs font-bold">
-                        <span className="text-[--text-muted]">Patient</span>
-                        <span className="text-[--text-primary]">{selectedChild?.firstName} {selectedChild?.lastName}</span>
+                        <span className="text-(--text-muted)">Patient</span>
+                        <span className="text-(--text-primary)">{selectedChild?.firstName} {selectedChild?.lastName}</span>
                     </div>
                     <div className="flex items-center justify-between text-xs font-bold">
-                        <span className="text-[--text-muted]">Date & Time</span>
-                        <span className="text-[--text-primary]">{fmtDate(selectedDate)} · {formatTime(selectedTime)}</span>
+                        <span className="text-(--text-muted)">Date & Time</span>
+                        <span className="text-(--text-primary)">{fmtDate(selectedDate)} · {formatTime(selectedTime)}</span>
                     </div>
                     <div className="flex items-center justify-between text-xs font-bold">
-                        <span className="text-[--text-muted]">Payment</span>
+                        <span className="text-(--text-muted)">Payment</span>
                         <span className="flex items-center gap-1 text-emerald-600"><CheckCircle2 size={12}/> ${CONSULTATION_FEE.toFixed(2)} Paid</span>
                     </div>
                     <div className="flex items-center justify-between text-xs font-bold">
-                        <span className="text-[--text-muted]">Status</span>
+                        <span className="text-(--text-muted)">Status</span>
                         <span className="flex items-center gap-1 text-amber-600"><div className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"/> Pending Approval</span>
                     </div>
                 </div>
@@ -276,7 +276,7 @@ export const BookingFlow = () => {
             </div>
 
             {/* ── Step Progress Bar ─────────────────────────────────────────── */}
-            <div className="bg-[--surface] border border-[--border] rounded-2xl p-5 mb-8 shadow-sm">
+            <div className="bg-(--surface) border border-(--border) rounded-2xl p-5 mb-8 shadow-sm">
                 <div className="flex items-center justify-between">
                     {STEPS.map((s, i) => {
                         const done    = step > s.n;
@@ -287,17 +287,17 @@ export const BookingFlow = () => {
                                     <div className={`w-10 h-10 rounded-full flex items-center justify-center font-black text-sm transition-all
                                         ${done    ? 'bg-emerald-500 text-white shadow-lg shadow-emerald-200 dark:shadow-emerald-900/30'
                                         : current ? 'bg-primary-600 text-white shadow-lg shadow-primary-200 dark:shadow-primary-900/30 ring-4 ring-primary-100 dark:ring-primary-900/30'
-                                        :           'bg-[--surface-soft] text-[--text-muted] border-2 border-[--border]'}`}>
+                                        :           'bg-(--surface-soft) text-(--text-muted) border-2 border-(--border)'}`}>
                                         {done ? <CheckCircle2 size={18}/> : s.icon}
                                     </div>
                                     <div className={`text-[11px] font-black tracking-tight text-center hidden sm:block
-                                        ${current ? 'text-primary-600' : done ? 'text-emerald-600' : 'text-[--text-muted]'}`}>
+                                        ${current ? 'text-primary-600' : done ? 'text-emerald-600' : 'text-(--text-muted)'}`}>
                                         {s.label}
                                     </div>
                                 </div>
                                 {i < STEPS.length - 1 && (
                                     <div className="flex-1 mx-3 h-0.5 relative">
-                                        <div className="absolute inset-0 bg-[--border] rounded-full"/>
+                                        <div className="absolute inset-0 bg-(--border) rounded-full"/>
                                         <div className={`absolute inset-0 rounded-full transition-all duration-500 ${done ? 'bg-emerald-500' : current ? 'bg-primary-400 w-1/2' : 'w-0'}`}/>
                                     </div>
                                 )}
@@ -314,12 +314,12 @@ export const BookingFlow = () => {
 
                     {/* STEP 0 — Payment */}
                     {step === 0 && (
-                        <div className="bg-[--surface] border border-[--border] rounded-2xl shadow-sm overflow-hidden">
-                            <div className="px-6 py-5 border-b border-[--border] bg-[--surface-soft]">
-                                <h2 className="font-black text-[--text-primary] text-base flex items-center gap-2">
+                        <div className="bg-(--surface) border border-(--border) rounded-2xl shadow-sm overflow-hidden">
+                            <div className="px-6 py-5 border-b border-(--border) bg-(--surface-soft)">
+                                <h2 className="font-black text-(--text-primary) text-base flex items-center gap-2">
                                     <Wallet size={18} className="text-primary-600"/> Consultation Fee Payment
                                 </h2>
-                                <p className="text-xs text-[--text-muted] font-medium mt-0.5">
+                                <p className="text-xs text-(--text-muted) font-medium mt-0.5">
                                     Pay via EVC Plus (WaafiPay) to unlock appointment booking
                                 </p>
                             </div>
@@ -328,10 +328,10 @@ export const BookingFlow = () => {
                                 {/* Fee summary card */}
                                 <div className="bg-gradient-to-br from-primary-50 to-indigo-50 dark:from-primary-950/30 dark:to-indigo-950/30 border border-primary-200 dark:border-primary-800 rounded-2xl p-5">
                                     <div className="flex items-center justify-between mb-3">
-                                        <span className="text-sm font-black text-[--text-primary]">Teleconsultation Fee</span>
+                                        <span className="text-sm font-black text-(--text-primary)">Teleconsultation Fee</span>
                                         <span className="text-2xl font-black text-primary-600">${CONSULTATION_FEE.toFixed(2)}</span>
                                     </div>
-                                    <div className="space-y-1.5 text-xs text-[--text-muted] font-medium">
+                                    <div className="space-y-1.5 text-xs text-(--text-muted) font-medium">
                                         <div className="flex items-center gap-2"><CheckCircle2 size={12} className="text-emerald-500"/> 30-minute video consultation</div>
                                         <div className="flex items-center gap-2"><CheckCircle2 size={12} className="text-emerald-500"/> Certified pediatric specialist</div>
                                         <div className="flex items-center gap-2"><CheckCircle2 size={12} className="text-emerald-500"/> Digital prescription if needed</div>
@@ -341,22 +341,22 @@ export const BookingFlow = () => {
                                 {/* EVC Plus form */}
                                 <div className="space-y-4">
                                     <div>
-                                        <label className="flex items-center gap-2 text-xs font-black text-[--text-primary] uppercase tracking-widest mb-3">
+                                        <label className="flex items-center gap-2 text-xs font-black text-(--text-primary) uppercase tracking-widest mb-3">
                                             <Phone size={13} className="text-primary-600"/> EVC Plus Phone Number
                                         </label>
                                         <div className="relative">
                                             <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center gap-2">
-                                                <span className="text-sm font-black text-[--text-muted]">🇸🇴</span>
+                                                <span className="text-sm font-black text-(--text-muted)">🇸🇴</span>
                                             </div>
                                             <input
                                                 type="tel"
                                                 value={phoneNumber}
                                                 onChange={e => { setPhoneNumber(e.target.value); setPayError(''); }}
                                                 placeholder="e.g. 2526XXXXXXXX"
-                                                className="w-full pl-10 pr-4 py-3.5 border-2 border-[--border] rounded-xl bg-[--surface] text-[--text-primary] font-bold text-sm placeholder-[--text-muted] focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all"
+                                                className="w-full pl-10 pr-4 py-3.5 border-2 border-(--border) rounded-xl bg-(--surface) text-(--text-primary) font-bold text-sm placeholder-(--text-muted) focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all"
                                             />
                                         </div>
-                                        <p className="text-[10px] text-[--text-muted] font-medium mt-1.5">
+                                        <p className="text-[10px] text-(--text-muted) font-medium mt-1.5">
                                             Enter your EVC Plus / Hormuud registered number
                                         </p>
                                     </div>
@@ -387,9 +387,9 @@ export const BookingFlow = () => {
                                 </div>
 
                                 {/* Security note */}
-                                <div className="flex items-center gap-3 p-4 bg-[--surface-soft] border border-[--border] rounded-xl">
+                                <div className="flex items-center gap-3 p-4 bg-(--surface-soft) border border-(--border) rounded-xl">
                                     <Shield size={16} className="text-emerald-500 shrink-0"/>
-                                    <p className="text-[10px] text-[--text-muted] font-medium leading-relaxed">
+                                    <p className="text-[10px] text-(--text-muted) font-medium leading-relaxed">
                                         Payment is securely processed by <strong>WaafiPay</strong>. Your phone number is only used to charge your EVC Plus wallet.
                                     </p>
                                 </div>
@@ -399,7 +399,7 @@ export const BookingFlow = () => {
 
                     {/* STEP 1 — Choose Doctor */}
                     {step === 1 && (
-                        <div className="bg-[--surface] border border-[--border] rounded-2xl shadow-sm overflow-hidden">
+                        <div className="bg-(--surface) border border-(--border) rounded-2xl shadow-sm overflow-hidden">
                             {/* Payment success banner */}
                             {paidData && (
                                 <div className="px-6 py-3 bg-emerald-50 dark:bg-emerald-950/20 border-b border-emerald-200 dark:border-emerald-800 flex items-center gap-2">
@@ -411,21 +411,21 @@ export const BookingFlow = () => {
                             )}
 
                             {/* Card header */}
-                            <div className="px-6 py-5 border-b border-[--border] bg-[--surface-soft] flex items-center justify-between gap-4">
+                            <div className="px-6 py-5 border-b border-(--border) bg-(--surface-soft) flex items-center justify-between gap-4">
                                 <div>
-                                    <h2 className="font-black text-[--text-primary] text-base">Available Specialists</h2>
-                                    <p className="text-xs text-[--text-muted] font-medium mt-0.5">All doctors are certified pediatric specialists</p>
+                                    <h2 className="font-black text-(--text-primary) text-base">Available Specialists</h2>
+                                    <p className="text-xs text-(--text-muted) font-medium mt-0.5">All doctors are certified pediatric specialists</p>
                                 </div>
                                 <div className="relative">
-                                    <Search size={15} className="absolute left-3 top-2.5 text-[--text-muted]"/>
+                                    <Search size={15} className="absolute left-3 top-2.5 text-(--text-muted)"/>
                                     <input
                                         value={searchDoc}
                                         onChange={e => setSearchDoc(e.target.value)}
                                         placeholder="Search doctor or specialty..."
-                                        className="pl-9 pr-4 py-2.5 text-xs font-medium bg-[--surface] border border-[--border] rounded-xl text-[--text-primary] placeholder-[--text-muted] focus:outline-none focus:border-primary-400 w-56"
+                                        className="pl-9 pr-4 py-2.5 text-xs font-medium bg-(--surface) border border-(--border) rounded-xl text-(--text-primary) placeholder-(--text-muted) focus:outline-none focus:border-primary-400 w-56"
                                     />
                                     {searchDoc && (
-                                        <button onClick={() => setSearchDoc('')} className="absolute right-3 top-2.5 text-[--text-muted] hover:text-[--text-primary]">
+                                        <button onClick={() => setSearchDoc('')} className="absolute right-3 top-2.5 text-(--text-muted) hover:text-(--text-primary)">
                                             <X size={14}/>
                                         </button>
                                     )}
@@ -436,14 +436,14 @@ export const BookingFlow = () => {
                                 {loadDocs ? (
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         {[1,2,3,4].map(i => (
-                                            <div key={i} className="h-32 rounded-2xl bg-[--surface-soft] border border-[--border] animate-pulse"/>
+                                            <div key={i} className="h-32 rounded-2xl bg-(--surface-soft) border border-(--border) animate-pulse"/>
                                         ))}
                                     </div>
                                 ) : filteredDocs.length === 0 ? (
                                     <div className="text-center py-16">
-                                        <Stethoscope size={40} className="mx-auto text-[--text-muted]/30 mb-4"/>
-                                        <p className="font-black text-[--text-secondary] mb-1">No doctors found</p>
-                                        <p className="text-xs text-[--text-muted]">Try a different search term</p>
+                                        <Stethoscope size={40} className="mx-auto text-(--text-muted)/30 mb-4"/>
+                                        <p className="font-black text-(--text-secondary) mb-1">No doctors found</p>
+                                        <p className="text-xs text-(--text-muted)">Try a different search term</p>
                                     </div>
                                 ) : (
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -451,7 +451,7 @@ export const BookingFlow = () => {
                                             <button
                                                 key={d.id}
                                                 onClick={() => { setSelectedDoc(d); setStep(2); }}
-                                                className="group text-left p-5 border-2 border-[--border] rounded-2xl hover:border-primary-400 hover:shadow-lg hover:-translate-y-1 transition-all duration-200 bg-[--surface] relative overflow-hidden"
+                                                className="group text-left p-5 border-2 border-(--border) rounded-2xl hover:border-primary-400 hover:shadow-lg hover:-translate-y-1 transition-all duration-200 bg-(--surface) relative overflow-hidden"
                                             >
                                                 {/* Accent top bar */}
                                                 <div className={`absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r ${AVATAR_COLORS[idx % AVATAR_COLORS.length].replace('from-', 'from-').replace('to-', 'to-')} opacity-0 group-hover:opacity-100 transition-opacity`}/>
@@ -464,7 +464,7 @@ export const BookingFlow = () => {
 
                                                     <div className="flex-1 min-w-0">
                                                         <div className="flex items-center gap-2 flex-wrap mb-1">
-                                                            <h3 className="font-black text-[--text-primary] text-sm">
+                                                            <h3 className="font-black text-(--text-primary) text-sm">
                                                                 Dr. {d.firstName} {d.lastName}
                                                             </h3>
                                                             {d.verificationStatus === 'ACTIVE' && (
@@ -479,7 +479,7 @@ export const BookingFlow = () => {
                                                         </span>
 
                                                         {d.facility?.name && (
-                                                            <div className="flex items-center gap-1 text-[10px] text-[--text-muted] font-medium">
+                                                            <div className="flex items-center gap-1 text-[10px] text-(--text-muted) font-medium">
                                                                 <MapPin size={10}/> {d.facility.name}
                                                             </div>
                                                         )}
@@ -488,9 +488,9 @@ export const BookingFlow = () => {
                                                         {(() => { const r = getDoctorRating(idx); return (
                                                         <div className="flex items-center gap-0.5 mt-1.5">
                                                             {[1,2,3,4,5].map(s => (
-                                                                <Star key={s} size={10} className={s <= r.stars ? 'text-amber-400 fill-amber-400' : 'text-[--text-muted]/30'}/>
+                                                                <Star key={s} size={10} className={s <= r.stars ? 'text-amber-400 fill-amber-400' : 'text-(--text-muted)/30'}/>
                                                             ))}
-                                                            <span className="text-[9px] text-[--text-muted] font-bold ml-1">{r.score}</span>
+                                                            <span className="text-[9px] text-(--text-muted) font-bold ml-1">{r.score}</span>
                                                             <span className={`text-[8px] font-black ml-1 px-1.5 py-0.5 rounded-full ${r.stars === 5 ? 'bg-amber-100 text-amber-700' : r.stars >= 3 ? 'bg-slate-100 text-slate-600' : 'bg-slate-50 text-slate-500'}`}>{r.label}</span>
                                                         </div>
                                                         ); })()}
@@ -504,7 +504,7 @@ export const BookingFlow = () => {
                                                 </div>
 
                                                 {/* Availability pill */}
-                                                <div className="mt-3 pt-3 border-t border-[--border] flex items-center gap-2">
+                                                <div className="mt-3 pt-3 border-t border-(--border) flex items-center gap-2">
                                                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"/>
                                                     <span className="text-[10px] font-bold text-emerald-600">Available for booking</span>
                                                 </div>
@@ -518,11 +518,11 @@ export const BookingFlow = () => {
 
                     {/* STEP 2 — Select Child */}
                     {step === 2 && (
-                        <div className="bg-[--surface] border border-[--border] rounded-2xl shadow-sm overflow-hidden">
-                            <div className="px-6 py-5 border-b border-[--border] bg-[--surface-soft] flex items-center justify-between">
+                        <div className="bg-(--surface) border border-(--border) rounded-2xl shadow-sm overflow-hidden">
+                            <div className="px-6 py-5 border-b border-(--border) bg-(--surface-soft) flex items-center justify-between">
                                 <div>
-                                    <h2 className="font-black text-[--text-primary] text-base">Select Child</h2>
-                                    <p className="text-xs text-[--text-muted] font-medium mt-0.5">
+                                    <h2 className="font-black text-(--text-primary) text-base">Select Child</h2>
+                                    <p className="text-xs text-(--text-muted) font-medium mt-0.5">
                                         Who is this appointment for?
                                     </p>
                                 </div>
@@ -541,7 +541,7 @@ export const BookingFlow = () => {
                                 </div>
                                 <div>
                                     <div className="text-xs font-black text-primary-700 dark:text-primary-300">Booking with</div>
-                                    <div className="text-sm font-black text-[--text-primary]">Dr. {selectedDoc?.firstName} {selectedDoc?.lastName}</div>
+                                    <div className="text-sm font-black text-(--text-primary)">Dr. {selectedDoc?.firstName} {selectedDoc?.lastName}</div>
                                 </div>
                                 <span className={`ml-auto text-[10px] font-black px-2 py-1 rounded-full border ${specialtyStyle(selectedDoc?.specialization)}`}>
                                     {selectedDoc?.specialization}
@@ -550,17 +550,17 @@ export const BookingFlow = () => {
 
                             {/* Facility services offered */}
                             {facilityId && (
-                                <div className="px-6 py-4 border-b border-[--border] bg-[--surface-soft]">
+                                <div className="px-6 py-4 border-b border-(--border) bg-(--surface-soft)">
                                     <div className="flex items-center gap-2 mb-3">
                                         <HeartPulse size={14} className="text-emerald-600"/>
-                                        <span className="text-[10px] font-black uppercase tracking-widest text-[--text-primary]">
+                                        <span className="text-[10px] font-black uppercase tracking-widest text-(--text-primary)">
                                             Services offered by {selectedDoc?.facility?.name || 'this facility'}
                                         </span>
                                     </div>
                                     {loadServices ? (
-                                        <p className="text-xs text-[--text-muted] italic">Loading services…</p>
+                                        <p className="text-xs text-(--text-muted) italic">Loading services…</p>
                                     ) : facilityServices.length === 0 ? (
-                                        <p className="text-xs text-[--text-muted] italic">No published services yet.</p>
+                                        <p className="text-xs text-(--text-muted) italic">No published services yet.</p>
                                     ) : (
                                         <div className="flex flex-wrap gap-2">
                                             {facilityServices.map(s => (
@@ -578,13 +578,13 @@ export const BookingFlow = () => {
                             <div className="p-6">
                                 {loadChildren ? (
                                     <div className="space-y-3">
-                                        {[1,2].map(i => <div key={i} className="h-24 rounded-2xl bg-[--surface-soft] border border-[--border] animate-pulse"/>)}
+                                        {[1,2].map(i => <div key={i} className="h-24 rounded-2xl bg-(--surface-soft) border border-(--border) animate-pulse"/>)}
                                     </div>
                                 ) : !children?.length ? (
                                     <div className="text-center py-16">
-                                        <Baby size={40} className="mx-auto text-[--text-muted]/30 mb-4"/>
-                                        <p className="font-black text-[--text-secondary] mb-1">No children registered</p>
-                                        <p className="text-xs text-[--text-muted]">Add a child profile first to book appointments.</p>
+                                        <Baby size={40} className="mx-auto text-(--text-muted)/30 mb-4"/>
+                                        <p className="font-black text-(--text-secondary) mb-1">No children registered</p>
+                                        <p className="text-xs text-(--text-muted)">Add a child profile first to book appointments.</p>
                                     </div>
                                 ) : (
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -592,25 +592,25 @@ export const BookingFlow = () => {
                                             <button
                                                 key={c.id}
                                                 onClick={() => { setSelectedChild(c); setStep(3); }}
-                                                className="group text-left p-5 border-2 border-[--border] rounded-2xl hover:border-violet-400 hover:shadow-lg hover:-translate-y-1 transition-all duration-200 bg-[--surface]"
+                                                className="group text-left p-5 border-2 border-(--border) rounded-2xl hover:border-violet-400 hover:shadow-lg hover:-translate-y-1 transition-all duration-200 bg-(--surface)"
                                             >
                                                 <div className="flex items-center gap-4">
                                                     <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-400 to-purple-600 flex items-center justify-center text-white font-black text-lg shadow-md shrink-0">
                                                         {initials(c.firstName, c.lastName)}
                                                     </div>
                                                     <div className="flex-1 min-w-0">
-                                                        <h3 className="font-black text-[--text-primary] text-sm mb-1">
+                                                        <h3 className="font-black text-(--text-primary) text-sm mb-1">
                                                             {c.firstName} {c.lastName}
                                                         </h3>
                                                         <div className="flex items-center gap-2 flex-wrap">
-                                                            <span className="text-[10px] font-bold text-[--text-muted]">
+                                                            <span className="text-[10px] font-bold text-(--text-muted)">
                                                                 🎂 {new Date(c.dateOfBirth).toLocaleDateString()}
                                                             </span>
                                                             <span className="text-[10px] font-black px-2 py-0.5 rounded-full bg-violet-100 text-violet-700 border border-violet-200">
                                                                 {getAge(c.dateOfBirth)}
                                                             </span>
                                                             {c.gender && (
-                                                                <span className="text-[10px] font-bold text-[--text-muted]">
+                                                                <span className="text-[10px] font-bold text-(--text-muted)">
                                                                     {c.gender === 'Male' ? '♂' : '♀'} {c.gender}
                                                                 </span>
                                                             )}
@@ -635,11 +635,11 @@ export const BookingFlow = () => {
 
                     {/* STEP 3 — Pick a Time */}
                     {step === 3 && selectedDoc && selectedChild && (
-                        <div className="bg-[--surface] border border-[--border] rounded-2xl shadow-sm overflow-hidden">
-                            <div className="px-6 py-5 border-b border-[--border] bg-[--surface-soft] flex items-center justify-between">
+                        <div className="bg-(--surface) border border-(--border) rounded-2xl shadow-sm overflow-hidden">
+                            <div className="px-6 py-5 border-b border-(--border) bg-(--surface-soft) flex items-center justify-between">
                                 <div>
-                                    <h2 className="font-black text-[--text-primary] text-base">Pick a Date & Time</h2>
-                                    <p className="text-xs text-[--text-muted] font-medium mt-0.5">All slots are 30-minute sessions</p>
+                                    <h2 className="font-black text-(--text-primary) text-base">Pick a Date & Time</h2>
+                                    <p className="text-xs text-(--text-muted) font-medium mt-0.5">All slots are 30-minute sessions</p>
                                 </div>
                                 <button
                                     onClick={() => setStep(2)}
@@ -659,7 +659,7 @@ export const BookingFlow = () => {
 
                                 {/* Date picker */}
                                 <div>
-                                    <label className="flex items-center gap-2 text-xs font-black text-[--text-primary] uppercase tracking-widest mb-3">
+                                    <label className="flex items-center gap-2 text-xs font-black text-(--text-primary) uppercase tracking-widest mb-3">
                                         <CalendarIcon size={14} className="text-primary-600"/> Select Date
                                     </label>
                                     <div className="flex items-center gap-3">
@@ -668,7 +668,7 @@ export const BookingFlow = () => {
                                             min={new Date().toISOString().split('T')[0]}
                                             value={selectedDate}
                                             onChange={e => { setSelectedDate(e.target.value); setSelectedTime(null); }}
-                                            className="px-4 py-3 border-2 border-[--border] rounded-xl bg-[--surface] text-[--text-primary] font-bold text-sm focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all"
+                                            className="px-4 py-3 border-2 border-(--border) rounded-xl bg-(--surface) text-(--text-primary) font-bold text-sm focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all"
                                         />
                                         {selectedDate && (
                                             <div className="px-4 py-3 bg-primary-50 dark:bg-primary-950/30 border border-primary-200 dark:border-primary-800 rounded-xl">
@@ -678,18 +678,18 @@ export const BookingFlow = () => {
                                     </div>
                                 </div>
 
-                                <div className="h-px bg-[--border]"/>
+                                <div className="h-px bg-(--border)"/>
 
                                 {/* Time slots */}
                                 <div>
-                                    <label className="flex items-center gap-2 text-xs font-black text-[--text-primary] uppercase tracking-widest mb-4">
+                                    <label className="flex items-center gap-2 text-xs font-black text-(--text-primary) uppercase tracking-widest mb-4">
                                         <Clock size={14} className="text-primary-600"/> Available Time Slots
                                     </label>
 
                                     <div className="space-y-4">
                                         {/* Morning */}
                                         <div>
-                                            <div className="text-[10px] font-black text-[--text-muted] uppercase tracking-widest mb-2 flex items-center gap-2">
+                                            <div className="text-[10px] font-black text-(--text-muted) uppercase tracking-widest mb-2 flex items-center gap-2">
                                                 ☀️ Morning
                                             </div>
                                             <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
@@ -700,7 +700,7 @@ export const BookingFlow = () => {
                                                             className={`py-2.5 px-3 rounded-xl text-xs font-black border-2 transition-all
                                                                 ${sel
                                                                     ? 'bg-primary-600 text-white border-primary-600 shadow-lg shadow-primary-200 dark:shadow-primary-900/30 scale-105'
-                                                                    : 'bg-[--surface] text-[--text-secondary] border-[--border] hover:border-primary-400 hover:bg-primary-50 dark:hover:bg-primary-950/30'
+                                                                    : 'bg-(--surface) text-(--text-secondary) border-(--border) hover:border-primary-400 hover:bg-primary-50 dark:hover:bg-primary-950/30'
                                                                 }`}>
                                                             {formatTime(t)}
                                                         </button>
@@ -710,7 +710,7 @@ export const BookingFlow = () => {
                                         </div>
                                         {/* Afternoon */}
                                         <div>
-                                            <div className="text-[10px] font-black text-[--text-muted] uppercase tracking-widest mb-2">
+                                            <div className="text-[10px] font-black text-(--text-muted) uppercase tracking-widest mb-2">
                                                 🌤 Afternoon
                                             </div>
                                             <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
@@ -721,7 +721,7 @@ export const BookingFlow = () => {
                                                             className={`py-2.5 px-3 rounded-xl text-xs font-black border-2 transition-all
                                                                 ${sel
                                                                     ? 'bg-primary-600 text-white border-primary-600 shadow-lg shadow-primary-200 dark:shadow-primary-900/30 scale-105'
-                                                                    : 'bg-[--surface] text-[--text-secondary] border-[--border] hover:border-primary-400 hover:bg-primary-50 dark:hover:bg-primary-950/30'
+                                                                    : 'bg-(--surface) text-(--text-secondary) border-(--border) hover:border-primary-400 hover:bg-primary-50 dark:hover:bg-primary-950/30'
                                                                 }`}>
                                                             {formatTime(t)}
                                                         </button>
@@ -732,20 +732,20 @@ export const BookingFlow = () => {
                                     </div>
                                 </div>
 
-                                <div className="h-px bg-[--border]"/>
+                                <div className="h-px bg-(--border)"/>
 
                                 {/* Reason */}
                                 <div>
-                                    <label className="flex items-center gap-2 text-xs font-black text-[--text-primary] uppercase tracking-widest mb-3">
+                                    <label className="flex items-center gap-2 text-xs font-black text-(--text-primary) uppercase tracking-widest mb-3">
                                         <FileText size={14} className="text-primary-600"/> Reason for Visit
-                                        <span className="text-[--text-muted] normal-case font-medium">(optional)</span>
+                                        <span className="text-(--text-muted) normal-case font-medium">(optional)</span>
                                     </label>
                                     <textarea
                                         value={reason}
                                         onChange={e => setReason(e.target.value)}
                                         rows={3}
                                         placeholder="e.g. Routine checkup, fever since 2 days, vaccination visit..."
-                                        className="w-full px-4 py-3 border-2 border-[--border] rounded-xl bg-[--surface] text-[--text-primary] text-sm font-medium placeholder-[--text-muted] focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all resize-none"
+                                        className="w-full px-4 py-3 border-2 border-(--border) rounded-xl bg-(--surface) text-(--text-primary) text-sm font-medium placeholder-(--text-muted) focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all resize-none"
                                     />
                                 </div>
                             </div>
@@ -756,9 +756,9 @@ export const BookingFlow = () => {
                 {/* ── BOOKING SUMMARY SIDEBAR (step 3 only) ─────────────────── */}
                 {step === 3 && (
                     <div className="space-y-4">
-                        <div className="bg-[--surface] border border-[--border] rounded-2xl shadow-sm overflow-hidden sticky top-6">
-                            <div className="px-5 py-4 border-b border-[--border] bg-[--surface-soft]">
-                                <h3 className="font-black text-sm text-[--text-primary]">Booking Summary</h3>
+                        <div className="bg-(--surface) border border-(--border) rounded-2xl shadow-sm overflow-hidden sticky top-6">
+                            <div className="px-5 py-4 border-b border-(--border) bg-(--surface-soft)">
+                                <h3 className="font-black text-sm text-(--text-primary)">Booking Summary</h3>
                             </div>
                             <div className="p-5 space-y-4">
                                 {/* Doctor */}
@@ -767,15 +767,15 @@ export const BookingFlow = () => {
                                         {initials(selectedDoc?.firstName, selectedDoc?.lastName)}
                                     </div>
                                     <div>
-                                        <div className="text-[10px] font-black text-[--text-muted] uppercase tracking-wide">Doctor</div>
-                                        <div className="text-sm font-black text-[--text-primary]">Dr. {selectedDoc?.firstName} {selectedDoc?.lastName}</div>
+                                        <div className="text-[10px] font-black text-(--text-muted) uppercase tracking-wide">Doctor</div>
+                                        <div className="text-sm font-black text-(--text-primary)">Dr. {selectedDoc?.firstName} {selectedDoc?.lastName}</div>
                                         <div className={`text-[10px] font-bold px-2 py-0.5 rounded-full border inline-block mt-0.5 ${specialtyStyle(selectedDoc?.specialization)}`}>
                                             {selectedDoc?.specialization}
                                         </div>
                                     </div>
                                 </div>
 
-                                <div className="h-px bg-[--border]"/>
+                                <div className="h-px bg-(--border)"/>
 
                                 {/* Child */}
                                 <div className="flex items-center gap-3">
@@ -783,50 +783,50 @@ export const BookingFlow = () => {
                                         {initials(selectedChild?.firstName, selectedChild?.lastName)}
                                     </div>
                                     <div>
-                                        <div className="text-[10px] font-black text-[--text-muted] uppercase tracking-wide">Patient</div>
-                                        <div className="text-sm font-black text-[--text-primary]">{selectedChild?.firstName} {selectedChild?.lastName}</div>
-                                        <div className="text-[10px] text-[--text-muted] font-medium mt-0.5">{getAge(selectedChild?.dateOfBirth)} old</div>
+                                        <div className="text-[10px] font-black text-(--text-muted) uppercase tracking-wide">Patient</div>
+                                        <div className="text-sm font-black text-(--text-primary)">{selectedChild?.firstName} {selectedChild?.lastName}</div>
+                                        <div className="text-[10px] text-(--text-muted) font-medium mt-0.5">{getAge(selectedChild?.dateOfBirth)} old</div>
                                     </div>
                                 </div>
 
-                                <div className="h-px bg-[--border]"/>
+                                <div className="h-px bg-(--border)"/>
 
                                 {/* Date/Time */}
                                 <div className="space-y-2">
                                     <div className="flex items-center justify-between text-xs">
-                                        <span className="font-black text-[--text-muted] flex items-center gap-1.5"><CalendarIcon size={11}/> Date</span>
-                                        <span className="font-black text-[--text-primary]">{fmtDate(selectedDate)}</span>
+                                        <span className="font-black text-(--text-muted) flex items-center gap-1.5"><CalendarIcon size={11}/> Date</span>
+                                        <span className="font-black text-(--text-primary)">{fmtDate(selectedDate)}</span>
                                     </div>
                                     <div className="flex items-center justify-between text-xs">
-                                        <span className="font-black text-[--text-muted] flex items-center gap-1.5"><Clock size={11}/> Time</span>
-                                        <span className={`font-black ${selectedTime ? 'text-primary-600' : 'text-[--text-muted] italic'}`}>
+                                        <span className="font-black text-(--text-muted) flex items-center gap-1.5"><Clock size={11}/> Time</span>
+                                        <span className={`font-black ${selectedTime ? 'text-primary-600' : 'text-(--text-muted) italic'}`}>
                                             {selectedTime ? formatTime(selectedTime) : 'Not selected'}
                                         </span>
                                     </div>
                                     <div className="flex items-center justify-between text-xs">
-                                        <span className="font-black text-[--text-muted] flex items-center gap-1.5"><Video size={11}/> Type</span>
+                                        <span className="font-black text-(--text-muted) flex items-center gap-1.5"><Video size={11}/> Type</span>
                                         <span className="font-black text-teal">Video Call</span>
                                     </div>
                                     <div className="flex items-center justify-between text-xs">
-                                        <span className="font-black text-[--text-muted] flex items-center gap-1.5"><CreditCard size={11}/> Fee</span>
+                                        <span className="font-black text-(--text-muted) flex items-center gap-1.5"><CreditCard size={11}/> Fee</span>
                                         <span className="font-black text-emerald-600 flex items-center gap-1"><CheckCircle2 size={10}/> ${CONSULTATION_FEE.toFixed(2)} Paid</span>
                                     </div>
                                 </div>
 
-                                <div className="h-px bg-[--border]"/>
+                                <div className="h-px bg-(--border)"/>
 
                                 {/* Facility services */}
                                 {facilityId && facilityServices.length > 0 && (
                                     <>
-                                        <div className="h-px bg-[--border]"/>
+                                        <div className="h-px bg-(--border)"/>
                                         <div>
-                                            <div className="text-[10px] font-black text-[--text-muted] uppercase tracking-wide flex items-center gap-1.5 mb-2">
+                                            <div className="text-[10px] font-black text-(--text-muted) uppercase tracking-wide flex items-center gap-1.5 mb-2">
                                                 <HeartPulse size={11} className="text-emerald-600"/> Facility Services
                                             </div>
                                             <ul className="space-y-1.5">
                                                 {facilityServices.map(s => (
                                                     <li key={s.id} className="flex items-center justify-between text-[11px]">
-                                                        <span className="font-bold text-[--text-primary] truncate mr-2">{s.name}</span>
+                                                        <span className="font-bold text-(--text-primary) truncate mr-2">{s.name}</span>
                                                         {s.price != null && <span className="font-black text-emerald-600 shrink-0">${Number(s.price).toFixed(2)}</span>}
                                                     </li>
                                                 ))}
@@ -835,7 +835,7 @@ export const BookingFlow = () => {
                                     </>
                                 )}
 
-                                <div className="h-px bg-[--border]"/>
+                                <div className="h-px bg-(--border)"/>
 
                                 {/* Status */}
                                 <div className="bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800 rounded-xl p-3">
@@ -857,7 +857,7 @@ export const BookingFlow = () => {
                                     )}
                                 </button>
 
-                                <p className="text-[10px] text-center text-[--text-muted] font-medium flex items-center justify-center gap-1">
+                                <p className="text-[10px] text-center text-(--text-muted) font-medium flex items-center justify-center gap-1">
                                     <Shield size={10}/> Secure & encrypted booking
                                 </p>
                             </div>

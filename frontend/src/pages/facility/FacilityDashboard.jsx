@@ -12,7 +12,7 @@ const TABS = [
     { key: 'services',     label: 'Health Services', icon: HeartPulse },
 ];
 
-const inputCls = 'w-full bg-[--surface] text-[--text-primary] border-2 border-[--border] rounded-lg px-4 py-2.5 focus:outline-none focus:border-emerald-500 text-sm font-bold';
+const inputCls = 'w-full bg-(--surface) text-(--text-primary) border-2 border-(--border) rounded-lg px-4 py-2.5 focus:outline-none focus:border-emerald-500 text-sm font-bold';
 
 export const FacilityDashboard = () => {
     const qc = useQueryClient();
@@ -61,7 +61,7 @@ export const FacilityDashboard = () => {
         else svcCreate.mutate(payload);
     };
 
-    if (isLoading) return <div className="p-12 text-center font-bold text-[--text-muted] animate-pulse">Loading facility dashboard…</div>;
+    if (isLoading) return <div className="p-12 text-center font-bold text-(--text-muted) animate-pulse">Loading facility dashboard…</div>;
     if (isError) return <div className="p-8 text-danger font-bold text-center">Failed to load facility scope. Check that your account is linked to a facility.</div>;
 
     const { facility, counts, doctors = [], services = [], appointments = [], patients = [] } = scope || {};
@@ -110,10 +110,10 @@ export const FacilityDashboard = () => {
             </div>
 
             {/* Tabs */}
-            <div className="flex border-b border-[--border]">
+            <div className="flex border-b border-(--border)">
                 {TABS.map(t => (
                     <button key={t.key} onClick={() => setTab(t.key)}
-                        className={`flex items-center gap-2 px-5 py-3 text-sm font-black uppercase tracking-widest border-b-2 -mb-px transition-colors ${tab === t.key ? 'border-emerald-600 text-emerald-700' : 'border-transparent text-[--text-muted] hover:text-[--text-primary]'}`}>
+                        className={`flex items-center gap-2 px-5 py-3 text-sm font-black uppercase tracking-widest border-b-2 -mb-px transition-colors ${tab === t.key ? 'border-emerald-600 text-emerald-700' : 'border-transparent text-(--text-muted) hover:text-(--text-primary)'}`}>
                         <t.icon size={16}/> {t.label}
                     </button>
                 ))}
@@ -126,18 +126,18 @@ export const FacilityDashboard = () => {
                         <div className="overflow-x-auto">
                             <table className="w-full text-left border-collapse">
                                 <thead>
-                                    <tr className="bg-[--surface-soft] border-b border-[--border] text-[10px] font-black uppercase tracking-widest text-[--text-secondary]">
+                                    <tr className="bg-(--surface-soft) border-b border-(--border) text-[10px] font-black uppercase tracking-widest text-(--text-secondary)">
                                         <th className="p-4">Name</th><th className="p-4">Specialization</th><th className="p-4">License</th><th className="p-4">Email</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {doctors.length === 0 && <tr><td colSpan="4" className="p-8 text-center text-[--text-muted] font-bold uppercase tracking-widest">No doctors assigned</td></tr>}
+                                    {doctors.length === 0 && <tr><td colSpan="4" className="p-8 text-center text-(--text-muted) font-bold uppercase tracking-widest">No doctors assigned</td></tr>}
                                     {doctors.map(d => (
-                                        <tr key={d.id} className="border-b border-[--border] hover:bg-[--surface-soft]">
-                                            <td className="p-4 font-bold text-[--text-primary]">Dr. {d.firstName} {d.lastName}</td>
+                                        <tr key={d.id} className="border-b border-(--border) hover:bg-(--surface-soft)">
+                                            <td className="p-4 font-bold text-(--text-primary)">Dr. {d.firstName} {d.lastName}</td>
                                             <td className="p-4"><span className="text-xs font-bold bg-emerald-50 text-emerald-700 px-2 py-1 rounded">{d.specialization}</span></td>
                                             <td className="p-4 text-sm">{d.licenseNumber}</td>
-                                            <td className="p-4 text-xs text-[--text-secondary]">{d.user?.email}</td>
+                                            <td className="p-4 text-xs text-(--text-secondary)">{d.user?.email}</td>
                                         </tr>
                                     ))}
                                 </tbody>
@@ -153,15 +153,15 @@ export const FacilityDashboard = () => {
                         <div className="overflow-x-auto">
                             <table className="w-full text-left border-collapse">
                                 <thead>
-                                    <tr className="bg-[--surface-soft] border-b border-[--border] text-[10px] font-black uppercase tracking-widest text-[--text-secondary]">
+                                    <tr className="bg-(--surface-soft) border-b border-(--border) text-[10px] font-black uppercase tracking-widest text-(--text-secondary)">
                                         <th className="p-4">Child</th><th className="p-4">Date of Birth</th><th className="p-4">Gender</th><th className="p-4">Parent</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {patients.length === 0 && <tr><td colSpan="4" className="p-8 text-center text-[--text-muted] font-bold uppercase tracking-widest">No patients seen yet</td></tr>}
+                                    {patients.length === 0 && <tr><td colSpan="4" className="p-8 text-center text-(--text-muted) font-bold uppercase tracking-widest">No patients seen yet</td></tr>}
                                     {patients.map(p => (
-                                        <tr key={p.id} className="border-b border-[--border] hover:bg-[--surface-soft]">
-                                            <td className="p-4 font-bold text-[--text-primary]">{p.firstName} {p.lastName}</td>
+                                        <tr key={p.id} className="border-b border-(--border) hover:bg-(--surface-soft)">
+                                            <td className="p-4 font-bold text-(--text-primary)">{p.firstName} {p.lastName}</td>
                                             <td className="p-4 text-sm">{p.dateOfBirth ? new Date(p.dateOfBirth).toLocaleDateString() : '-'}</td>
                                             <td className="p-4 text-sm">{p.gender || '-'}</td>
                                             <td className="p-4 text-sm">{p.parent ? `${p.parent.firstName} ${p.parent.lastName}` : '-'}</td>
@@ -180,19 +180,19 @@ export const FacilityDashboard = () => {
                         <div className="overflow-x-auto">
                             <table className="w-full text-left border-collapse">
                                 <thead>
-                                    <tr className="bg-[--surface-soft] border-b border-[--border] text-[10px] font-black uppercase tracking-widest text-[--text-secondary]">
+                                    <tr className="bg-(--surface-soft) border-b border-(--border) text-[10px] font-black uppercase tracking-widest text-(--text-secondary)">
                                         <th className="p-4">Scheduled</th><th className="p-4">Child</th><th className="p-4">Doctor</th><th className="p-4">Status</th><th className="p-4">Reason</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {appointments.length === 0 && <tr><td colSpan="5" className="p-8 text-center text-[--text-muted] font-bold uppercase tracking-widest">No appointments yet</td></tr>}
+                                    {appointments.length === 0 && <tr><td colSpan="5" className="p-8 text-center text-(--text-muted) font-bold uppercase tracking-widest">No appointments yet</td></tr>}
                                     {appointments.map(a => (
-                                        <tr key={a.id} className="border-b border-[--border] hover:bg-[--surface-soft]">
+                                        <tr key={a.id} className="border-b border-(--border) hover:bg-(--surface-soft)">
                                             <td className="p-4 text-sm">{new Date(a.scheduledAt).toLocaleString()}</td>
-                                            <td className="p-4 font-bold text-[--text-primary]">{a.child?.firstName} {a.child?.lastName}</td>
+                                            <td className="p-4 font-bold text-(--text-primary)">{a.child?.firstName} {a.child?.lastName}</td>
                                             <td className="p-4 text-sm">Dr. {a.doctor?.lastName}</td>
                                             <td className="p-4"><span className="text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-widest bg-slate-100 text-slate-700">{a.status}</span></td>
-                                            <td className="p-4 text-xs text-[--text-secondary]">{a.reason || '-'}</td>
+                                            <td className="p-4 text-xs text-(--text-secondary)">{a.reason || '-'}</td>
                                         </tr>
                                     ))}
                                 </tbody>
@@ -212,16 +212,16 @@ export const FacilityDashboard = () => {
                             <div className="overflow-x-auto">
                                 <table className="w-full text-left border-collapse">
                                     <thead>
-                                        <tr className="bg-[--surface-soft] border-b border-[--border] text-[10px] font-black uppercase tracking-widest text-[--text-secondary]">
+                                        <tr className="bg-(--surface-soft) border-b border-(--border) text-[10px] font-black uppercase tracking-widest text-(--text-secondary)">
                                             <th className="p-4">Service</th><th className="p-4">Description</th><th className="p-4">Price</th><th className="p-4">Status</th><th className="p-4 text-right">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {services.length === 0 && <tr><td colSpan="5" className="p-8 text-center text-[--text-muted] font-bold uppercase tracking-widest">No services yet</td></tr>}
+                                        {services.length === 0 && <tr><td colSpan="5" className="p-8 text-center text-(--text-muted) font-bold uppercase tracking-widest">No services yet</td></tr>}
                                         {services.map(s => (
-                                            <tr key={s.id} className="border-b border-[--border] hover:bg-[--surface-soft]">
-                                                <td className="p-4 font-bold text-[--text-primary]">{s.name}</td>
-                                                <td className="p-4 text-sm text-[--text-secondary] max-w-md">{s.description || '-'}</td>
+                                            <tr key={s.id} className="border-b border-(--border) hover:bg-(--surface-soft)">
+                                                <td className="p-4 font-bold text-(--text-primary)">{s.name}</td>
+                                                <td className="p-4 text-sm text-(--text-secondary) max-w-md">{s.description || '-'}</td>
                                                 <td className="p-4 text-sm">{s.price != null ? `$${Number(s.price).toFixed(2)}` : '-'}</td>
                                                 <td className="p-4"><span className={`text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-widest ${s.isActive ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-600'}`}>{s.isActive ? 'Active' : 'Inactive'}</span></td>
                                                 <td className="p-4 text-right">
@@ -243,27 +243,27 @@ export const FacilityDashboard = () => {
             {/* Service modal */}
             {serviceModal.open && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 animate-fade-in">
-                    <div className="bg-[--surface] rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col max-h-[90vh]">
+                    <div className="bg-(--surface) rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col max-h-[90vh]">
                         <div className="bg-gradient-to-r from-teal-700 to-emerald-700 p-6 text-white flex justify-between items-center">
                             <h2 className="text-xl font-black flex items-center gap-2"><HeartPulse size={20}/> {serviceModal.editing ? 'Edit Service' : 'Add Health Service'}</h2>
                             <button onClick={closeServiceModal} className="hover:bg-white/20 p-1.5 rounded-lg"><X size={20}/></button>
                         </div>
                         <form onSubmit={submitService} className="p-6 space-y-4 overflow-y-auto">
                             <div>
-                                <label className="block text-xs font-bold text-[--text-secondary] uppercase tracking-wide mb-1">Service Name *</label>
+                                <label className="block text-xs font-bold text-(--text-secondary) uppercase tracking-wide mb-1">Service Name *</label>
                                 <input required minLength={1} value={serviceForm.name} onChange={e => setServiceForm(p => ({ ...p, name: e.target.value }))} className={inputCls}/>
                             </div>
                             <div>
-                                <label className="block text-xs font-bold text-[--text-secondary] uppercase tracking-wide mb-1">Description</label>
+                                <label className="block text-xs font-bold text-(--text-secondary) uppercase tracking-wide mb-1">Description</label>
                                 <textarea rows="3" value={serviceForm.description} onChange={e => setServiceForm(p => ({ ...p, description: e.target.value }))} className={inputCls}></textarea>
                             </div>
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
-                                    <label className="block text-xs font-bold text-[--text-secondary] uppercase tracking-wide mb-1">Price (USD)</label>
+                                    <label className="block text-xs font-bold text-(--text-secondary) uppercase tracking-wide mb-1">Price (USD)</label>
                                     <input type="number" min="0" step="0.01" value={serviceForm.price} onChange={e => setServiceForm(p => ({ ...p, price: e.target.value }))} className={inputCls}/>
                                 </div>
                                 <div>
-                                    <label className="block text-xs font-bold text-[--text-secondary] uppercase tracking-wide mb-1">Status</label>
+                                    <label className="block text-xs font-bold text-(--text-secondary) uppercase tracking-wide mb-1">Status</label>
                                     <select value={serviceForm.isActive ? 'true' : 'false'} onChange={e => setServiceForm(p => ({ ...p, isActive: e.target.value === 'true' }))} className={inputCls}>
                                         <option value="true">Active</option><option value="false">Inactive</option>
                                     </select>

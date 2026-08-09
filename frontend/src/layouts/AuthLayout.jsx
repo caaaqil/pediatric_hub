@@ -8,7 +8,7 @@ export const AuthLayout = () => {
   const isForgotPassword = location.pathname === '/forgot-password';
 
   return (
-    <div className="min-h-screen flex bg-[--bg] transition-colors duration-300">
+    <div className="min-h-screen flex bg-(--bg) transition-colors duration-300">
       
       {/* Left Panel — Brand */}
       <div className="hidden lg:flex lg:w-[52%] relative overflow-hidden">
@@ -33,7 +33,7 @@ export const AuthLayout = () => {
         <div className="relative z-10 flex flex-col justify-between p-10 xl:p-14 w-full">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-[--radius-md] flex items-center justify-center shadow-lg"
+            <div className="w-11 h-11 rounded-(--radius-md) flex items-center justify-center shadow-lg"
               style={{ background: 'rgba(255,255,255,0.15)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,0.2)' }}>
               <Heart className="w-6 h-6 text-white" fill="currentColor" />
             </div>
@@ -78,17 +78,17 @@ export const AuthLayout = () => {
         <div className="flex items-center justify-between px-6 sm:px-10 py-5">
           {/* Mobile logo */}
           <div className="flex items-center gap-2.5 lg:hidden">
-            <div className="w-9 h-9 rounded-[--radius-sm] bg-primary-600 flex items-center justify-center shadow-md">
+            <div className="w-9 h-9 rounded-(--radius-sm) bg-primary-600 flex items-center justify-center shadow-md">
               <Heart className="w-5 h-5 text-white" fill="currentColor" />
             </div>
-            <span className="font-bold text-[--text-primary] text-lg tracking-tight">Pediatric Health Hub</span>
+            <span className="font-bold text-(--text-primary) text-lg tracking-tight">Pediatric Health Hub</span>
           </div>
           <div className="hidden lg:block" />
           
           {/* Theme toggle */}
           <button
             onClick={toggleTheme}
-            className="w-10 h-10 rounded-[--radius-sm] flex items-center justify-center transition-all duration-200 shadow-sm border border-[--border] bg-[--surface] text-[--text-muted] hover:text-primary-600 hover:border-primary-300"
+            className="w-10 h-10 rounded-(--radius-sm) flex items-center justify-center transition-all duration-200 shadow-sm border border-(--border) bg-(--surface) text-(--text-muted) hover:text-primary-600 hover:border-primary-300"
             aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
           >
             {isDark ? <Sun size={18} /> : <Moon size={18} />}
@@ -98,10 +98,10 @@ export const AuthLayout = () => {
         <div className="flex-1 flex items-center justify-center px-6 sm:px-12 pb-12">
           <div className="w-full max-w-[420px] space-y-8">
             <div className="space-y-2">
-              <h2 className="text-3xl font-extrabold text-[--text-primary] tracking-tight">
+              <h2 className="text-3xl font-extrabold text-(--text-primary) tracking-tight">
                 {isForgotPassword ? 'Account Recovery' : 'Welcome back'}
               </h2>
-              <p className="text-[--text-secondary] font-medium">
+              <p className="text-(--text-secondary) font-medium">
                 {isForgotPassword 
                   ? 'Securely reset your password using email verification.' 
                   : 'Sign in to access your secure clinical dashboard.'}

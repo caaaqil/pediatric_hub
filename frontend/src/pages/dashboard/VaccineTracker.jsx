@@ -69,7 +69,7 @@ export const VaccineTracker = () => {
         }
     });
 
-    if (isLoading) return <div className="p-8 text-center text-[--text-secondary] font-medium animate-pulse">Loading vaccine schedule...</div>;
+    if (isLoading) return <div className="p-8 text-center text-(--text-secondary) font-medium animate-pulse">Loading vaccine schedule...</div>;
 
     const due       = (vaccines || []).filter(v => ['UPCOMING','DUE'].includes(v.status));
     const history   = (vaccines || []).filter(v => ['COMPLETED','MISSED'].includes(v.status));
@@ -102,7 +102,7 @@ export const VaccineTracker = () => {
         w.print();
     };
 
-    const inputCls = 'w-full bg-[--surface] text-[--text-primary] border-2 border-[--border] rounded-xl px-4 py-2.5 focus:outline-none focus:border-blue-500 text-sm font-semibold';
+    const inputCls = 'w-full bg-(--surface) text-(--text-primary) border-2 border-(--border) rounded-xl px-4 py-2.5 focus:outline-none focus:border-blue-500 text-sm font-semibold';
 
     return (
         <div className="space-y-6 max-w-5xl mx-auto animate-fade-in">
@@ -129,11 +129,11 @@ export const VaccineTracker = () => {
             </div>
 
             {/* Progress Bar + Stats */}
-            <div className="bg-[--surface] rounded-xl border border-[--border] shadow-sm p-6">
+            <div className="bg-(--surface) rounded-xl border border-(--border) shadow-sm p-6">
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
                     <div>
-                        <h3 className="font-black text-[--text-primary] text-lg">Vaccination Coverage</h3>
-                        <p className="text-sm text-[--text-secondary]">{completed} of {total} vaccines completed</p>
+                        <h3 className="font-black text-(--text-primary) text-lg">Vaccination Coverage</h3>
+                        <p className="text-sm text-(--text-secondary)">{completed} of {total} vaccines completed</p>
                     </div>
                     <div className="flex gap-3">
                         {[
@@ -148,10 +148,10 @@ export const VaccineTracker = () => {
                         ))}
                     </div>
                 </div>
-                <div className="w-full bg-[--surface-soft] rounded-full h-3 border border-[--border] overflow-hidden">
+                <div className="w-full bg-(--surface-soft) rounded-full h-3 border border-(--border) overflow-hidden">
                     <div className="h-3 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full transition-all duration-700" style={{ width: `${pct}%` }}/>
                 </div>
-                <div className="flex justify-between text-xs font-bold text-[--text-muted] mt-1.5">
+                <div className="flex justify-between text-xs font-bold text-(--text-muted) mt-1.5">
                     <span>0%</span>
                     <span className="text-emerald-600 font-black">{pct}% Protected</span>
                     <span>100%</span>
@@ -161,8 +161,8 @@ export const VaccineTracker = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Scheduled / Due Vaccines */}
                 <Card className="border-t-4 border-t-blue-500 shadow-md">
-                    <CardHeader className="bg-[--surface-soft] border-b border-[--border]">
-                        <CardTitle className="text-[--text-primary] flex items-center gap-2">
+                    <CardHeader className="bg-(--surface-soft) border-b border-(--border)">
+                        <CardTitle className="text-(--text-primary) flex items-center gap-2">
                             <Clock size={18} className="text-blue-500"/> Upcoming Vaccines
                             {isParent && due.length > 0 && (
                                 <button onClick={() => setReminder(due[0])}
@@ -176,18 +176,18 @@ export const VaccineTracker = () => {
                         {due.length === 0 ? (
                             <div className="text-center py-6">
                                 <CheckCircle size={32} className="mx-auto text-emerald-400 mb-2"/>
-                                <p className="text-[--text-secondary] text-sm italic">All scheduled vaccines are up to date!</p>
+                                <p className="text-(--text-secondary) text-sm italic">All scheduled vaccines are up to date!</p>
                             </div>
                         ) : (
                             <div className="space-y-3">
                                 {due.map(v => {
                                     const st = STATUS_STYLE[v.status] || STATUS_STYLE.UPCOMING;
                                     return (
-                                        <div key={v.id} className="p-4 rounded-xl border border-[--border] bg-[--surface] hover:border-blue-300 transition-colors shadow-sm">
+                                        <div key={v.id} className="p-4 rounded-xl border border-(--border) bg-(--surface) hover:border-blue-300 transition-colors shadow-sm">
                                             <div className="flex justify-between items-start mb-2">
                                                 <div>
-                                                    <div className="font-bold text-[--text-primary]">{v.vaccineName}</div>
-                                                    <div className="text-xs font-semibold text-[--text-secondary] mt-0.5 uppercase tracking-wider">
+                                                    <div className="font-bold text-(--text-primary)">{v.vaccineName}</div>
+                                                    <div className="text-xs font-semibold text-(--text-secondary) mt-0.5 uppercase tracking-wider">
                                                         Dose {v.doseNumber} · Due: {new Date(v.scheduledDate).toLocaleDateString()}
                                                     </div>
                                                 </div>
@@ -224,9 +224,9 @@ export const VaccineTracker = () => {
 
                 {/* Vaccination History */}
                 <Card className="shadow-md">
-                    <CardHeader className="bg-[--surface-soft] border-b border-[--border]">
-                        <CardTitle className="text-[--text-primary] flex items-center gap-2">
-                            <CheckCircle size={18} className="text-[--text-secondary]"/> Vaccination History
+                    <CardHeader className="bg-(--surface-soft) border-b border-(--border)">
+                        <CardTitle className="text-(--text-primary) flex items-center gap-2">
+                            <CheckCircle size={18} className="text-(--text-secondary)"/> Vaccination History
                             {history.length > 0 && (
                                 <button onClick={printCertificate}
                                     className="ml-auto flex items-center gap-1 text-[10px] font-black uppercase px-2 py-1 rounded-full bg-amber-50 text-amber-700 border border-amber-200 hover:bg-amber-100 transition-colors">
@@ -237,17 +237,17 @@ export const VaccineTracker = () => {
                     </CardHeader>
                     <CardContent className="pt-5">
                         {history.length === 0 ? (
-                            <p className="text-[--text-secondary] text-sm italic">No past records yet.</p>
+                            <p className="text-(--text-secondary) text-sm italic">No past records yet.</p>
                         ) : (
                             <div className="space-y-3">
                                 {history.map(v => {
                                     const st = STATUS_STYLE[v.status] || STATUS_STYLE.COMPLETED;
                                     return (
-                                        <div key={v.id} className={`p-3 rounded-xl border ${v.status === 'MISSED' ? 'border-red-200 bg-red-50 dark:bg-red-950/20' : 'border-[--border] bg-[--surface-soft]'}`}>
+                                        <div key={v.id} className={`p-3 rounded-xl border ${v.status === 'MISSED' ? 'border-red-200 bg-red-50 dark:bg-red-950/20' : 'border-(--border) bg-(--surface-soft)'}`}>
                                             <div className="flex justify-between items-center">
                                                 <div>
-                                                    <div className="font-bold text-sm text-[--text-primary]">{v.vaccineName}
-                                                        <span className="text-[--text-muted] text-xs font-medium ml-1">Dose {v.doseNumber}</span>
+                                                    <div className="font-bold text-sm text-(--text-primary)">{v.vaccineName}
+                                                        <span className="text-(--text-muted) text-xs font-medium ml-1">Dose {v.doseNumber}</span>
                                                     </div>
                                                     {v.status === 'COMPLETED' ? (
                                                         <div className="text-xs font-semibold text-emerald-600 mt-1 flex items-center gap-1.5">
@@ -258,7 +258,7 @@ export const VaccineTracker = () => {
                                                             <AlertTriangle size={11}/> Missed — was due {v.scheduledDate ? new Date(v.scheduledDate).toLocaleDateString() : ''}
                                                         </div>
                                                     )}
-                                                    {v.notes && <p className="text-xs text-[--text-secondary] mt-1 italic">{v.notes}</p>}
+                                                    {v.notes && <p className="text-xs text-(--text-secondary) mt-1 italic">{v.notes}</p>}
                                                 </div>
                                                 <span className={`inline-flex items-center gap-1 text-[9px] font-black px-2 py-0.5 rounded-full border uppercase ${st.cls}`}>
                                                     {st.icon} {v.status}
@@ -276,32 +276,32 @@ export const VaccineTracker = () => {
             {/* REGISTER VACCINE MODAL (Doctor only) */}
             {registerModal && isDoctor && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
-                    <div className="bg-[--surface] rounded-2xl shadow-2xl w-full max-w-md overflow-hidden">
+                    <div className="bg-(--surface) rounded-2xl shadow-2xl w-full max-w-md overflow-hidden">
                         <div className="bg-purple-600 p-5 text-white flex justify-between items-center">
                             <h2 className="font-black text-lg flex items-center gap-2"><Plus size={20}/> Register Vaccination</h2>
                             <button onClick={() => setRegister(false)} className="hover:bg-white/20 p-1.5 rounded-lg"><X size={18}/></button>
                         </div>
                         <form onSubmit={e => { e.preventDefault(); registerVaccine.mutate({ ...regForm }); }} className="p-6 space-y-4">
                             <div>
-                                <label className="text-[10px] font-black uppercase text-[--text-muted] block mb-1">Vaccine Name *</label>
+                                <label className="text-[10px] font-black uppercase text-(--text-muted) block mb-1">Vaccine Name *</label>
                                 <input required type="text" value={regForm.vaccineName} onChange={e => setRegForm(p=>({...p, vaccineName: e.target.value}))} placeholder="e.g. BCG, OPV, Pentavalent" className={inputCls}/>
                             </div>
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
-                                    <label className="text-[10px] font-black uppercase text-[--text-muted] block mb-1">Dose Number *</label>
+                                    <label className="text-[10px] font-black uppercase text-(--text-muted) block mb-1">Dose Number *</label>
                                     <input required type="number" min="1" max="6" value={regForm.doseNumber} onChange={e => setRegForm(p=>({...p, doseNumber: e.target.value === '' ? '' : parseInt(e.target.value)}))} className={inputCls}/>
                                 </div>
                                 <div>
-                                    <label className="text-[10px] font-black uppercase text-[--text-muted] block mb-1">Scheduled Date *</label>
+                                    <label className="text-[10px] font-black uppercase text-(--text-muted) block mb-1">Scheduled Date *</label>
                                     <input required type="date" value={regForm.scheduledDate} onChange={e => setRegForm(p=>({...p, scheduledDate: e.target.value}))} className={inputCls}/>
                                 </div>
                             </div>
                             <div>
-                                <label className="text-[10px] font-black uppercase text-[--text-muted] block mb-1">Batch Number (Optional)</label>
+                                <label className="text-[10px] font-black uppercase text-(--text-muted) block mb-1">Batch Number (Optional)</label>
                                 <input type="text" value={regForm.batchNumber} onChange={e => setRegForm(p=>({...p, batchNumber: e.target.value}))} placeholder="e.g. LOT-2024-001" className={inputCls}/>
                             </div>
                             <div>
-                                <label className="text-[10px] font-black uppercase text-[--text-muted] block mb-1">Notes</label>
+                                <label className="text-[10px] font-black uppercase text-(--text-muted) block mb-1">Notes</label>
                                 <textarea rows={3} value={regForm.notes} onChange={e => setRegForm(p=>({...p, notes: e.target.value}))} placeholder="Any observations or reactions..." className={inputCls + ' resize-none'}/>
                             </div>
                             <div className="flex gap-3 pt-2">
@@ -318,7 +318,7 @@ export const VaccineTracker = () => {
             {/* ADD NOTE MODAL */}
             {noteModal && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
-                    <div className="bg-[--surface] rounded-2xl shadow-2xl w-full max-w-sm overflow-hidden">
+                    <div className="bg-(--surface) rounded-2xl shadow-2xl w-full max-w-sm overflow-hidden">
                         <div className="bg-blue-600 p-5 text-white flex justify-between items-center">
                             <h2 className="font-black text-lg flex items-center gap-2"><FileText size={18}/> Add Note — {noteModal.vaccineName}</h2>
                             <button onClick={() => setNoteModal(null)} className="hover:bg-white/20 p-1.5 rounded-lg"><X size={18}/></button>
@@ -339,7 +339,7 @@ export const VaccineTracker = () => {
             {/* REMINDER MODAL (Parent) */}
             {reminder && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
-                    <div className="bg-[--surface] rounded-2xl shadow-2xl w-full max-w-sm overflow-hidden">
+                    <div className="bg-(--surface) rounded-2xl shadow-2xl w-full max-w-sm overflow-hidden">
                         <div className="bg-amber-500 p-5 text-white flex justify-between items-center">
                             <h2 className="font-black text-lg flex items-center gap-2"><Bell size={18}/> Vaccination Reminder</h2>
                             <button onClick={() => setReminder(null)} className="hover:bg-white/20 p-1.5 rounded-lg"><X size={18}/></button>
@@ -349,7 +349,7 @@ export const VaccineTracker = () => {
                                 <div className="font-black text-amber-700">{reminder.vaccineName} — Dose {reminder.doseNumber}</div>
                                 <div className="text-sm text-amber-600 font-semibold mt-1">Due: {new Date(reminder.scheduledDate).toLocaleDateString()}</div>
                             </div>
-                            <p className="text-sm text-[--text-secondary] font-medium">Set a reminder and book an appointment to get this vaccine on time.</p>
+                            <p className="text-sm text-(--text-secondary) font-medium">Set a reminder and book an appointment to get this vaccine on time.</p>
                             <div className="flex gap-3">
                                 <Button onClick={() => setReminder(null)} variant="outline" className="flex-1 py-4 rounded-xl border-2 font-bold">Close</Button>
                                 <Link to="/appointments" className="flex-1">

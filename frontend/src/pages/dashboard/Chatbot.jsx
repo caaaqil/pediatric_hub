@@ -58,7 +58,7 @@ const TopicPills = ({ lang, onSend }) => (
     <div className="flex flex-wrap gap-2 mt-3">
         {LANG[lang].topics.map((t, i) => (
             <button key={i} onClick={() => onSend(t)}
-                className="cursor-pointer px-3 py-1.5 rounded-full text-xs font-semibold border border-[--border] bg-[--surface] text-[--text-secondary] hover:border-cyan-500 hover:text-cyan-700 dark:hover:text-cyan-300 transition-all">
+                className="cursor-pointer px-3 py-1.5 rounded-full text-xs font-semibold border border-(--border) bg-(--surface) text-(--text-secondary) hover:border-cyan-500 hover:text-cyan-700 dark:hover:text-cyan-300 transition-all">
                 {t}
             </button>
         ))}
@@ -85,8 +85,8 @@ const Bubble = ({ m, lang }) => {
                     ${isUser
                         ? 'bg-cyan-600 text-white rounded-br-sm'
                         : isEmergency
-                            ? 'bg-red-50 dark:bg-red-950/30 border-2 border-red-300 dark:border-red-700 text-[--text-primary] rounded-bl-sm'
-                            : 'bg-[--surface] border border-[--border] text-[--text-primary] rounded-bl-sm'
+                            ? 'bg-red-50 dark:bg-red-950/30 border-2 border-red-300 dark:border-red-700 text-(--text-primary) rounded-bl-sm'
+                            : 'bg-(--surface) border border-(--border) text-(--text-primary) rounded-bl-sm'
                     }`}>
                     <p className="whitespace-pre-wrap">{m.message}</p>
 
@@ -98,13 +98,13 @@ const Bubble = ({ m, lang }) => {
                                 <AlertTriangle size={12}/> {lang === 'so' ? 'Wac 252-1' : 'Call 252-1'}
                             </a>
                             <Link to="/emergency"
-                                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[--surface] border border-[--border] text-[--text-secondary] text-xs font-bold rounded-lg cursor-pointer hover:border-cyan-400 transition-colors">
+                                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-(--surface) border border-(--border) text-(--text-secondary) text-xs font-bold rounded-lg cursor-pointer hover:border-cyan-400 transition-colors">
                                 {lang === 'so' ? 'Isbitaalada' : 'Find Hospital'}
                             </Link>
                         </div>
                     )}
                 </div>
-                <span className="text-[10px] text-[--text-muted] px-1">{time}</span>
+                <span className="text-[10px] text-(--text-muted) px-1">{time}</span>
             </div>
         </div>
     );
@@ -116,7 +116,7 @@ const Typing = () => (
         <div className="w-8 h-8 rounded-full bg-cyan-600 flex items-center justify-center shrink-0">
             <Bot size={14} className="text-white"/>
         </div>
-        <div className="px-4 py-3.5 rounded-2xl rounded-bl-sm bg-[--surface] border border-[--border] shadow-sm flex gap-1.5 items-center">
+        <div className="px-4 py-3.5 rounded-2xl rounded-bl-sm bg-(--surface) border border-(--border) shadow-sm flex gap-1.5 items-center">
             {[0, 150, 300].map(d => (
                 <span key={d} className="w-2 h-2 rounded-full bg-cyan-400 animate-bounce" style={{ animationDelay: `${d}ms` }}/>
             ))}
@@ -135,13 +135,13 @@ const HistoryItem = ({ session, active, lang, onClick }) => {
             className={`cursor-pointer w-full text-left px-3 py-3 rounded-xl border transition-all group
                 ${active
                     ? 'bg-cyan-50 dark:bg-cyan-950/30 border-cyan-300 dark:border-cyan-700'
-                    : 'bg-[--surface] border-[--border] hover:border-cyan-400 hover:bg-[--surface-soft]'
+                    : 'bg-(--surface) border-(--border) hover:border-cyan-400 hover:bg-(--surface-soft)'
                 }`}>
             <div className="flex items-center gap-2 mb-1">
                 <span className="text-sm">{badge}</span>
-                <span className="text-xs font-black text-[--text-primary] truncate flex-1">{title}</span>
+                <span className="text-xs font-black text-(--text-primary) truncate flex-1">{title}</span>
             </div>
-            <div className="flex items-center gap-1 text-[--text-muted]">
+            <div className="flex items-center gap-1 text-(--text-muted)">
                 <Clock size={9}/>
                 <span className="text-[10px]">{date}</span>
             </div>
@@ -372,16 +372,16 @@ export const Chatbot = () => {
             <div className={`flex flex-col transition-all duration-300 shrink-0
                 ${sidebarOpen ? 'w-64' : 'w-0 overflow-hidden'}`}>
                 {sidebarOpen && (
-                    <div className="flex flex-col h-full bg-[--surface] border border-[--border] rounded-2xl overflow-hidden shadow-sm">
+                    <div className="flex flex-col h-full bg-(--surface) border border-(--border) rounded-2xl overflow-hidden shadow-sm">
 
                         {/* Sidebar header */}
-                        <div className="flex items-center justify-between px-4 py-3 border-b border-[--border] bg-[--surface-soft]">
+                        <div className="flex items-center justify-between px-4 py-3 border-b border-(--border) bg-(--surface-soft)">
                             <div className="flex items-center gap-2">
                                 <MessageSquare size={14} className="text-cyan-600"/>
-                                <span className="text-xs font-black text-[--text-primary]">{cfg.history}</span>
+                                <span className="text-xs font-black text-(--text-primary)">{cfg.history}</span>
                             </div>
                             <button onClick={() => setSidebarOpen(false)}
-                                className="cursor-pointer p-1 rounded-lg text-[--text-muted] hover:text-[--text-primary] hover:bg-[--surface-soft] transition-colors">
+                                className="cursor-pointer p-1 rounded-lg text-(--text-muted) hover:text-(--text-primary) hover:bg-(--surface-soft) transition-colors">
                                 <ChevronLeft size={14}/>
                             </button>
                         </div>
@@ -391,13 +391,13 @@ export const Chatbot = () => {
                             {historyLoading ? (
                                 <div className="space-y-2">
                                     {[1,2,3].map(i => (
-                                        <div key={i} className="h-14 rounded-xl bg-[--surface-soft] animate-pulse"/>
+                                        <div key={i} className="h-14 rounded-xl bg-(--surface-soft) animate-pulse"/>
                                     ))}
                                 </div>
                             ) : pastSessions.length === 0 ? (
                                 <div className="text-center py-8">
-                                    <MessageSquare size={28} className="mx-auto text-[--text-muted]/30 mb-2"/>
-                                    <p className="text-xs text-[--text-muted]">{cfg.noHistory}</p>
+                                    <MessageSquare size={28} className="mx-auto text-(--text-muted)/30 mb-2"/>
+                                    <p className="text-xs text-(--text-muted)">{cfg.noHistory}</p>
                                 </div>
                             ) : (
                                 pastSessions.map(s => (
@@ -419,7 +419,7 @@ export const Chatbot = () => {
             <div className="flex-1 flex flex-col min-w-0">
 
                 {/* Header */}
-                <div className="bg-[--surface] border border-[--border] rounded-2xl shadow-sm mb-3 overflow-hidden">
+                <div className="bg-(--surface) border border-(--border) rounded-2xl shadow-sm mb-3 overflow-hidden">
                     <div className="px-4 py-3 flex items-center gap-3">
 
                         {/* History toggle */}
@@ -428,7 +428,7 @@ export const Chatbot = () => {
                             className={`cursor-pointer p-2 rounded-xl border transition-all
                                 ${sidebarOpen
                                     ? 'bg-cyan-600 text-white border-cyan-600'
-                                    : 'bg-[--surface-soft] text-[--text-muted] border-[--border] hover:border-cyan-400 hover:text-cyan-600'
+                                    : 'bg-(--surface-soft) text-(--text-muted) border-(--border) hover:border-cyan-400 hover:text-cyan-600'
                                 }`}>
                             {sidebarOpen ? <ChevronLeft size={16}/> : <ChevronRight size={16}/>}
                         </button>
@@ -438,12 +438,12 @@ export const Chatbot = () => {
                             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-cyan-700 flex items-center justify-center shadow-sm">
                                 <Bot size={20} className="text-white"/>
                             </div>
-                            <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-emerald-500 rounded-full border-2 border-[--surface]"/>
+                            <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-emerald-500 rounded-full border-2 border-(--surface)"/>
                         </div>
 
                         {/* Name */}
                         <div className="flex-1 min-w-0">
-                            <h2 className="font-black text-sm text-[--text-primary]">PediaBot</h2>
+                            <h2 className="font-black text-sm text-(--text-primary)">PediaBot</h2>
                             <div className="flex items-center gap-1.5">
                                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"/>
                                 <span className="text-[10px] font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wide">Online</span>
@@ -451,7 +451,7 @@ export const Chatbot = () => {
                         </div>
 
                         {/* Language toggle — large, clear, accessible */}
-                        <div className="flex items-center bg-[--surface-soft] border border-[--border] rounded-xl p-1 gap-1">
+                        <div className="flex items-center bg-(--surface-soft) border border-(--border) rounded-xl p-1 gap-1">
                             {Object.entries(LANG).map(([key, c]) => (
                                 <button key={key}
                                     onClick={() => handleLangChange(key)}
@@ -460,7 +460,7 @@ export const Chatbot = () => {
                                     className={`cursor-pointer flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-black transition-all duration-200
                                         ${lang === key
                                             ? 'bg-cyan-600 text-white shadow-sm'
-                                            : 'text-[--text-muted] hover:text-[--text-secondary]'
+                                            : 'text-(--text-muted) hover:text-(--text-secondary)'
                                         }`}>
                                     <Globe size={12}/>
                                     {c.name}
@@ -474,7 +474,7 @@ export const Chatbot = () => {
                             className={`cursor-pointer p-2.5 rounded-xl border transition-all
                                 ${speakerOn
                                     ? 'bg-cyan-600 text-white border-cyan-600'
-                                    : 'bg-[--surface-soft] text-[--text-muted] border-[--border] hover:border-cyan-400'
+                                    : 'bg-(--surface-soft) text-(--text-muted) border-(--border) hover:border-cyan-400'
                                 }`}>
                             {speakerOn ? <Volume2 size={15}/> : <VolumeX size={15}/>}
                         </button>
@@ -482,13 +482,13 @@ export const Chatbot = () => {
                         {/* New Chat — saves current session first */}
                         <button onClick={handleNewChat}
                             aria-label="Start new chat"
-                            className="cursor-pointer flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[--surface-soft] border border-[--border] text-xs font-black text-[--text-secondary] hover:border-cyan-500 hover:text-cyan-600 transition-all">
+                            className="cursor-pointer flex items-center gap-1.5 px-3 py-2 rounded-xl bg-(--surface-soft) border border-(--border) text-xs font-black text-(--text-secondary) hover:border-cyan-500 hover:text-cyan-600 transition-all">
                             <Plus size={14}/> {cfg.newChat}
                         </button>
                     </div>
 
                     {/* Compact disclaimer strip */}
-                    <div className="px-4 py-2 border-t border-[--border] bg-amber-50/60 dark:bg-amber-950/20 flex items-center gap-2">
+                    <div className="px-4 py-2 border-t border-(--border) bg-amber-50/60 dark:bg-amber-950/20 flex items-center gap-2">
                         <ShieldAlert size={11} className="text-amber-500 shrink-0"/>
                         <p className="text-[10px] text-amber-700 dark:text-amber-400 font-medium leading-tight">{cfg.disclaimer}</p>
                     </div>
@@ -508,7 +508,7 @@ export const Chatbot = () => {
                 )}
 
                 {/* Messages feed */}
-                <div className="flex-1 overflow-y-auto bg-[--surface-soft] border border-[--border] rounded-2xl px-4 py-5 space-y-4">
+                <div className="flex-1 overflow-y-auto bg-(--surface-soft) border border-(--border) rounded-2xl px-4 py-5 space-y-4">
 
                     {/* Init error — backend unreachable */}
                     {initError && (
@@ -533,7 +533,7 @@ export const Chatbot = () => {
                                 lang={lang}
                             />
                             <div className="ml-11 mt-2">
-                                <p className="text-[10px] font-black uppercase tracking-widest text-[--text-muted] mb-1">
+                                <p className="text-[10px] font-black uppercase tracking-widest text-(--text-muted) mb-1">
                                     {lang === 'so' ? 'Su\'aalaha caadiga ah' : 'Common questions'}
                                 </p>
                                 <TopicPills lang={lang} onSend={handleSend}/>
@@ -547,7 +547,7 @@ export const Chatbot = () => {
                 </div>
 
                 {/* Input bar */}
-                <div className="mt-3 bg-[--surface] border border-[--border] rounded-2xl shadow-sm overflow-hidden">
+                <div className="mt-3 bg-(--surface) border border-(--border) rounded-2xl shadow-sm overflow-hidden">
                     <form onSubmit={e => { e.preventDefault(); handleSend(); }}
                         className="flex items-center gap-2 px-4 py-3">
 
@@ -558,7 +558,7 @@ export const Chatbot = () => {
                             className={`cursor-pointer w-10 h-10 rounded-xl flex items-center justify-center border-2 transition-all shrink-0 disabled:opacity-40
                                 ${isListening
                                     ? 'bg-red-500 border-red-500 text-white animate-pulse'
-                                    : 'bg-[--surface-soft] border-[--border] text-[--text-muted] hover:border-cyan-400 hover:text-cyan-600'
+                                    : 'bg-(--surface-soft) border-(--border) text-(--text-muted) hover:border-cyan-400 hover:text-cyan-600'
                                 }`}>
                             {isListening ? <MicOff size={16}/> : <Mic size={16}/>}
                         </button>
@@ -572,7 +572,7 @@ export const Chatbot = () => {
                                 ? (lang === 'so' ? 'Waxaad arkaysaa taariikhda…' : 'Viewing history…')
                                 : isListening ? cfg.listening : cfg.placeholder
                             }
-                            className="flex-1 bg-[--surface-soft] border border-[--border] rounded-xl px-4 py-2.5 text-sm font-medium text-[--text-primary] placeholder-[--text-muted] focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/15 disabled:opacity-50 transition-all"
+                            className="flex-1 bg-(--surface-soft) border border-(--border) rounded-xl px-4 py-2.5 text-sm font-medium text-(--text-primary) placeholder-(--text-muted) focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/15 disabled:opacity-50 transition-all"
                         />
 
                         <button type="submit"

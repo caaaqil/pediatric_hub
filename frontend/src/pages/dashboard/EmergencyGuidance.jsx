@@ -87,12 +87,12 @@ export const EmergencyGuidance = () => {
             </div>
 
             {/* Location + Map Section */}
-            <Card className="border-[--border] shadow-sm overflow-hidden">
-                <div className="p-5 border-b border-[--border] bg-[--surface-soft] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <Card className="border-(--border) shadow-sm overflow-hidden">
+                <div className="p-5 border-b border-(--border) bg-(--surface-soft) flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                     <div>
-                        <h2 className="font-black text-[--text-primary] text-lg flex items-center gap-2"><Navigation size={20} className="text-primary-500"/> Auto Location Sharing</h2>
-                        <p className="text-sm text-[--text-secondary] font-medium mt-0.5">Share your exact GPS location with the doctor or ambulance instantly.</p>
-                        <p className="text-xs text-[--text-muted] font-semibold mt-0.5">🇸🇴 Meeshaada si toos ah u dir dhakhtarka ama ambalaanka</p>
+                        <h2 className="font-black text-(--text-primary) text-lg flex items-center gap-2"><Navigation size={20} className="text-primary-500"/> Auto Location Sharing</h2>
+                        <p className="text-sm text-(--text-secondary) font-medium mt-0.5">Share your exact GPS location with the doctor or ambulance instantly.</p>
+                        <p className="text-xs text-(--text-muted) font-semibold mt-0.5">🇸🇴 Meeshaada si toos ah u dir dhakhtarka ama ambalaanka</p>
                     </div>
                     <div className="flex gap-3 flex-wrap">
                         <Button onClick={getLocation} disabled={locationState === 'loading'}
@@ -140,10 +140,10 @@ export const EmergencyGuidance = () => {
                             <p className="font-bold text-red-600">Could not access location. Please enable GPS and try again.</p>
                         </div>
                     ) : (
-                        <div className="p-8 text-center bg-[--surface-soft]">
+                        <div className="p-8 text-center bg-(--surface-soft)">
                             <MapPin size={40} className="mx-auto text-slate-300 mb-3"/>
-                            <p className="font-bold text-[--text-muted]">Click "Get My Location" to show your position on the map</p>
-                            <p className="text-sm text-[--text-muted] mt-1">Your location will be shared with emergency services when needed</p>
+                            <p className="font-bold text-(--text-muted)">Click "Get My Location" to show your position on the map</p>
+                            <p className="text-sm text-(--text-muted) mt-1">Your location will be shared with emergency services when needed</p>
                         </div>
                     )}
                 </div>
@@ -151,9 +151,9 @@ export const EmergencyGuidance = () => {
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 {/* Emergency Protocols */}
-                <Card className="col-span-1 lg:col-span-2 border-[--border] shadow-sm">
+                <Card className="col-span-1 lg:col-span-2 border-(--border) shadow-sm">
                     <CardContent className="p-6 sm:p-8">
-                        <h2 className="text-lg font-black text-[--text-primary] mb-6 flex items-center gap-3">
+                        <h2 className="text-lg font-black text-(--text-primary) mb-6 flex items-center gap-3">
                             <HeartPulse className="text-[#dc2626]" size={24}/> Immediate Action Protocols
                         </h2>
                         <div className="space-y-6">
@@ -161,9 +161,9 @@ export const EmergencyGuidance = () => {
                                 <div key={p.step} className="flex gap-4">
                                     <div className="w-10 h-10 rounded-xl bg-danger/10 text-red-600 font-black flex items-center justify-center shrink-0 text-lg border border-red-200">{p.step}</div>
                                     <div className="flex-1">
-                                        <h3 className="font-black text-[--text-primary] text-base">{p.title}</h3>
+                                        <h3 className="font-black text-(--text-primary) text-base">{p.title}</h3>
                                         <p className="text-xs font-bold text-red-500 italic mb-1">🇸🇴 {p.so}</p>
-                                        <p className="text-sm text-[--text-secondary] font-medium leading-relaxed">{p.body}</p>
+                                        <p className="text-sm text-(--text-secondary) font-medium leading-relaxed">{p.body}</p>
                                     </div>
                                 </div>
                             ))}
@@ -175,7 +175,7 @@ export const EmergencyGuidance = () => {
                 <div className="col-span-1 space-y-4">
                     <Card className="shadow-sm">
                         <CardContent className="p-5">
-                            <h3 className="font-black text-[--text-primary] mb-4 text-sm flex items-center gap-2">
+                            <h3 className="font-black text-(--text-primary) mb-4 text-sm flex items-center gap-2">
                                 <Building2 size={16} className="text-teal"/> Nearest Approved Facilities
                             </h3>
                             <div className="space-y-3">
@@ -183,36 +183,36 @@ export const EmergencyGuidance = () => {
                                     const isExpanded = expandedFacility === i;
                                     const directionsUrl = `https://www.openstreetmap.org/directions?from=&to=${fac.lat},${fac.lng}`;
                                     return (
-                                    <div key={i} className={`rounded-xl border-2 transition-all duration-200 overflow-hidden ${isExpanded ? 'border-red-400 shadow-md' : 'border-[--border] hover:border-red-300'}`}>
+                                    <div key={i} className={`rounded-xl border-2 transition-all duration-200 overflow-hidden ${isExpanded ? 'border-red-400 shadow-md' : 'border-(--border) hover:border-red-300'}`}>
                                         {/* Header row — always visible */}
-                                        <button className="w-full text-left p-4 bg-[--surface-soft] flex items-center gap-3"
+                                        <button className="w-full text-left p-4 bg-(--surface-soft) flex items-center gap-3"
                                             onClick={() => setExpandedFacility(isExpanded ? null : i)}>
                                             <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${fac.type === 'Hospital' ? 'bg-red-100 text-red-600' : 'bg-emerald-100 text-emerald-600'}`}>
                                                 {fac.type === 'Hospital' ? <Building2 size={16}/> : <Stethoscope size={16}/>}
                                             </div>
                                             <div className="flex-1 min-w-0">
-                                                <div className="font-black text-[--text-primary] text-sm truncate">{fac.name}</div>
+                                                <div className="font-black text-(--text-primary) text-sm truncate">{fac.name}</div>
                                                 <div className="flex items-center gap-2 mt-0.5">
                                                     <span className="text-[10px] font-bold text-primary-500">{fac.distance}</span>
-                                                    <span className="text-[10px] font-bold text-[--text-muted] flex items-center gap-0.5"><Clock size={9}/> {fac.open}</span>
+                                                    <span className="text-[10px] font-bold text-(--text-muted) flex items-center gap-0.5"><Clock size={9}/> {fac.open}</span>
                                                     <span className={`text-[9px] font-black uppercase px-1.5 py-0.5 rounded-full ${fac.type === 'Hospital' ? 'bg-red-100 text-red-700' : 'bg-emerald-100 text-emerald-700'}`}>{fac.type}</span>
                                                 </div>
                                             </div>
-                                            {isExpanded ? <ChevronUp size={16} className="text-[--text-muted] shrink-0"/> : <ChevronDown size={16} className="text-[--text-muted] shrink-0"/>}
+                                            {isExpanded ? <ChevronUp size={16} className="text-(--text-muted) shrink-0"/> : <ChevronDown size={16} className="text-(--text-muted) shrink-0"/>}
                                         </button>
 
                                         {/* Expanded detail */}
                                         {isExpanded && (
-                                            <div className="px-4 pb-4 bg-[--surface] border-t border-[--border] space-y-3 pt-3">
+                                            <div className="px-4 pb-4 bg-(--surface) border-t border-(--border) space-y-3 pt-3">
                                                 {/* Address */}
                                                 <div className="flex items-start gap-2 text-sm">
-                                                    <MapPin size={14} className="text-[--text-muted] mt-0.5 shrink-0"/>
-                                                    <span className="text-[--text-secondary] font-medium">{fac.address}</span>
+                                                    <MapPin size={14} className="text-(--text-muted) mt-0.5 shrink-0"/>
+                                                    <span className="text-(--text-secondary) font-medium">{fac.address}</span>
                                                 </div>
                                                 {/* Phone */}
                                                 <div className="flex items-center gap-2 text-sm">
-                                                    <Phone size={14} className="text-[--text-muted] shrink-0"/>
-                                                    <span className="font-black text-[--text-primary]">{fac.phone}</span>
+                                                    <Phone size={14} className="text-(--text-muted) shrink-0"/>
+                                                    <span className="font-black text-(--text-primary)">{fac.phone}</span>
                                                 </div>
                                                 {/* Action buttons */}
                                                 <div className="grid grid-cols-2 gap-2 pt-1">
@@ -249,8 +249,8 @@ export const EmergencyGuidance = () => {
                                         <Phone size={14}/>
                                     </div>
                                     <div className="text-left">
-                                        <div className="font-black text-[--text-primary] text-xs">{c.label}</div>
-                                        <div className="text-[10px] font-bold text-[--text-muted]">{c.number}</div>
+                                        <div className="font-black text-(--text-primary) text-xs">{c.label}</div>
+                                        <div className="text-[10px] font-bold text-(--text-muted)">{c.number}</div>
                                     </div>
                                 </button>
                             ))}

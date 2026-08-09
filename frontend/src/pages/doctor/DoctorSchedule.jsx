@@ -71,16 +71,16 @@ export const DoctorSchedule = () => {
         const time = new Date(appt.scheduledAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
         return (
-            <div className="flex flex-col sm:flex-row sm:items-center gap-4 p-4 bg-[--surface] rounded-xl border border-[--border] hover:border-primary-300 hover:shadow-sm transition-all group">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-4 p-4 bg-(--surface) rounded-xl border border-(--border) hover:border-primary-300 hover:shadow-sm transition-all group">
                 {/* Time pill */}
                 <div className="flex items-center gap-3 shrink-0">
                     <div className="w-16 text-center">
-                        <div className="text-lg font-black text-[--text-primary] leading-none">{time}</div>
-                        <div className="text-[9px] font-bold uppercase text-[--text-muted] tracking-widest mt-0.5">
+                        <div className="text-lg font-black text-(--text-primary) leading-none">{time}</div>
+                        <div className="text-[9px] font-bold uppercase text-(--text-muted) tracking-widest mt-0.5">
                             {new Date(appt.scheduledAt).toLocaleDateString([], { month: 'short', day: 'numeric' })}
                         </div>
                     </div>
-                    <div className="w-px h-12 bg-[--border] hidden sm:block"/>
+                    <div className="w-px h-12 bg-(--border) hidden sm:block"/>
                 </div>
 
                 {/* Patient info */}
@@ -94,10 +94,10 @@ export const DoctorSchedule = () => {
                         />
                     </div>
                     <div className="min-w-0">
-                        <div className="font-black text-[--text-primary] truncate">
+                        <div className="font-black text-(--text-primary) truncate">
                             {appt.child?.firstName} {appt.child?.lastName}
                         </div>
-                        <div className="text-xs text-[--text-secondary] font-medium truncate flex items-center gap-1 mt-0.5">
+                        <div className="text-xs text-(--text-secondary) font-medium truncate flex items-center gap-1 mt-0.5">
                             <User size={10}/> {appt.reason || 'General Consultation'}
                         </div>
                     </div>
@@ -135,7 +135,7 @@ export const DoctorSchedule = () => {
                     )}
                     {appt.status === 'COMPLETED' && (
                         <button onClick={() => navigate(`/child/${appt.childId}`)}
-                            className="px-3 py-1.5 bg-[--surface-soft] text-[--text-muted] border border-[--border] rounded-lg text-xs font-black uppercase hover:text-primary-600 transition-colors">
+                            className="px-3 py-1.5 bg-(--surface-soft) text-(--text-muted) border border-(--border) rounded-lg text-xs font-black uppercase hover:text-primary-600 transition-colors">
                             View Record
                         </button>
                     )}
@@ -172,7 +172,7 @@ export const DoctorSchedule = () => {
                     { label: 'Completed',             val: (schedule||[]).filter(a=>a.status==='COMPLETED').length, color: 'text-slate-600',   bg: 'bg-slate-50 border-slate-200' },
                 ].map(s => (
                     <div key={s.label} className={`rounded-xl border p-4 ${s.bg}`}>
-                        <div className="text-[10px] font-black uppercase tracking-widest text-[--text-muted] mb-1">{s.label}</div>
+                        <div className="text-[10px] font-black uppercase tracking-widest text-(--text-muted) mb-1">{s.label}</div>
                         <div className={`text-3xl font-black ${s.color}`}>{s.val}</div>
                     </div>
                 ))}
@@ -183,25 +183,25 @@ export const DoctorSchedule = () => {
                 <div className="flex gap-2 flex-wrap">
                     {['ALL','PENDING','CONFIRMED','COMPLETED'].map(f => (
                         <button key={f} onClick={() => setActiveFilter(f)}
-                            className={`px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wide border-2 transition-all ${activeFilter === f ? 'bg-primary-600 text-white border-primary-600 shadow-sm' : 'border-[--border] text-[--text-muted] hover:border-primary-400'}`}>
+                            className={`px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wide border-2 transition-all ${activeFilter === f ? 'bg-primary-600 text-white border-primary-600 shadow-sm' : 'border-(--border) text-(--text-muted) hover:border-primary-400'}`}>
                             {f}
                         </button>
                     ))}
                 </div>
                 <div className="flex gap-2">
                     <button onClick={() => setViewMode('timeslot')}
-                        className={`px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wide border-2 transition-all flex items-center gap-1.5 ${viewMode==='timeslot' ? 'bg-indigo-600 text-white border-indigo-600' : 'border-[--border] text-[--text-muted] hover:border-indigo-400'}`}>
+                        className={`px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wide border-2 transition-all flex items-center gap-1.5 ${viewMode==='timeslot' ? 'bg-indigo-600 text-white border-indigo-600' : 'border-(--border) text-(--text-muted) hover:border-indigo-400'}`}>
                         <Clock size={13}/> By Shift
                     </button>
                     <button onClick={() => setViewMode('list')}
-                        className={`px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wide border-2 transition-all ${viewMode==='list' ? 'bg-indigo-600 text-white border-indigo-600' : 'border-[--border] text-[--text-muted] hover:border-indigo-400'}`}>
+                        className={`px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wide border-2 transition-all ${viewMode==='list' ? 'bg-indigo-600 text-white border-indigo-600' : 'border-(--border) text-(--text-muted) hover:border-indigo-400'}`}>
                         List
                     </button>
                 </div>
             </div>
 
             {isLoading ? (
-                <div className="p-12 text-center text-[--text-muted] font-bold uppercase tracking-widest animate-pulse">Syncing Schedule...</div>
+                <div className="p-12 text-center text-(--text-muted) font-bold uppercase tracking-widest animate-pulse">Syncing Schedule...</div>
             ) : viewMode === 'timeslot' ? (
                 /* SHIFT VIEW */
                 <div className="space-y-6">
@@ -210,13 +210,13 @@ export const DoctorSchedule = () => {
                             <div className={`flex items-center gap-3 px-4 py-2.5 rounded-xl border mb-3 ${cfg.bg}`}>
                                 <span className={cfg.color}>{cfg.icon}</span>
                                 <span className={`font-black text-sm uppercase tracking-widest ${cfg.color}`}>{cfg.label} Shift</span>
-                                <span className="text-[--text-muted] text-xs font-semibold">{cfg.range}</span>
+                                <span className="text-(--text-muted) text-xs font-semibold">{cfg.range}</span>
                                 <span className={`ml-auto text-xs font-black px-2 py-0.5 rounded-full bg-white/70 ${cfg.color}`}>
                                     {byShift[shift].length} appointment{byShift[shift].length !== 1 ? 's' : ''}
                                 </span>
                             </div>
                             {byShift[shift].length === 0 ? (
-                                <div className="text-sm text-[--text-muted] italic px-4 py-3 border border-dashed border-[--border] rounded-xl text-center">
+                                <div className="text-sm text-(--text-muted) italic px-4 py-3 border border-dashed border-(--border) rounded-xl text-center">
                                     No appointments in this shift
                                 </div>
                             ) : (
@@ -236,7 +236,7 @@ export const DoctorSchedule = () => {
                         <div className="overflow-x-auto">
                             <table className="w-full text-left border-collapse">
                                 <thead>
-                                    <tr className="bg-[--surface-soft] border-b border-[--border] text-[10px] font-black uppercase tracking-widest text-[--text-secondary]">
+                                    <tr className="bg-(--surface-soft) border-b border-(--border) text-[10px] font-black uppercase tracking-widest text-(--text-secondary)">
                                         <th className="p-4">Patient</th>
                                         <th className="p-4">Time Slot</th>
                                         <th className="p-4">Visit Type</th>
@@ -246,24 +246,24 @@ export const DoctorSchedule = () => {
                                 </thead>
                                 <tbody>
                                     {filtered.sort((a,b) => new Date(a.scheduledAt)-new Date(b.scheduledAt)).map(appt => (
-                                        <tr key={appt.id} className="border-b border-[--border] hover:bg-[--surface-soft] transition-colors">
+                                        <tr key={appt.id} className="border-b border-(--border) hover:bg-(--surface-soft) transition-colors">
                                             <td className="p-4">
                                                 <div className="flex items-center gap-3">
                                                     <div className="w-9 h-9 rounded-full overflow-hidden ring-2 ring-blue-100 shrink-0">
                                                         <img src={`https://api.dicebear.com/7.x/micah/svg?seed=${encodeURIComponent((appt.child?.firstName||'')+(appt.child?.lastName||''))}&backgroundColor=b6e3f4`} alt="" className="w-full h-full object-cover" onError={e=>{e.target.outerHTML=`<div class="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center text-white font-black text-xs">${appt.child?.firstName?.charAt(0)||'P'}</div>`;}}/>
                                                     </div>
                                                     <div>
-                                                        <div className="font-black text-[--text-primary]">{appt.child?.firstName} {appt.child?.lastName}</div>
-                                                        <div className="text-[10px] text-[--text-muted] uppercase tracking-widest font-bold mt-0.5">{appt.reason || 'General Routine'}</div>
+                                                        <div className="font-black text-(--text-primary)">{appt.child?.firstName} {appt.child?.lastName}</div>
+                                                        <div className="text-[10px] text-(--text-muted) uppercase tracking-widest font-bold mt-0.5">{appt.reason || 'General Routine'}</div>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td className="p-4">
-                                                <div className="font-black text-[--text-primary] text-sm flex items-center gap-1.5">
-                                                    <Clock size={14} className="text-[--text-muted]"/>
+                                                <div className="font-black text-(--text-primary) text-sm flex items-center gap-1.5">
+                                                    <Clock size={14} className="text-(--text-muted)"/>
                                                     {new Date(appt.scheduledAt).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}
                                                 </div>
-                                                <div className="text-xs font-semibold text-[--text-secondary] mt-0.5">
+                                                <div className="text-xs font-semibold text-(--text-secondary) mt-0.5">
                                                     {new Date(appt.scheduledAt).toLocaleDateString()}
                                                 </div>
                                             </td>
@@ -288,7 +288,7 @@ export const DoctorSchedule = () => {
                                                         </button>
                                                     )}
                                                     {appt.status === 'COMPLETED' && (
-                                                        <span className="text-xs font-bold text-[--text-muted] uppercase tracking-widest">Archived</span>
+                                                        <span className="text-xs font-bold text-(--text-muted) uppercase tracking-widest">Archived</span>
                                                     )}
                                                 </div>
                                             </td>
@@ -296,9 +296,9 @@ export const DoctorSchedule = () => {
                                     ))}
                                     {filtered.length === 0 && (
                                         <tr><td colSpan="5" className="p-12 text-center">
-                                            <div className="w-16 h-16 bg-[--surface-soft] rounded-full flex items-center justify-center mx-auto mb-4 text-slate-300"><Calendar size={32}/></div>
-                                            <h3 className="text-lg font-black text-[--text-primary]">No Appointments</h3>
-                                            <p className="text-sm text-[--text-secondary] font-medium mt-1">Your schedule is clear.</p>
+                                            <div className="w-16 h-16 bg-(--surface-soft) rounded-full flex items-center justify-center mx-auto mb-4 text-slate-300"><Calendar size={32}/></div>
+                                            <h3 className="text-lg font-black text-(--text-primary)">No Appointments</h3>
+                                            <p className="text-sm text-(--text-secondary) font-medium mt-1">Your schedule is clear.</p>
                                         </td></tr>
                                     )}
                                 </tbody>

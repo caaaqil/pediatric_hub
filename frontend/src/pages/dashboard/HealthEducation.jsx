@@ -1474,24 +1474,24 @@ export const HealthEducation = () => {
                 {/* ══ FEATURED CAROUSEL ══════════════════════════════════════ */}
                 <div>
                     <div className="flex items-center justify-between mb-4">
-                        <h2 className="text-[--text-primary] font-black text-lg flex items-center gap-2">
+                        <h2 className="text-(--text-primary) font-black text-lg flex items-center gap-2">
                             <Star size={18} className="text-amber-500 fill-amber-500"/>
                             Maqaalada Muuqda
                         </h2>
                         <div className="flex items-center gap-2">
                             <button
                                 onClick={() => setFeaturedIdx(i => (i - 1 + 3) % 3)}
-                                className="w-8 h-8 rounded-full border border-[--border] flex items-center justify-center text-[--text-muted] hover:border-purple-400 hover:text-purple-600 transition-all"
+                                className="w-8 h-8 rounded-full border border-(--border) flex items-center justify-center text-(--text-muted) hover:border-purple-400 hover:text-purple-600 transition-all"
                             >
                                 <ChevronLeft size={16}/>
                             </button>
                             {[0,1,2].map(i => (
                                 <button key={i} onClick={() => setFeaturedIdx(i)}
-                                    className={`w-2 h-2 rounded-full transition-all ${featuredIdx === i ? 'bg-purple-600 w-6' : 'bg-[--border]'}`}/>
+                                    className={`w-2 h-2 rounded-full transition-all ${featuredIdx === i ? 'bg-purple-600 w-6' : 'bg-(--border)'}`}/>
                             ))}
                             <button
                                 onClick={() => setFeaturedIdx(i => (i + 1) % 3)}
-                                className="w-8 h-8 rounded-full border border-[--border] flex items-center justify-center text-[--text-muted] hover:border-purple-400 hover:text-purple-600 transition-all"
+                                className="w-8 h-8 rounded-full border border-(--border) flex items-center justify-center text-(--text-muted) hover:border-purple-400 hover:text-purple-600 transition-all"
                             >
                                 <ChevronRight size={16}/>
                             </button>
@@ -1551,7 +1551,7 @@ export const HealthEducation = () => {
                                 className={`he-badge flex items-center gap-1.5 px-4 py-2 rounded-full text-[11px] font-black uppercase tracking-wide border-2 transition-all
                                     ${isActive
                                         ? 'bg-purple-600 text-white border-purple-600 shadow-lg shadow-purple-200 dark:shadow-purple-900/30'
-                                        : 'border-[--border] text-[--text-muted] hover:border-purple-400 hover:text-purple-600 bg-[--surface]'
+                                        : 'border-(--border) text-(--text-muted) hover:border-purple-400 hover:text-purple-600 bg-(--surface)'
                                     }`}
                             >
                                 {cat !== 'Dhammaan' && article && <span className={`w-1.5 h-1.5 rounded-full inline-block ${isActive ? 'bg-white' : article.dot}`}/>}
@@ -1563,7 +1563,7 @@ export const HealthEducation = () => {
 
                 {/* ══ NUTRITION GUIDE ════════════════════════════════════════ */}
                 <div ref={nutritionRef}>
-                    <h2 className="text-[--text-primary] font-black text-lg flex items-center gap-2 mb-5">
+                    <h2 className="text-(--text-primary) font-black text-lg flex items-center gap-2 mb-5">
                         <Leaf size={20} className="text-green-500"/>
                         Hagaha Nafaqada
                     </h2>
@@ -1598,7 +1598,7 @@ export const HealthEducation = () => {
 
                 {/* ══ VACCINATION TIMELINE ═══════════════════════════════════ */}
                 <div className="rounded-2xl border border-purple-200 dark:border-purple-800 bg-linear-to-br from-purple-50 to-indigo-50 dark:from-purple-950/30 dark:to-indigo-950/20 p-6">
-                    <h2 className="text-[--text-primary] font-black text-lg flex items-center gap-2 mb-6">
+                    <h2 className="text-(--text-primary) font-black text-lg flex items-center gap-2 mb-6">
                         <Shield size={20} className="text-purple-600"/>
                         Jadwalka Tallaalada
                     </h2>
@@ -1617,7 +1617,7 @@ export const HealthEducation = () => {
                                 <div key={i} className="flex items-start gap-4 pl-8 relative">
                                     <div className={`absolute left-2.5 top-1.5 w-3 h-3 rounded-full ${row.color} border-2 border-white dark:border-gray-900 z-10 shadow-md`}/>
                                     <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-                                        <span className="text-xs font-black text-[--text-primary] w-28 shrink-0">{row.time}</span>
+                                        <span className="text-xs font-black text-(--text-primary) w-28 shrink-0">{row.time}</span>
                                         <div className="flex flex-wrap gap-1.5">
                                             {row.vaccines.map(v => (
                                                 <span key={v} className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-white dark:bg-gray-800 border border-purple-200 dark:border-purple-700 text-purple-700 dark:text-purple-300 shadow-sm">
@@ -1635,7 +1635,7 @@ export const HealthEducation = () => {
                 {/* ══ ARTICLES GRID ══════════════════════════════════════════ */}
                 <div>
                     <div className="flex items-center justify-between mb-5">
-                        <h2 className="text-[--text-muted] font-black text-[11px] uppercase tracking-widest flex items-center gap-2">
+                        <h2 className="text-(--text-muted) font-black text-[11px] uppercase tracking-widest flex items-center gap-2">
                             <BookOpen size={13}/>
                             {filtered.length} Maqaal{filtered.length !== 1 ? 'ood' : ''} la Helay
                         </h2>
@@ -1647,10 +1647,10 @@ export const HealthEducation = () => {
                     </div>
 
                     {filtered.length === 0 ? (
-                        <div className="p-14 text-center border-2 border-dashed border-[--border] rounded-3xl">
+                        <div className="p-14 text-center border-2 border-dashed border-(--border) rounded-3xl">
                             <Search size={40} className="mx-auto text-slate-300 mb-4"/>
-                            <h2 className="text-xl font-black text-[--text-secondary] mb-2">Maqaal lama helin</h2>
-                            <p className="text-[--text-muted] font-medium text-sm">Xaraf kale isku day ama qaybta bedel.</p>
+                            <h2 className="text-xl font-black text-(--text-secondary) mb-2">Maqaal lama helin</h2>
+                            <p className="text-(--text-muted) font-medium text-sm">Xaraf kale isku day ama qaybta bedel.</p>
                         </div>
                     ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
@@ -1660,7 +1660,7 @@ export const HealthEducation = () => {
                                     ref={el => setRef(article.id, el)}
                                     data-cardid={article.id}
                                     onClick={() => navigate('/education/' + article.id)}
-                                    className="he-card group rounded-2xl overflow-hidden border border-[--border] bg-[--surface] shadow-sm cursor-pointer flex flex-col"
+                                    className="he-card group rounded-2xl overflow-hidden border border-(--border) bg-(--surface) shadow-sm cursor-pointer flex flex-col"
                                     style={visibleIds.has(String(article.id))
                                         ? { animation: `he-slideUp 0.45s ease ${Math.min(i % 3, 2) * 0.08}s both` }
                                         : { opacity: 0 }
@@ -1686,24 +1686,24 @@ export const HealthEducation = () => {
 
                                     {/* Body */}
                                     <div className="p-5 flex flex-col flex-1">
-                                        <h3 className="font-black text-[--text-primary] text-[15px] leading-snug mb-2 tracking-tight group-hover:text-purple-600 transition-colors">
+                                        <h3 className="font-black text-(--text-primary) text-[15px] leading-snug mb-2 tracking-tight group-hover:text-purple-600 transition-colors">
                                             {article.title}
                                         </h3>
-                                        <p className="text-[12px] font-medium text-[--text-secondary] leading-relaxed mb-4 flex-1">
+                                        <p className="text-[12px] font-medium text-(--text-secondary) leading-relaxed mb-4 flex-1">
                                             {article.subtitle}
                                         </p>
 
                                         {/* Sections preview pills */}
                                         <div className="flex flex-wrap gap-1.5 mb-4">
                                             {article.sections.slice(0, 2).map((s, si) => (
-                                                <span key={si} className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-[--surface-soft] text-[--text-muted] border border-[--border]">
+                                                <span key={si} className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-(--surface-soft) text-(--text-muted) border border-(--border)">
                                                     {s.heading.replace(/^[^\s]+ /, '').substring(0, 22)}…
                                                 </span>
                                             ))}
                                         </div>
 
-                                        <div className="flex items-center justify-between mt-auto pt-3 border-t border-[--border]">
-                                            <div className="flex items-center gap-1.5 text-[--text-muted]">
+                                        <div className="flex items-center justify-between mt-auto pt-3 border-t border-(--border)">
+                                            <div className="flex items-center gap-1.5 text-(--text-muted)">
                                                 <Clock size={11}/>
                                                 <span className="text-[11px] font-bold">{article.readTime}</span>
                                             </div>

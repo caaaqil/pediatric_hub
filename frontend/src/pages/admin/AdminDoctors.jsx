@@ -110,8 +110,8 @@ export const AdminDoctors = () => {
         );
     };
 
-    const inputClass = 'w-full bg-[--surface] text-[--text-primary] border-2 border-[--border] rounded-lg px-4 py-2.5 focus:outline-none focus:border-blue-500 text-sm font-bold';
-    const labelClass = 'text-[10px] font-black uppercase text-[--text-muted] block mb-1';
+    const inputClass = 'w-full bg-(--surface) text-(--text-primary) border-2 border-(--border) rounded-lg px-4 py-2.5 focus:outline-none focus:border-blue-500 text-sm font-bold';
+    const labelClass = 'text-[10px] font-black uppercase text-(--text-muted) block mb-1';
 
     return (
         <div className="w-full space-y-6 animate-fade-in font-sans">
@@ -134,10 +134,10 @@ export const AdminDoctors = () => {
             {/* Search & Stats */}
             <div className="flex flex-col sm:flex-row gap-4 items-center">
                 <div className="relative flex-1 max-w-md">
-                    <Search size={16} className="absolute left-3.5 top-3 text-[--text-muted]" />
+                    <Search size={16} className="absolute left-3.5 top-3 text-(--text-muted)" />
                     <input type="text" value={searchQuery} onChange={e => setSearchQuery(e.target.value)}
                         placeholder="Search by name or specialization..."
-                        className="w-full pl-10 pr-4 py-2.5 rounded-xl border-2 border-[--border] text-sm focus:outline-none focus:border-blue-500 bg-[--surface] text-[--text-primary]" />
+                        className="w-full pl-10 pr-4 py-2.5 rounded-xl border-2 border-(--border) text-sm focus:outline-none focus:border-blue-500 bg-(--surface) text-(--text-primary)" />
                 </div>
                 <div className="flex gap-3 text-xs font-bold">
                     {Object.entries(STATUS_CONFIG).map(([key, cfg]) => (
@@ -152,12 +152,12 @@ export const AdminDoctors = () => {
             <Card className="shadow-sm overflow-hidden">
                 <CardContent className="p-0">
                     {isLoading ? (
-                        <div className="p-12 text-center text-[--text-muted] font-bold uppercase tracking-widest animate-pulse">Syncing Medical Database...</div>
+                        <div className="p-12 text-center text-(--text-muted) font-bold uppercase tracking-widest animate-pulse">Syncing Medical Database...</div>
                     ) : (
                         <div className="overflow-x-auto">
                             <table className="w-full text-left border-collapse">
                                 <thead>
-                                    <tr className="bg-[--surface-soft] border-b border-[--border] text-[10px] font-black uppercase tracking-widest text-[--text-secondary]">
+                                    <tr className="bg-(--surface-soft) border-b border-(--border) text-[10px] font-black uppercase tracking-widest text-(--text-secondary)">
                                         <th className="p-4">Doctor</th>
                                         <th className="p-4">Specialty & Contact</th>
                                         <th className="p-4">Facility / License</th>
@@ -167,7 +167,7 @@ export const AdminDoctors = () => {
                                 </thead>
                                 <tbody>
                                     {displayDoctors.map(doc => (
-                                        <tr key={doc.id} className="border-b border-[--border] hover:bg-[--surface-soft] transition-colors">
+                                        <tr key={doc.id} className="border-b border-(--border) hover:bg-(--surface-soft) transition-colors">
                                             <td className="p-4">
                                                 <div className="flex items-center gap-3">
                                                     <div className="w-11 h-11 rounded-full overflow-hidden ring-2 ring-blue-100 shrink-0">
@@ -179,8 +179,8 @@ export const AdminDoctors = () => {
                                                         />
                                                     </div>
                                                     <div>
-                                                        <div className="font-black text-[--text-primary]">Dr. {doc.firstName} {doc.lastName}</div>
-                                                        <div className="text-[10px] font-bold text-[--text-muted] uppercase tracking-widest mt-0.5">ID: {doc.id?.slice(0,8)}...</div>
+                                                        <div className="font-black text-(--text-primary)">Dr. {doc.firstName} {doc.lastName}</div>
+                                                        <div className="text-[10px] font-bold text-(--text-muted) uppercase tracking-widest mt-0.5">ID: {doc.id?.slice(0,8)}...</div>
                                                     </div>
                                                 </div>
                                             </td>
@@ -189,14 +189,14 @@ export const AdminDoctors = () => {
                                                     {doc.specialization || 'General'}
                                                 </span>
                                                 {doc.phoneNumber && (
-                                                    <div className="flex items-center gap-1 text-xs text-[--text-secondary] font-semibold">
+                                                    <div className="flex items-center gap-1 text-xs text-(--text-secondary) font-semibold">
                                                         <Phone size={11}/> {doc.phoneNumber}
                                                     </div>
                                                 )}
                                             </td>
                                             <td className="p-4">
-                                                <div className="text-sm font-semibold text-[--text-primary]">{doc.facility?.name || <span className="text-[--text-muted] italic">Unassigned</span>}</div>
-                                                <div className="text-xs text-[--text-secondary] mt-0.5 flex items-center gap-1"><FileText size={11}/> {doc.licenseNumber}</div>
+                                                <div className="text-sm font-semibold text-(--text-primary)">{doc.facility?.name || <span className="text-(--text-muted) italic">Unassigned</span>}</div>
+                                                <div className="text-xs text-(--text-secondary) mt-0.5 flex items-center gap-1"><FileText size={11}/> {doc.licenseNumber}</div>
                                             </td>
                                             <td className="p-4">
                                                 <div className="flex flex-col gap-1.5">
@@ -217,13 +217,13 @@ export const AdminDoctors = () => {
                                             </td>
                                             <td className="p-4 text-right">
                                                 <div className="flex items-center justify-end gap-2">
-                                                    <button onClick={() => setViewModal(doc)} className="text-[--text-muted] hover:text-blue-500 hover:bg-blue-50 transition-colors p-2 rounded-lg" title="View Profile">
+                                                    <button onClick={() => setViewModal(doc)} className="text-(--text-muted) hover:text-blue-500 hover:bg-blue-50 transition-colors p-2 rounded-lg" title="View Profile">
                                                         <BadgeCheck size={16} strokeWidth={2.5}/>
                                                     </button>
-                                                    <button onClick={() => openEdit(doc)} className="text-[--text-muted] hover:text-blue-500 hover:bg-primary-50 transition-colors p-2 rounded-lg">
+                                                    <button onClick={() => openEdit(doc)} className="text-(--text-muted) hover:text-blue-500 hover:bg-primary-50 transition-colors p-2 rounded-lg">
                                                         <Edit3 size={16} strokeWidth={2.5}/>
                                                     </button>
-                                                    <button onClick={() => setDeleteModal(doc)} className="text-[--text-muted] hover:text-danger hover:bg-danger/10 transition-colors p-2 rounded-lg">
+                                                    <button onClick={() => setDeleteModal(doc)} className="text-(--text-muted) hover:text-danger hover:bg-danger/10 transition-colors p-2 rounded-lg">
                                                         <Trash2 size={16} strokeWidth={2.5}/>
                                                     </button>
                                                 </div>
@@ -231,7 +231,7 @@ export const AdminDoctors = () => {
                                         </tr>
                                     ))}
                                     {displayDoctors.length === 0 && (
-                                        <tr><td colSpan="5" className="p-12 text-center text-[--text-muted] font-bold uppercase tracking-widest">No Profiles Found</td></tr>
+                                        <tr><td colSpan="5" className="p-12 text-center text-(--text-muted) font-bold uppercase tracking-widest">No Profiles Found</td></tr>
                                     )}
                                 </tbody>
                             </table>
@@ -243,7 +243,7 @@ export const AdminDoctors = () => {
             {/* CREATE MODAL */}
             {createModal && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 animate-fade-in">
-                    <div className="bg-[--surface] rounded-2xl shadow-2xl w-full max-w-2xl overflow-hidden relative flex flex-col max-h-[90vh]">
+                    <div className="bg-(--surface) rounded-2xl shadow-2xl w-full max-w-2xl overflow-hidden relative flex flex-col max-h-[90vh]">
                         <div className="bg-gradient-to-r from-blue-700 to-indigo-800 p-6 text-white flex justify-between items-center">
                             <h2 className="text-xl font-black tracking-tight flex items-center gap-2"><Plus size={20}/> Register New Doctor</h2>
                             <button onClick={() => setCreateModal(false)} className="hover:bg-white/20 p-1.5 rounded-lg transition-colors"><X size={20}/></button>
@@ -290,7 +290,7 @@ export const AdminDoctors = () => {
                             <div>
                                 <label className={labelClass}>Phone Number</label>
                                 <div className="relative">
-                                    <Phone size={15} className="absolute left-3.5 top-3 text-[--text-muted]"/>
+                                    <Phone size={15} className="absolute left-3.5 top-3 text-(--text-muted)"/>
                                     <input type="tel" value={formData.phoneNumber} onChange={e => setFormData(p => ({ ...p, phoneNumber: e.target.value }))} placeholder="+252-61-0000000" className={inputClass + ' pl-10'}/>
                                 </div>
                             </div>
@@ -313,12 +313,12 @@ export const AdminDoctors = () => {
                             {/* Qualification Document Upload */}
                             <div>
                                 <label className={labelClass}>Qualification Document (PDF or Image)</label>
-                                <label className="flex items-center gap-3 w-full border-2 border-dashed border-[--border] rounded-xl px-4 py-3 cursor-pointer hover:border-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/20 transition-colors">
+                                <label className="flex items-center gap-3 w-full border-2 border-dashed border-(--border) rounded-xl px-4 py-3 cursor-pointer hover:border-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/20 transition-colors">
                                     <Upload size={18} className="text-blue-500 shrink-0"/>
-                                    <span className="text-sm font-semibold text-[--text-secondary] truncate">{fileLabel || 'Click to upload certificate or degree...'}</span>
+                                    <span className="text-sm font-semibold text-(--text-secondary) truncate">{fileLabel || 'Click to upload certificate or degree...'}</span>
                                     <input type="file" accept=".pdf,.jpg,.jpeg,.png" onChange={handleFileChange} className="hidden"/>
                                 </label>
-                                <p className="text-[10px] text-[--text-muted] mt-1 font-semibold">Accepted: PDF, JPG, PNG. Max 5MB.</p>
+                                <p className="text-[10px] text-(--text-muted) mt-1 font-semibold">Accepted: PDF, JPG, PNG. Max 5MB.</p>
                             </div>
 
                             {/* Facility Assignment */}
@@ -337,7 +337,7 @@ export const AdminDoctors = () => {
                                     {Object.entries(STATUS_CONFIG).map(([key, cfg]) => (
                                         <button key={key} type="button"
                                             onClick={() => setFormData(p => ({ ...p, verificationStatus: key }))}
-                                            className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl border-2 text-xs font-black uppercase tracking-wide transition-all ${formData.verificationStatus === key ? `${cfg.color} border-current` : 'border-[--border] text-[--text-muted] hover:border-[--text-muted]'}`}>
+                                            className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl border-2 text-xs font-black uppercase tracking-wide transition-all ${formData.verificationStatus === key ? `${cfg.color} border-current` : 'border-(--border) text-(--text-muted) hover:border-(--text-muted)'}`}>
                                             {cfg.icon} {cfg.label}
                                         </button>
                                     ))}
@@ -358,7 +358,7 @@ export const AdminDoctors = () => {
             {/* VIEW PROFILE MODAL */}
             {viewModal && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 animate-fade-in">
-                    <div className="bg-[--surface] rounded-2xl shadow-2xl w-full max-w-md overflow-hidden">
+                    <div className="bg-(--surface) rounded-2xl shadow-2xl w-full max-w-md overflow-hidden">
                         <div className="bg-gradient-to-r from-blue-700 to-indigo-800 p-6 text-white relative">
                             <button onClick={() => setViewModal(null)} className="absolute top-4 right-4 hover:bg-white/20 p-1.5 rounded-lg"><X size={20}/></button>
                             <div className="flex items-center gap-4">
@@ -373,20 +373,20 @@ export const AdminDoctors = () => {
                         </div>
                         <div className="p-6 space-y-4">
                             <div className="grid grid-cols-2 gap-4">
-                                <div className="bg-[--surface-soft] p-3 rounded-xl border border-[--border]">
-                                    <div className="text-[10px] font-black text-[--text-muted] uppercase tracking-widest mb-1">License</div>
-                                    <div className="font-bold text-sm text-[--text-primary]">{viewModal.licenseNumber}</div>
+                                <div className="bg-(--surface-soft) p-3 rounded-xl border border-(--border)">
+                                    <div className="text-[10px] font-black text-(--text-muted) uppercase tracking-widest mb-1">License</div>
+                                    <div className="font-bold text-sm text-(--text-primary)">{viewModal.licenseNumber}</div>
                                 </div>
-                                <div className="bg-[--surface-soft] p-3 rounded-xl border border-[--border]">
-                                    <div className="text-[10px] font-black text-[--text-muted] uppercase tracking-widest mb-1">Phone</div>
-                                    <div className="font-bold text-sm text-[--text-primary]">{viewModal.phoneNumber || 'N/A'}</div>
+                                <div className="bg-(--surface-soft) p-3 rounded-xl border border-(--border)">
+                                    <div className="text-[10px] font-black text-(--text-muted) uppercase tracking-widest mb-1">Phone</div>
+                                    <div className="font-bold text-sm text-(--text-primary)">{viewModal.phoneNumber || 'N/A'}</div>
                                 </div>
-                                <div className="bg-[--surface-soft] p-3 rounded-xl border border-[--border]">
-                                    <div className="text-[10px] font-black text-[--text-muted] uppercase tracking-widest mb-1">Facility</div>
-                                    <div className="font-bold text-sm text-[--text-primary]">{viewModal.facility?.name || 'Unassigned'}</div>
+                                <div className="bg-(--surface-soft) p-3 rounded-xl border border-(--border)">
+                                    <div className="text-[10px] font-black text-(--text-muted) uppercase tracking-widest mb-1">Facility</div>
+                                    <div className="font-bold text-sm text-(--text-primary)">{viewModal.facility?.name || 'Unassigned'}</div>
                                 </div>
-                                <div className="bg-[--surface-soft] p-3 rounded-xl border border-[--border]">
-                                    <div className="text-[10px] font-black text-[--text-muted] uppercase tracking-widest mb-1">Status</div>
+                                <div className="bg-(--surface-soft) p-3 rounded-xl border border-(--border)">
+                                    <div className="text-[10px] font-black text-(--text-muted) uppercase tracking-widest mb-1">Status</div>
                                     <StatusBadge status={viewModal.verificationStatus || 'PENDING'} />
                                 </div>
                             </div>
@@ -406,7 +406,7 @@ export const AdminDoctors = () => {
             {/* EDIT MODAL */}
             {editModal && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 animate-fade-in">
-                    <div className="bg-[--surface] rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden">
+                    <div className="bg-(--surface) rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden">
                         <div className="bg-blue-600 p-6 text-white flex justify-between items-center">
                             <h2 className="text-xl font-black flex items-center gap-2"><Edit3 size={20}/> Edit Doctor Profile</h2>
                             <button onClick={() => setEditModal(null)} className="hover:bg-white/20 p-1.5 rounded-lg"><X size={20}/></button>
@@ -437,7 +437,7 @@ export const AdminDoctors = () => {
                                 <div className="flex gap-3">
                                     {Object.entries(STATUS_CONFIG).map(([key, cfg]) => (
                                         <button key={key} type="button" onClick={() => setFormData(p => ({ ...p, verificationStatus: key }))}
-                                            className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl border-2 text-xs font-black uppercase tracking-wide transition-all ${formData.verificationStatus === key ? `${cfg.color} border-current` : 'border-[--border] text-[--text-muted]'}`}>
+                                            className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl border-2 text-xs font-black uppercase tracking-wide transition-all ${formData.verificationStatus === key ? `${cfg.color} border-current` : 'border-(--border) text-(--text-muted)'}`}>
                                             {cfg.icon} {cfg.label}
                                         </button>
                                     ))}
@@ -457,11 +457,11 @@ export const AdminDoctors = () => {
             {/* DELETE CONFIRM */}
             {deleteModal && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 animate-fade-in">
-                    <div className="bg-[--surface] rounded-2xl shadow-2xl w-full max-w-sm text-center overflow-hidden">
+                    <div className="bg-(--surface) rounded-2xl shadow-2xl w-full max-w-sm text-center overflow-hidden">
                         <div className="p-8 pb-4">
                             <div className="mx-auto w-16 h-16 bg-danger/10 text-danger rounded-full flex items-center justify-center mb-4 ring-8 ring-red-50"><Trash2 size={32}/></div>
-                            <h2 className="text-2xl font-black text-[--text-primary]">Archive Doctor?</h2>
-                            <p className="text-[--text-secondary] font-medium text-sm mt-2">Dr. {deleteModal.firstName} {deleteModal.lastName} will be removed from scheduling.</p>
+                            <h2 className="text-2xl font-black text-(--text-primary)">Archive Doctor?</h2>
+                            <p className="text-(--text-secondary) font-medium text-sm mt-2">Dr. {deleteModal.firstName} {deleteModal.lastName} will be removed from scheduling.</p>
                         </div>
                         <div className="p-6 flex gap-3">
                             <Button variant="outline" onClick={() => setDeleteModal(null)} className="flex-1 py-5 rounded-xl border-2 font-bold">Cancel</Button>

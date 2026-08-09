@@ -169,7 +169,7 @@ const PLANS = [
         ],
         cta: 'Get Started Free',
         highlight: false,
-        color: 'border-[--border]',
+        color: 'border-(--border)',
     },
     {
         name: 'Family',
@@ -203,7 +203,7 @@ const PLANS = [
         ],
         cta: 'Contact Sales',
         highlight: false,
-        color: 'border-[--border]',
+        color: 'border-(--border)',
     },
 ];
 
@@ -325,12 +325,12 @@ export const Landing = () => {
     return (
         <>
             <style>{STYLES}</style>
-            <div className="min-h-screen bg-[--bg] font-sans overflow-x-hidden">
+            <div className="min-h-screen bg-(--bg) font-sans overflow-x-hidden">
 
                 {/* ══ NAVBAR ═════════════════════════════════════════════════════ */}
                 <nav className={`fixed top-0 inset-x-0 z-50 transition-all duration-300
                     ${scrolled
-                        ? 'bg-[--surface]/95 backdrop-blur-xl border-b border-[--border] shadow-sm'
+                        ? 'bg-(--surface)/95 backdrop-blur-xl border-b border-(--border) shadow-sm'
                         : 'bg-transparent'}`}>
                     <div className="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between" style={{ height: 72 }}>
                         {/* Logo */}
@@ -339,10 +339,10 @@ export const Landing = () => {
                                 <Heart className="w-5 h-5 text-white" fill="currentColor"/>
                             </div>
                             <div>
-                                <div className={`font-black text-base leading-none transition-colors ${scrolled ? 'text-[--text-primary]' : 'text-white'}`}>
+                                <div className={`font-black text-base leading-none transition-colors ${scrolled ? 'text-(--text-primary)' : 'text-white'}`}>
                                     Pediatric Health Hub
                                 </div>
-                                <div className={`text-[10px] font-bold transition-colors ${scrolled ? 'text-[--text-muted]' : 'text-white/60'}`}>
+                                <div className={`text-[10px] font-bold transition-colors ${scrolled ? 'text-(--text-muted)' : 'text-white/60'}`}>
                                     Somalia's #1 Child Health Platform
                                 </div>
                             </div>
@@ -369,7 +369,7 @@ export const Landing = () => {
                                 onClick={toggleTheme}
                                 className={`w-9 h-9 rounded-xl flex items-center justify-center transition-all
                                     ${scrolled
-                                        ? 'border border-[--border] bg-[--surface] text-[--text-muted] hover:text-primary-600'
+                                        ? 'border border-(--border) bg-(--surface) text-(--text-muted) hover:text-primary-600'
                                         : 'bg-white/10 border border-white/20 text-white/80 hover:text-white'}`}
                             >
                                 {isDark ? <Sun size={17}/> : <Moon size={17}/>}
@@ -377,7 +377,7 @@ export const Landing = () => {
                             <a href="/login"
                                 className={`hidden sm:inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl font-black text-sm transition-all
                                     ${scrolled
-                                        ? 'border border-[--border] text-[--text-primary] hover:border-primary-400 hover:text-primary-600'
+                                        ? 'border border-(--border) text-(--text-primary) hover:border-primary-400 hover:text-primary-600'
                                         : 'bg-white/10 border border-white/25 text-white hover:bg-white/20'}`}>
                                 Sign In
                             </a>
@@ -389,7 +389,7 @@ export const Landing = () => {
                             <button
                                 onClick={() => setMenuOpen(!menuOpen)}
                                 className={`lg:hidden w-9 h-9 rounded-xl flex items-center justify-center transition-all
-                                    ${scrolled ? 'border border-[--border] bg-[--surface] text-[--text-primary]' : 'bg-white/10 border border-white/20 text-white'}`}
+                                    ${scrolled ? 'border border-(--border) bg-(--surface) text-(--text-primary)' : 'bg-white/10 border border-white/20 text-white'}`}
                             >
                                 {menuOpen ? <X size={18}/> : <Menu size={18}/>}
                             </button>
@@ -398,16 +398,16 @@ export const Landing = () => {
 
                     {/* Mobile menu */}
                     {menuOpen && (
-                        <div className="lg:hidden bg-[--surface] border-b border-[--border] px-6 py-5 space-y-2 shadow-xl">
+                        <div className="lg:hidden bg-(--surface) border-b border-(--border) px-6 py-5 space-y-2 shadow-xl">
                             {NAV_LINKS.map(link => (
                                 <a key={link.href} href={link.href}
                                     onClick={e => { e.preventDefault(); scrollTo(link.href); }}
-                                    className="flex items-center justify-between py-3 px-4 rounded-xl hover:bg-[--surface-soft] font-bold text-sm text-[--text-primary] transition-colors">
-                                    {link.label} <ChevronRight size={15} className="text-[--text-muted]"/>
+                                    className="flex items-center justify-between py-3 px-4 rounded-xl hover:bg-(--surface-soft) font-bold text-sm text-(--text-primary) transition-colors">
+                                    {link.label} <ChevronRight size={15} className="text-(--text-muted)"/>
                                 </a>
                             ))}
                             <div className="pt-3 flex gap-3">
-                                <a href="/login" className="flex-1 text-center py-3 border-2 border-[--border] rounded-xl font-black text-sm text-[--text-primary]">Sign In</a>
+                                <a href="/login" className="flex-1 text-center py-3 border-2 border-(--border) rounded-xl font-black text-sm text-(--text-primary)">Sign In</a>
                                 <a href="/login" className="flex-1 text-center py-3 bg-primary-600 text-white rounded-xl font-black text-sm">Get Started</a>
                             </div>
                         </div>
@@ -563,7 +563,7 @@ export const Landing = () => {
                 </div>
 
                 {/* ══ ABOUT ═════════════════════════════════════════════════════ */}
-                <section id="about" data-reveal className="py-24 lg:py-32 px-6 bg-[--surface-soft]">
+                <section id="about" data-reveal className="py-24 lg:py-32 px-6 bg-(--surface-soft)">
                     <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
                         {/* Images grid */}
                         <div className={`relative ${isVisible('about') ? 'lp-fade-up' : 'opacity-0'}`}>
@@ -590,15 +590,15 @@ export const Landing = () => {
                                 <Heart size={12} fill="currentColor"/> About Us
                             </div>
 
-                            <h2 className="text-4xl sm:text-5xl font-black text-[--text-primary] leading-tight tracking-tight">
+                            <h2 className="text-4xl sm:text-5xl font-black text-(--text-primary) leading-tight tracking-tight">
                                 Redefining Pediatric
                                 <span className="block text-primary-600"> Care in Somalia</span>
                             </h2>
 
-                            <p className="text-[--text-secondary] font-medium leading-relaxed text-base">
+                            <p className="text-(--text-secondary) font-medium leading-relaxed text-base">
                                 Pediatric Health Hub was founded with a single mission: make world-class child healthcare accessible to every Somali family, regardless of location or income level.
                             </p>
-                            <p className="text-[--text-secondary] font-medium leading-relaxed text-base">
+                            <p className="text-(--text-secondary) font-medium leading-relaxed text-base">
                                 We combine modern technology with deep cultural understanding to deliver a platform that speaks your language — literally. Our Somali-first approach ensures parents in Mogadishu, Hargeisa, and Kismayo receive the same quality of care.
                             </p>
 
@@ -609,13 +609,13 @@ export const Landing = () => {
                                     { icon: Shield,  value: 'HIPAA',       label: 'Compliant' },
                                     { icon: Clock,   value: '24/7',        label: 'AI Support' },
                                 ].map((s, i) => (
-                                    <div key={i} className="flex items-center gap-3 p-4 bg-[--surface] border border-[--border] rounded-2xl">
+                                    <div key={i} className="flex items-center gap-3 p-4 bg-(--surface) border border-(--border) rounded-2xl">
                                         <div className="w-10 h-10 bg-primary-50 dark:bg-primary-950/40 rounded-xl flex items-center justify-center shrink-0">
                                             <s.icon size={18} className="text-primary-600"/>
                                         </div>
                                         <div>
-                                            <div className="font-black text-[--text-primary] text-sm">{s.value}</div>
-                                            <div className="text-[--text-muted] text-[11px] font-medium">{s.label}</div>
+                                            <div className="font-black text-(--text-primary) text-sm">{s.value}</div>
+                                            <div className="text-(--text-muted) text-[11px] font-medium">{s.label}</div>
                                         </div>
                                     </div>
                                 ))}
@@ -625,16 +625,16 @@ export const Landing = () => {
                 </section>
 
                 {/* ══ HOW IT WORKS ══════════════════════════════════════════════ */}
-                <section id="how" data-reveal className="py-24 px-6 bg-[--bg]">
+                <section id="how" data-reveal className="py-24 px-6 bg-(--bg)">
                     <div className="max-w-7xl mx-auto">
                         <div className={`text-center mb-16 ${isVisible('how') ? 'lp-fade-up' : 'opacity-0'}`}>
                             <div className="inline-flex items-center gap-2 bg-teal/10 border border-teal/20 text-teal text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full mb-5">
                                 <Zap size={12}/> How It Works
                             </div>
-                            <h2 className="text-4xl sm:text-5xl font-black text-[--text-primary] tracking-tight mb-4">
+                            <h2 className="text-4xl sm:text-5xl font-black text-(--text-primary) tracking-tight mb-4">
                                 3 Steps to Better Care
                             </h2>
-                            <p className="text-[--text-secondary] font-medium max-w-xl mx-auto text-base">
+                            <p className="text-(--text-secondary) font-medium max-w-xl mx-auto text-base">
                                 Getting started takes less than 5 minutes. No paperwork, no waiting rooms.
                             </p>
                         </div>
@@ -649,12 +649,12 @@ export const Landing = () => {
                                     style={{ animationDelay: `${i * 0.15}s` }}>
                                     <div className={`w-20 h-20 ${s.color} rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-xl relative z-10`}>
                                         <s.icon size={32} className="text-white" strokeWidth={2}/>
-                                        <div className="absolute -top-3 -right-3 w-7 h-7 bg-[--surface] border-2 border-[--border] rounded-full flex items-center justify-center font-black text-[11px] text-[--text-primary]">
+                                        <div className="absolute -top-3 -right-3 w-7 h-7 bg-(--surface) border-2 border-(--border) rounded-full flex items-center justify-center font-black text-[11px] text-(--text-primary)">
                                             {s.n}
                                         </div>
                                     </div>
-                                    <h3 className="font-black text-xl text-[--text-primary] mb-3">{s.title}</h3>
-                                    <p className="text-[--text-secondary] font-medium text-sm leading-relaxed">{s.desc}</p>
+                                    <h3 className="font-black text-xl text-(--text-primary) mb-3">{s.title}</h3>
+                                    <p className="text-(--text-secondary) font-medium text-sm leading-relaxed">{s.desc}</p>
                                 </div>
                             ))}
                         </div>
@@ -662,16 +662,16 @@ export const Landing = () => {
                 </section>
 
                 {/* ══ SERVICES ══════════════════════════════════════════════════ */}
-                <section id="services" data-reveal className="py-24 lg:py-32 px-6 bg-[--surface-soft]">
+                <section id="services" data-reveal className="py-24 lg:py-32 px-6 bg-(--surface-soft)">
                     <div className="max-w-7xl mx-auto">
                         <div className={`text-center mb-16 ${isVisible('services') ? 'lp-fade-up' : 'opacity-0'}`}>
                             <div className="inline-flex items-center gap-2 bg-violet-50 dark:bg-violet-950/30 border border-violet-200 dark:border-violet-800 text-violet-700 dark:text-violet-300 text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full mb-5">
                                 <Sparkles size={12}/> Our Services
                             </div>
-                            <h2 className="text-4xl sm:text-5xl font-black text-[--text-primary] tracking-tight mb-4">
+                            <h2 className="text-4xl sm:text-5xl font-black text-(--text-primary) tracking-tight mb-4">
                                 Everything Your Child Needs
                             </h2>
-                            <p className="text-[--text-secondary] font-medium max-w-2xl mx-auto text-base">
+                            <p className="text-(--text-secondary) font-medium max-w-2xl mx-auto text-base">
                                 A full-spectrum pediatric management system designed for modern healthcare delivery across Somalia.
                             </p>
                         </div>
@@ -679,7 +679,7 @@ export const Landing = () => {
                         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                             {SERVICES.map((s, i) => (
                                 <div key={i}
-                                    className={`lp-card rounded-3xl overflow-hidden bg-[--surface] border border-[--border] shadow-sm group cursor-pointer
+                                    className={`lp-card rounded-3xl overflow-hidden bg-(--surface) border border-(--border) shadow-sm group cursor-pointer
                                         ${isVisible('services') ? 'lp-fade-up' : 'opacity-0'}`}
                                     style={{ animationDelay: `${i * 0.08}s` }}>
                                     {/* Image */}
@@ -693,10 +693,10 @@ export const Landing = () => {
                                     </div>
                                     {/* Body */}
                                     <div className="p-5">
-                                        <h3 className="font-black text-[--text-primary] text-base mb-2 group-hover:text-primary-600 transition-colors">
+                                        <h3 className="font-black text-(--text-primary) text-base mb-2 group-hover:text-primary-600 transition-colors">
                                             {s.title}
                                         </h3>
-                                        <p className="text-sm text-[--text-secondary] font-medium leading-relaxed">
+                                        <p className="text-sm text-(--text-secondary) font-medium leading-relaxed">
                                             {s.desc}
                                         </p>
                                         <div className={`flex items-center gap-1 mt-4 text-xs font-black ${s.color}`}>
@@ -710,16 +710,16 @@ export const Landing = () => {
                 </section>
 
                 {/* ══ DOCTORS ═══════════════════════════════════════════════════ */}
-                <section id="doctors" data-reveal className="py-24 lg:py-32 px-6 bg-[--bg]">
+                <section id="doctors" data-reveal className="py-24 lg:py-32 px-6 bg-(--bg)">
                     <div className="max-w-7xl mx-auto">
                         <div className={`text-center mb-16 ${isVisible('doctors') ? 'lp-fade-up' : 'opacity-0'}`}>
                             <div className="inline-flex items-center gap-2 bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300 text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full mb-5">
                                 <Stethoscope size={12}/> Our Specialists
                             </div>
-                            <h2 className="text-4xl sm:text-5xl font-black text-[--text-primary] tracking-tight mb-4">
+                            <h2 className="text-4xl sm:text-5xl font-black text-(--text-primary) tracking-tight mb-4">
                                 Meet Our Top Doctors
                             </h2>
-                            <p className="text-[--text-secondary] font-medium max-w-xl mx-auto text-base">
+                            <p className="text-(--text-secondary) font-medium max-w-xl mx-auto text-base">
                                 Every specialist on our platform is verified, certified, and committed to delivering excellence.
                             </p>
                         </div>
@@ -727,7 +727,7 @@ export const Landing = () => {
                         <div className="grid md:grid-cols-3 gap-8">
                             {DOCTORS.map((d, i) => (
                                 <div key={i}
-                                    className={`lp-card rounded-3xl overflow-hidden bg-[--surface] border border-[--border] shadow-sm text-center
+                                    className={`lp-card rounded-3xl overflow-hidden bg-(--surface) border border-(--border) shadow-sm text-center
                                         ${isVisible('doctors') ? 'lp-fade-up' : 'opacity-0'}`}
                                     style={{ animationDelay: `${i * 0.1}s` }}>
                                     {/* Cover */}
@@ -740,17 +740,17 @@ export const Landing = () => {
                                     </div>
                                     {/* Info */}
                                     <div className="p-6">
-                                        <h3 className="font-black text-[--text-primary] text-lg mb-1">{d.name}</h3>
+                                        <h3 className="font-black text-(--text-primary) text-lg mb-1">{d.name}</h3>
                                         <p className="text-primary-600 font-bold text-sm mb-1">{d.specialty}</p>
-                                        <p className="text-[--text-muted] text-xs font-medium mb-4">{d.exp} experience</p>
+                                        <p className="text-(--text-muted) text-xs font-medium mb-4">{d.exp} experience</p>
 
                                         {/* Stars */}
                                         <div className="flex items-center justify-center gap-1 mb-4">
                                             {[1,2,3,4,5].map(s => (
                                                 <Star key={s} size={14} className={s <= Math.floor(d.rating) ? 'text-amber-400 fill-amber-400' : 'text-slate-200 fill-slate-200'}/>
                                             ))}
-                                            <span className="text-xs font-black text-[--text-primary] ml-1">{d.rating}</span>
-                                            <span className="text-[10px] text-[--text-muted] ml-0.5">({d.reviews})</span>
+                                            <span className="text-xs font-black text-(--text-primary) ml-1">{d.rating}</span>
+                                            <span className="text-[10px] text-(--text-muted) ml-0.5">({d.reviews})</span>
                                         </div>
 
                                         <a href="/login"
@@ -772,7 +772,7 @@ export const Landing = () => {
                 </section>
 
                 {/* ══ TESTIMONIALS ══════════════════════════════════════════════ */}
-                <section data-reveal id="testimonials" className="py-24 lg:py-32 px-6 relative overflow-hidden bg-[--surface-soft]">
+                <section data-reveal id="testimonials" className="py-24 lg:py-32 px-6 relative overflow-hidden bg-(--surface-soft)">
                     <div className="absolute inset-0">
                         <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1600&h=800&q=70"
                             alt="bg" className="w-full h-full object-cover opacity-5"/>
@@ -782,10 +782,10 @@ export const Landing = () => {
                             <div className="inline-flex items-center gap-2 bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 text-amber-700 dark:text-amber-300 text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full mb-5">
                                 <Star size={12} fill="currentColor"/> Testimonials
                             </div>
-                            <h2 className="text-4xl sm:text-5xl font-black text-[--text-primary] tracking-tight mb-4">
+                            <h2 className="text-4xl sm:text-5xl font-black text-(--text-primary) tracking-tight mb-4">
                                 Trusted by Families
                             </h2>
-                            <p className="text-[--text-secondary] font-medium max-w-xl mx-auto">
+                            <p className="text-(--text-secondary) font-medium max-w-xl mx-auto">
                                 Real stories from parents and doctors across Somalia.
                             </p>
                         </div>
@@ -793,21 +793,21 @@ export const Landing = () => {
                         <div className="grid md:grid-cols-3 gap-6">
                             {TESTIMONIALS.map((t, i) => (
                                 <div key={i}
-                                    className={`lp-card bg-[--surface] border border-[--border] rounded-3xl p-7 shadow-sm
+                                    className={`lp-card bg-(--surface) border border-(--border) rounded-3xl p-7 shadow-sm
                                         ${isVisible('testimonials') ? 'lp-fade-up' : 'opacity-0'}`}
                                     style={{ animationDelay: `${i * 0.1}s` }}>
                                     {/* Stars */}
                                     <div className="flex gap-1 mb-4">
                                         {[1,2,3,4,5].map(s => <Star key={s} size={14} className="text-amber-400 fill-amber-400"/>)}
                                     </div>
-                                    <p className="text-[--text-secondary] text-sm font-medium leading-relaxed mb-6 italic">
+                                    <p className="text-(--text-secondary) text-sm font-medium leading-relaxed mb-6 italic">
                                         {t.text}
                                     </p>
                                     <div className="flex items-center gap-3">
                                         <img src={t.img} alt={t.name} className="w-11 h-11 rounded-full object-cover ring-2 ring-primary-100 dark:ring-primary-900"/>
                                         <div>
-                                            <div className="font-black text-[--text-primary] text-sm">{t.name}</div>
-                                            <div className="text-[--text-muted] text-[11px] font-medium">{t.role}</div>
+                                            <div className="font-black text-(--text-primary) text-sm">{t.name}</div>
+                                            <div className="text-(--text-muted) text-[11px] font-medium">{t.role}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -817,16 +817,16 @@ export const Landing = () => {
                 </section>
 
                 {/* ══ PRICING ═══════════════════════════════════════════════════ */}
-                <section id="pricing" data-reveal className="py-24 lg:py-32 px-6 bg-[--bg]">
+                <section id="pricing" data-reveal className="py-24 lg:py-32 px-6 bg-(--bg)">
                     <div className="max-w-6xl mx-auto">
                         <div className={`text-center mb-16 ${isVisible('pricing') ? 'lp-fade-up' : 'opacity-0'}`}>
                             <div className="inline-flex items-center gap-2 bg-rose-50 dark:bg-rose-950/30 border border-rose-200 dark:border-rose-800 text-rose-700 dark:text-rose-300 text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full mb-5">
                                 <Zap size={12}/> Pricing
                             </div>
-                            <h2 className="text-4xl sm:text-5xl font-black text-[--text-primary] tracking-tight mb-4">
+                            <h2 className="text-4xl sm:text-5xl font-black text-(--text-primary) tracking-tight mb-4">
                                 Simple, Transparent Pricing
                             </h2>
-                            <p className="text-[--text-secondary] font-medium max-w-xl mx-auto">
+                            <p className="text-(--text-secondary) font-medium max-w-xl mx-auto">
                                 Start for free, upgrade when you need more. No hidden fees ever.
                             </p>
                         </div>
@@ -834,7 +834,7 @@ export const Landing = () => {
                         <div className="grid md:grid-cols-3 gap-6 items-stretch">
                             {PLANS.map((plan, i) => (
                                 <div key={i}
-                                    className={`relative rounded-3xl border-2 overflow-hidden bg-[--surface] shadow-sm flex flex-col
+                                    className={`relative rounded-3xl border-2 overflow-hidden bg-(--surface) shadow-sm flex flex-col
                                         ${plan.highlight ? 'border-primary-500 shadow-2xl shadow-primary-500/15' : plan.color}
                                         ${isVisible('pricing') ? 'lp-fade-up' : 'opacity-0'}`}
                                     style={{ animationDelay: `${i * 0.1}s` }}>
@@ -847,13 +847,13 @@ export const Landing = () => {
 
                                     <div className="p-7 flex flex-col flex-1">
                                         <div className="mb-6">
-                                            <h3 className="font-black text-[--text-primary] text-xl mb-1">{plan.name}</h3>
-                                            <p className="text-[--text-muted] text-sm font-medium mb-4">{plan.desc}</p>
+                                            <h3 className="font-black text-(--text-primary) text-xl mb-1">{plan.name}</h3>
+                                            <p className="text-(--text-muted) text-sm font-medium mb-4">{plan.desc}</p>
                                             <div className="flex items-end gap-1">
-                                                <span className={`text-5xl font-black tracking-tight ${plan.highlight ? 'text-primary-600' : 'text-[--text-primary]'}`}>
+                                                <span className={`text-5xl font-black tracking-tight ${plan.highlight ? 'text-primary-600' : 'text-(--text-primary)'}`}>
                                                     {plan.price}
                                                 </span>
-                                                <span className="text-[--text-muted] font-medium text-sm mb-2">/{plan.period}</span>
+                                                <span className="text-(--text-muted) font-medium text-sm mb-2">/{plan.period}</span>
                                             </div>
                                         </div>
 
@@ -861,7 +861,7 @@ export const Landing = () => {
                                             {plan.features.map((f, fi) => (
                                                 <div key={fi} className="flex items-center gap-3">
                                                     <CheckCircle size={16} className={`shrink-0 ${plan.highlight ? 'text-primary-500' : 'text-emerald-500'}`}/>
-                                                    <span className="text-sm font-medium text-[--text-secondary]">{f}</span>
+                                                    <span className="text-sm font-medium text-(--text-secondary)">{f}</span>
                                                 </div>
                                             ))}
                                         </div>
@@ -870,7 +870,7 @@ export const Landing = () => {
                                             className={`block text-center py-3.5 rounded-2xl font-black text-sm transition-all hover:-translate-y-0.5
                                                 ${plan.highlight
                                                     ? 'bg-primary-600 hover:bg-primary-700 text-white shadow-lg shadow-primary-600/25'
-                                                    : 'border-2 border-[--border] text-[--text-primary] hover:border-primary-400 hover:text-primary-600'
+                                                    : 'border-2 border-(--border) text-(--text-primary) hover:border-primary-400 hover:text-primary-600'
                                                 }`}>
                                             {plan.cta}
                                         </a>
@@ -882,18 +882,18 @@ export const Landing = () => {
                 </section>
 
                 {/* ══ CONTACT ═══════════════════════════════════════════════════ */}
-                <section id="contact" data-reveal className="py-24 lg:py-32 px-6 bg-[--surface-soft]">
+                <section id="contact" data-reveal className="py-24 lg:py-32 px-6 bg-(--surface-soft)">
                     <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-start">
                         {/* Left */}
                         <div className={`${isVisible('contact') ? 'lp-fade-up' : 'opacity-0'}`}>
                             <div className="inline-flex items-center gap-2 bg-primary-50 dark:bg-primary-950/40 border border-primary-200 dark:border-primary-800 text-primary-700 dark:text-primary-300 text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full mb-6">
                                 <Mail size={12}/> Contact Us
                             </div>
-                            <h2 className="text-4xl sm:text-5xl font-black text-[--text-primary] tracking-tight leading-tight mb-5">
+                            <h2 className="text-4xl sm:text-5xl font-black text-(--text-primary) tracking-tight leading-tight mb-5">
                                 Get in Touch<br className="hidden sm:block"/>
                                 <span className="text-primary-600"> With Our Team</span>
                             </h2>
-                            <p className="text-[--text-secondary] font-medium leading-relaxed mb-8">
+                            <p className="text-(--text-secondary) font-medium leading-relaxed mb-8">
                                 Whether you're a parent, a doctor wanting to join our network, or a clinic seeking to integrate — our team is ready to help you get started.
                             </p>
 
@@ -904,13 +904,13 @@ export const Landing = () => {
                                     { icon: MapPin,      label: 'Address',  value: 'Mogadishu, Somalia' },
                                     { icon: Clock,       label: 'Hours',    value: '24/7 AI · 8AM–8PM Human Support' },
                                 ].map((c, i) => (
-                                    <div key={i} className="flex items-center gap-4 p-4 bg-[--surface] border border-[--border] rounded-2xl">
+                                    <div key={i} className="flex items-center gap-4 p-4 bg-(--surface) border border-(--border) rounded-2xl">
                                         <div className="w-10 h-10 bg-primary-50 dark:bg-primary-950/40 rounded-xl flex items-center justify-center shrink-0">
                                             <c.icon size={18} className="text-primary-600"/>
                                         </div>
                                         <div>
-                                            <div className="text-[10px] font-black text-[--text-muted] uppercase tracking-wide">{c.label}</div>
-                                            <div className="text-sm font-bold text-[--text-primary]">{c.value}</div>
+                                            <div className="text-[10px] font-black text-(--text-muted) uppercase tracking-wide">{c.label}</div>
+                                            <div className="text-sm font-bold text-(--text-primary)">{c.value}</div>
                                         </div>
                                     </div>
                                 ))}
@@ -918,9 +918,9 @@ export const Landing = () => {
                         </div>
 
                         {/* Right — Form */}
-                        <div className={`bg-[--surface] border border-[--border] rounded-3xl p-8 shadow-sm ${isVisible('contact') ? 'lp-fade-up' : 'opacity-0'}`}
+                        <div className={`bg-(--surface) border border-(--border) rounded-3xl p-8 shadow-sm ${isVisible('contact') ? 'lp-fade-up' : 'opacity-0'}`}
                             style={{ animationDelay: '0.15s' }}>
-                            <h3 className="font-black text-[--text-primary] text-xl mb-6">Send Us a Message</h3>
+                            <h3 className="font-black text-(--text-primary) text-xl mb-6">Send Us a Message</h3>
                             
                             {contactStatus.success && (
                                 <div className="mb-6 p-4 bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-800 rounded-xl flex items-center gap-3 text-emerald-700 dark:text-emerald-400">
@@ -938,35 +938,35 @@ export const Landing = () => {
                             <form onSubmit={handleContactSubmit} className="space-y-4">
                                 <div className="grid sm:grid-cols-2 gap-4">
                                     <div>
-                                        <label className="text-xs font-black text-[--text-muted] uppercase tracking-wide block mb-2">First Name</label>
+                                        <label className="text-xs font-black text-(--text-muted) uppercase tracking-wide block mb-2">First Name</label>
                                         <input type="text" placeholder="First Name" required
                                             value={contactForm.firstName} onChange={(e) => setContactForm({...contactForm, firstName: e.target.value})}
-                                            className="w-full px-4 py-3 border-2 border-[--border] rounded-xl bg-[--surface-soft] text-[--text-primary] text-sm font-medium placeholder-[--text-muted] focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all"/>
+                                            className="w-full px-4 py-3 border-2 border-(--border) rounded-xl bg-(--surface-soft) text-(--text-primary) text-sm font-medium placeholder-(--text-muted) focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all"/>
                                     </div>
                                     <div>
-                                        <label className="text-xs font-black text-[--text-muted] uppercase tracking-wide block mb-2">Last Name</label>
+                                        <label className="text-xs font-black text-(--text-muted) uppercase tracking-wide block mb-2">Last Name</label>
                                         <input type="text" placeholder="Last Name" required
                                             value={contactForm.lastName} onChange={(e) => setContactForm({...contactForm, lastName: e.target.value})}
-                                            className="w-full px-4 py-3 border-2 border-[--border] rounded-xl bg-[--surface-soft] text-[--text-primary] text-sm font-medium placeholder-[--text-muted] focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all"/>
+                                            className="w-full px-4 py-3 border-2 border-(--border) rounded-xl bg-(--surface-soft) text-(--text-primary) text-sm font-medium placeholder-(--text-muted) focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all"/>
                                     </div>
                                 </div>
                                 <div>
-                                    <label className="text-xs font-black text-[--text-muted] uppercase tracking-wide block mb-2">Email Address</label>
+                                    <label className="text-xs font-black text-(--text-muted) uppercase tracking-wide block mb-2">Email Address</label>
                                     <input type="email" placeholder="your@email.com" required
                                         value={contactForm.email} onChange={(e) => setContactForm({...contactForm, email: e.target.value})}
-                                        className="w-full px-4 py-3 border-2 border-[--border] rounded-xl bg-[--surface-soft] text-[--text-primary] text-sm font-medium placeholder-[--text-muted] focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all"/>
+                                        className="w-full px-4 py-3 border-2 border-(--border) rounded-xl bg-(--surface-soft) text-(--text-primary) text-sm font-medium placeholder-(--text-muted) focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all"/>
                                 </div>
                                 <div>
-                                    <label className="text-xs font-black text-[--text-muted] uppercase tracking-wide block mb-2">Subject</label>
+                                    <label className="text-xs font-black text-(--text-muted) uppercase tracking-wide block mb-2">Subject</label>
                                     <input type="text" placeholder="How can we help?" required
                                         value={contactForm.subject} onChange={(e) => setContactForm({...contactForm, subject: e.target.value})}
-                                        className="w-full px-4 py-3 border-2 border-[--border] rounded-xl bg-[--surface-soft] text-[--text-primary] text-sm font-medium placeholder-[--text-muted] focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all"/>
+                                        className="w-full px-4 py-3 border-2 border-(--border) rounded-xl bg-(--surface-soft) text-(--text-primary) text-sm font-medium placeholder-(--text-muted) focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all"/>
                                 </div>
                                 <div>
-                                    <label className="text-xs font-black text-[--text-muted] uppercase tracking-wide block mb-2">Message</label>
+                                    <label className="text-xs font-black text-(--text-muted) uppercase tracking-wide block mb-2">Message</label>
                                     <textarea rows={4} placeholder="Tell us about your needs..." required
                                         value={contactForm.message} onChange={(e) => setContactForm({...contactForm, message: e.target.value})}
-                                        className="w-full px-4 py-3 border-2 border-[--border] rounded-xl bg-[--surface-soft] text-[--text-primary] text-sm font-medium placeholder-[--text-muted] focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all resize-none"/>
+                                        className="w-full px-4 py-3 border-2 border-(--border) rounded-xl bg-(--surface-soft) text-(--text-primary) text-sm font-medium placeholder-(--text-muted) focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all resize-none"/>
                                 </div>
                                 <button type="submit" disabled={contactStatus.loading} className="w-full py-4 bg-primary-600 hover:bg-primary-700 disabled:opacity-70 text-white font-black text-sm rounded-xl transition-all hover:-translate-y-0.5 shadow-lg shadow-primary-600/25 flex items-center justify-center gap-2">
                                     {contactStatus.loading ? (
@@ -981,7 +981,7 @@ export const Landing = () => {
                 </section>
 
                 {/* ══ CTA BANNER ════════════════════════════════════════════════ */}
-                <section className="py-20 px-6 bg-[--bg]">
+                <section className="py-20 px-6 bg-(--bg)">
                     <div className="max-w-5xl mx-auto relative rounded-3xl overflow-hidden" style={{
                         background: 'linear-gradient(135deg, #1E3A8A 0%, #2563EB 50%, #0F766E 100%)'
                     }}>

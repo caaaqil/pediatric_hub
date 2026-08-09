@@ -84,7 +84,7 @@ export const TeleconsultHub = () => {
         <div className="max-w-300 w-full mx-auto space-y-6 animate-fade-in font-sans">
 
             {/* ── Hero Banner ──────────────────────────────────────────────── */}
-            <div className="bg-[--surface] rounded-2xl shadow-sm border border-[--border] p-6 sm:p-10 flex flex-col sm:flex-row items-center gap-6 relative overflow-hidden">
+            <div className="bg-(--surface) rounded-2xl shadow-sm border border-(--border) p-6 sm:p-10 flex flex-col sm:flex-row items-center gap-6 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-72 h-72 bg-teal/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4 pointer-events-none"/>
                 <div className="absolute bottom-0 left-0 w-72 h-72 bg-primary-600/5 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4 pointer-events-none"/>
 
@@ -93,10 +93,10 @@ export const TeleconsultHub = () => {
                 </div>
 
                 <div className="flex-1 z-10 text-center sm:text-left">
-                    <h1 className="text-2xl font-black text-[--text-primary] tracking-tight mb-1">
+                    <h1 className="text-2xl font-black text-(--text-primary) tracking-tight mb-1">
                         Teleconsultation Hub
                     </h1>
-                    <p className="text-sm font-medium text-[--text-secondary] leading-relaxed max-w-xl">
+                    <p className="text-sm font-medium text-(--text-secondary) leading-relaxed max-w-xl">
                         {isDoctor
                             ? 'Message patients, start encrypted video sessions, and review your complete consultation history below.'
                             : 'Message your doctors, join approved video calls, and view your complete call history — all in one place.'}
@@ -130,7 +130,7 @@ export const TeleconsultHub = () => {
                             <PhoneCall size={40} className="text-teal animate-bounce"/>
                         </div>
                         <h2 className="text-2xl font-black text-white mb-2">Incoming Call</h2>
-                        <p className="text-[--text-secondary] font-medium mb-8">
+                        <p className="text-(--text-secondary) font-medium mb-8">
                             Patient: <span className="text-white font-bold">{activeCall.child?.firstName} {activeCall.child?.lastName}</span>
                         </p>
                         <Button
