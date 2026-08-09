@@ -189,6 +189,30 @@ class HealthRecordRepository {
     return ParentInfo.fromJson(asMap(data));
   }
 
+  /// `PUT /parent-info/:id` (PARENT | ADMIN)
+  Future<ParentInfo> updateGuardian({
+    required String id,
+    required String fullName,
+    required String phoneNumber,
+    required String address,
+    required String relationship,
+    String? healthStatus,
+  }) async {
+    final Map<String, dynamic> body = <String, dynamic>{
+      'fullName': fullName,
+      'phoneNumber': phoneNumber,
+      'address': address,
+      'relationship': relationship,
+      // Sent even when blank so clearing the field actually clears it.
+      'healthStatus': (healthStatus == null || healthStatus.isEmpty)
+          ? null
+          : healthStatus,
+    };
+
+    final dynamic data = await _api.putData('/parent-info/$id', body: body);
+    return ParentInfo.fromJson(asMap(data));
+  }
+
   /// `DELETE /parent-info/:id` — soft delete.
   Future<void> removeGuardian(String id) => _api.deleteData('/parent-info/$id');
 }

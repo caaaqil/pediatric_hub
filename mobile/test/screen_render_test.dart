@@ -11,7 +11,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:pediatric_health_hub_mobile/config/theme/app_theme.dart';
 import 'package:pediatric_health_hub_mobile/core/network/api_client.dart';
 import 'package:pediatric_health_hub_mobile/core/storage/auth_storage.dart';
+import 'package:pediatric_health_hub_mobile/data/models/appointment.dart';
+import 'package:pediatric_health_hub_mobile/data/models/health_record.dart';
+import 'package:pediatric_health_hub_mobile/data/models/vaccination.dart';
 import 'package:pediatric_health_hub_mobile/data/repositories/support_repository.dart';
+import 'package:pediatric_health_hub_mobile/presentation/screens/parent/child_detail_screen.dart';
 import 'package:pediatric_health_hub_mobile/presentation/screens/parent/book_appointment_screen.dart';
 import 'package:pediatric_health_hub_mobile/data/models/child.dart';
 import 'package:pediatric_health_hub_mobile/data/models/enums.dart';
@@ -396,6 +400,102 @@ void main() {
     await tester.pump();
     expect(tester.takeException(), isNull);
     expect(find.text('Not selected'), findsNothing);
+  });
+
+  _childProfileTests();
+}
+
+/// The ported ChildProfile page pulls from six providers at once and stacks
+/// what the web lays out in two and three columns, so it gets its own pump.
+void _childProfileTests() {
+  testWidgets('Child health record renders every ported section', (
+    WidgetTester tester,
+  ) async {
+    await _pump(
+      tester,
+      const ChildDetailScreen(childId: 'c1'),
+      overrides: <Override>[
+        childDetailProvider.overrideWith((Ref ref, String id) async =>
+            _children.first),
+        childVaccinationsProvider.overrideWith(
+          (Ref ref, String id) async => <Vaccination>[
+            Vaccination(
+              id: 'v1',
+              childId: id,
+              vaccineName: 'BCG',
+              doseNumber: 1,
+              scheduledDate: DateTime(2026, 9, 1),
+              status: VaccineStatus.completed,
+            ),
+            Vaccination(
+              id: 'v2',
+              childId: id,
+              vaccineName: 'Measles',
+              doseNumber: 1,
+              scheduledDate: DateTime(2026, 10, 1),
+              status: VaccineStatus.due,
+            ),
+          ],
+        ),
+        guardiansProvider.overrideWith(
+          (Ref ref, String id) async => <ParentInfo>[
+            ParentInfo(
+              id: 'p1',
+              childId: id,
+              fullName: 'Cabdiraxmaan Maxamed',
+              phoneNumber: '+252 612 345 678',
+              address: 'Mogadishu, Hodan District',
+              relationship: 'FATHER',
+            ),
+          ],
+        ),
+        baselineProvider.overrideWith(
+          (Ref ref, String id) async => ChildBaseline(
+            allergies: <Allergy>[
+              Allergy(
+                id: 'a1',
+                childId: id,
+                allergen: 'Penicillin',
+                severity: 'Severe',
+              ),
+            ],
+          ),
+        ),
+        consultationsProvider.overrideWith(
+          (Ref ref, String id) async => <ConsultationNote>[],
+        ),
+        myScheduleProvider.overrideWith((Ref ref) async => <Appointment>[]),
+      ],
+    );
+
+    expect(tester.takeException(), isNull);
+    expect(find.text("Child's Information"), findsOneWidget);
+    expect(find.text('Vaccination Summary'), findsOneWidget);
+    expect(find.text('Parent Information'), findsOneWidget);
+    expect(find.text('Add Parent'), findsOneWidget);
+    expect(find.text('Cabdiraxmaan Maxamed'), findsOneWidget);
+    expect(find.text('FATHER'), findsOneWidget);
+    expect(find.text('Allergies'), findsOneWidget);
+    expect(find.text('Penicillin'), findsOneWidget);
+    expect(find.text('SEVERE'), findsOneWidget);
+    expect(find.text('No active medications'), findsOneWidget);
+    expect(find.text('Clean history'), findsOneWidget);
+    expect(find.text('Appointment History'), findsOneWidget);
+    expect(find.text("Doctor's Notes & Prescriptions"), findsOneWidget);
+    expect(find.text('No formal doctor notes recorded yet.'), findsOneWidget);
+
+    // The Add Parent modal — the form the web opens from this page.
+    await tester.tap(find.text('Add Parent'));
+    await tester.pumpAndSettle();
+
+    expect(tester.takeException(), isNull);
+    expect(find.text('Add Parent Information'), findsOneWidget);
+    expect(find.text('PARENT FULL NAME *'), findsOneWidget);
+    expect(find.text('PHONE NUMBER *'), findsOneWidget);
+    expect(find.text('ADDRESS / RESIDENTIAL LOCATION *'), findsOneWidget);
+    expect(find.text('HEALTH STATUS (OPTIONAL)'), findsOneWidget);
+    expect(find.text('RELATIONSHIP TO CHILD *'), findsOneWidget);
+    expect(find.text('Save Parent'), findsOneWidget);
   });
 }
 
