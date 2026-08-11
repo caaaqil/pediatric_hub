@@ -38,6 +38,7 @@ import '../../presentation/screens/shared/emergency_screen.dart';
 import '../../presentation/screens/shared/messages_screen.dart';
 import '../../presentation/screens/shared/notifications_screen.dart';
 import '../../presentation/screens/shared/teleconsult_screen.dart';
+import '../../presentation/screens/shared/video_call_screen.dart';
 import '../../presentation/screens/shell/portal_shells.dart';
 import '../../presentation/screens/splash_screen.dart';
 import 'app_routes.dart';
@@ -336,6 +337,12 @@ final Provider<GoRouter> routerProvider = Provider<GoRouter>((Ref ref) {
         path: Routes.teleconsult,
         builder: (BuildContext context, GoRouterState state) =>
             const TeleconsultScreen(),
+      ),
+      GoRoute(
+        path: '/call/:appointmentId',
+        builder: (BuildContext context, GoRouterState state) => VideoCallScreen(
+          roomId: state.pathParameters['appointmentId'] ?? '',
+        ),
       ),
       GoRoute(
         path: Routes.messages,

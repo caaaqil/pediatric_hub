@@ -41,6 +41,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<!-- Shown the first time a teleconsultation call opens. -->
+	<key>NSCameraUsageDescription</key>
+	<string>Pediatric Health Hub uses the camera for video consultations with your doctor.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Pediatric Health Hub uses the microphone so you can speak to your doctor during a consultation.</string>
 	<!-- iOS blocks plain HTTP by default. The simulator talks to
 	     http://localhost:3000 during development, so allow local networking.
 	     Tighten or remove this once the backend is served over HTTPS. -->

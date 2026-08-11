@@ -280,6 +280,18 @@ class _TeleconsultCard extends StatelessWidget {
               valueColor: room.isLive ? AppColors.success : null,
             ),
           ],
+          if (room != null && room.isLive) ...<Widget>[
+            const SizedBox(height: AppSpacing.md),
+            SizedBox(
+              width: double.infinity,
+              child: FilledButton.icon(
+                onPressed: () =>
+                    context.push(Routes.videoCall(appointment.id)),
+                icon: const Icon(Icons.videocam_rounded, size: 18),
+                label: const Text('Join video call'),
+              ),
+            ),
+          ],
           if (onOpenRoom != null) ...<Widget>[
             const SizedBox(height: AppSpacing.md),
             SizedBox(
@@ -292,8 +304,9 @@ class _TeleconsultCard extends StatelessWidget {
             ),
             const SizedBox(height: AppSpacing.sm),
             Text(
-              'Opening a room also confirms a pending appointment. Video '
-              'calling itself runs in the web app.',
+              'Opening a room also confirms a pending appointment. The call '
+              'runs in this app, or in the web client — both join the same '
+              'room.',
               style: Theme.of(context).textTheme.bodySmall,
             ),
           ],

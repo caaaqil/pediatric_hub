@@ -50,6 +50,9 @@ class Routes {
   // Shared across roles — reachable from any portal
   static String appointmentDetail(String id) => '/appointments/$id';
   static const String teleconsult = '/teleconsult';
+
+  /// The live video call. The appointment id doubles as the Socket.IO room.
+  static String videoCall(String appointmentId) => '/call/$appointmentId';
   static const String messages = '/messages';
   static const String notifications = '/notifications';
   static const String education = '/education';

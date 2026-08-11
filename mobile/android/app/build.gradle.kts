@@ -24,7 +24,8 @@ android {
         applicationId = "com.pediatrichub.pediatric_health_hub_mobile"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
+        // flutter_webrtc needs 23 or newer; Flutter's own floor is lower.
+        minSdk = maxOf(flutter.minSdkVersion, 23)
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName

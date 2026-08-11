@@ -18,8 +18,9 @@ import '../../providers/providers.dart';
 ///
 /// `POST /teleconsultations/generate` opens (and auto-confirms) a room;
 /// `PATCH /teleconsultations/:appointmentId/end` closes it and completes the
-/// appointment. The actual WebRTC video call runs in the web app — the mobile
-/// client manages room state only.
+/// appointment. Once a room is live, "Join video call" opens
+/// `VideoCallScreen`, which joins the same Socket.IO room the web client uses —
+/// so a parent on a phone and a doctor in a browser meet in one call.
 class TeleconsultScreen extends ConsumerStatefulWidget {
   const TeleconsultScreen({super.key, this.showAppBar = true});
 
@@ -172,6 +173,22 @@ class _TeleconsultScreenState extends ConsumerState<TeleconsultScreen> {
                             value: room.roomUrl ?? '—',
                             icon: Icons.meeting_room_outlined,
                           ),
+                        if (room != null && room.isLive) ...<Widget>[
+                          const SizedBox(height: AppSpacing.md),
+                          SizedBox(
+                            width: double.infinity,
+                            child: FilledButton.icon(
+                              onPressed: () => context.push(
+                                Routes.videoCall(appointment.id),
+                              ),
+                              icon: const Icon(
+                                Icons.videocam_rounded,
+                                size: 17,
+                              ),
+                              label: const Text('Join video call'),
+                            ),
+                          ),
+                        ],
                         const SizedBox(height: AppSpacing.md),
                         Row(
                           children: <Widget>[
