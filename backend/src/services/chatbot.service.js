@@ -24,7 +24,11 @@ const groqClient = process.env.GROQ_API_KEY
     ? new Groq({ apiKey: process.env.GROQ_API_KEY })
     : null;
 
-const GEMINI_MODEL = 'gemini-2.0-flash';
+// An alias rather than a pinned version. gemini-2.0-flash was retired, and so
+// was 2.5-flash after it — each time, every Gemini call failed and the chatbot
+// silently ran on the Groq fallback. The alias follows whichever flash model is
+// current, so a retirement stops breaking this.
+const GEMINI_MODEL = 'gemini-flash-latest';
 const GROQ_MODEL   = 'openai/gpt-oss-120b'; // 120B model on Groq — much better Somali than llama
 
 // ---------------------------------------------------------------------------
